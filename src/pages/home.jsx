@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import NevBar from "../components/nevBar";
 import Footer from "./footer";
-import NavBarLogin from '../components/navBarLogin';
-import BackButton from '../components/backButton';
+import PartnerSlider from "../components/slider/partner";
 class Home extends React.Component {
   render() {
     const settings = {
@@ -26,7 +25,7 @@ class Home extends React.Component {
     };
     return (
       <>
-        <NevBar userType='' login={false} name={"Mehazabien"}/>
+        <NevBar userType='' login={true} name={"Mehazabien"}/>
 
       {/* <NavBarLogin/> */}
 
@@ -80,38 +79,7 @@ class Home extends React.Component {
             <h3>Brands & Partners</h3>
             <div id="brand-partners-slider">
               <div class="logos greyscale slick-sliders">
-                <Slider {...settings} className="my-sliders">
-                  <div class="item">
-                    <img src="./images/logos/partners/blanka.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img src="./images/logos/partners/colgate.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img src="./images/logos/partners/veritree.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img src="./images/logos/partners/walmart.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img src="./images/logos/partners/later.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img src="./images/logos/partners/think.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img src="./images/logos/partners/hootsuite.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img src="./images/logos/partners/hex.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img src="./images/logos/partners/vista.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img src="./images/logos/partners/scentuals.png" alt="" />
-                  </div>
-                </Slider>
+                <PartnerSlider settings={settings}/>
               </div>
             </div>
           </section>
@@ -929,68 +897,7 @@ class Home extends React.Component {
             </div>
           </section>
 
-          <section class="recent-articles">
-            <div class="background">
-              <img src="./images/all/pages/home/blog-bg.svg" alt="" />
-            </div>
-            <div class="inner">
-              <h2>Influencer Marketing & The Creator Economy</h2>
-              <div class="articles fade-in-group">
-                <div class="blog-preview fade-in">
-                  <img
-                    class="blog-img"
-                    src="images/uploads/2022/08/Group-1899-768x445.png"
-                  />
-                  <p class="date">September 5, 2022</p>
-                  <p class="title">NFTs And Their Role In The Metaverse</p>
-                  <a class="link" href="index.html?p=1873629">
-                    Read more
-                    <img
-                      class="arrow"
-                      src="./images/all/icons/grey-arrow.svg"
-                      alt=""
-                    />
-                  </a>
-                </div>
-                <div class="blog-preview fade-in">
-                  <img
-                    class="blog-img"
-                    src="images/uploads/2022/08/Group-1896-768x445.png"
-                  />
-                  <p class="date">August 29, 2022</p>
-                  <p class="title">
-                    5 Reasons People Desire NFTs and Digital Art 
-                  </p>
-                  <a class="link" href="index.html?p=1869117">
-                    Read more
-                    <img
-                      class="arrow"
-                      src="./images/all/icons/grey-arrow.svg"
-                      alt=""
-                    />
-                  </a>
-                </div>
-                <div class="blog-preview fade-in">
-                  <img
-                    class="blog-img"
-                    src="images/uploads/2022/08/Group-1897-768x447.png"
-                  />
-                  <p class="date">August 26, 2022</p>
-                  <p class="title">
-                    How Brands Should Be Using Instagram Reels
-                  </p>
-                  <a class="link" href="index.html?p=1871654">
-                    Read more
-                    <img
-                      class="arrow"
-                      src="./images/all/icons/grey-arrow.svg"
-                      alt=""
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
+          
         </main>
         <Footer/>
         

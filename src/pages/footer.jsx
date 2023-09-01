@@ -3,7 +3,7 @@ const Footer = () => {
     <footer class="main-footer">
       <div class="inner">
         <div class="logo-wrapper">
-          <a href="index.html" class="logo">
+          <a href="/" class="logo">
             Influences Hub
           </a>
           <div class="copyright">&copy; 2023 Mahadi All rights reserved.</div>
