@@ -34,7 +34,6 @@ class Home extends React.Component {
         imgUrl: "./images/all/pages/creators/tiffany.jpg",
       },
     ];
-    const brandPath = "";
     const brandImgUrl = [
       "./images/logos/partners/blanka.png",
       "./images/logos/partners/colgate.png",
@@ -48,6 +47,72 @@ class Home extends React.Component {
       "./images/logos/partners/scentuals.png",
     ];
 
+    const testimonialData = [
+      {
+        class: "testimonial",
+        desktop: "testimonial desktop fade-in",
+        name: "Faisal Khan",
+        joined: "Jan 12, 2021",
+        message: "khub joss ekta website.",
+        stars: 5,
+        platformImg: "./images/all/icons/trustpilot.svg",
+      },
+      {
+        class: "testimonial",
+        desktop: "testimonial desktop fade-in",
+        name: "Abir Mia",
+        joined: "Fab 10, 2022",
+        message: "khub joss ekta website.",
+        stars: 4,
+        platformImg: "./images/all/icons/google.svg",
+      },
+      {
+        class: "testimonial",
+        desktop: "testimonial desktop fade-in",
+        name: "Imran Pranto",
+        joined: "Fab 10, 2022",
+        message: "khub joss ekta website.",
+        stars: 4,
+        platformImg: "./images/all/icons/google.svg",
+      },
+      {
+        class: "testimonial",
+        desktop: "testimonial desktop fade-in",
+        name: "Abir Mia",
+        joined: "Fab 10, 2022",
+        message: "khub joss ekta website.",
+        stars: 4,
+        platformImg: "./images/all/icons/google.svg",
+      },
+      {
+        class: "testimonial",
+        desktop: "testimonial desktop fade-in",
+        name: "Abir Mia",
+        joined: "Fab 10, 2022",
+        message: "khub joss ekta website.",
+        stars: 4,
+        platformImg: "./images/all/icons/google.svg",
+      },
+      {
+        class: "testimonial",
+        desktop: "testimonial desktop fade-in",
+        name: "Abir Mia",
+        joined: "Fab 10, 2022",
+        message: "khub joss ekta website.",
+        stars: 4,
+        platformImg: "./images/all/icons/google.svg",
+      },
+      {
+        class: "testimonial",
+        desktop: "testimonial desktop fade-in",
+        name: "Abir Mia",
+        joined: "Fab 10, 2022",
+        message: "khub joss ekta website.",
+        stars: 4,
+        platformImg: "./images/all/icons/google.svg",
+      },
+    ];
+
     return (
       <>
         <NevBar userType="" login={true} name={"Mehazabien"} />
@@ -58,8 +123,15 @@ class Home extends React.Component {
         <main class="home-wrapper">
           <HomeBanner />
 
-          <PartnerSlider imgUrl={brandImgUrl} />
-          <Testimonial />
+          <PartnerSlider imgUrl={brandImgUrl} text={"Brands & Partners"} />
+          <Testimonial
+            heading={"Brands love us"}
+            text={
+              "The leading Influencer marketing platform for challenger brands and micro influencers"
+            }
+            data={testimonialData}
+            background={"./images/hero-images/brand-testimonial-bg.svg"}
+          />
 
           <CreatorTestimonial data={creatorTestimonialData} />
 

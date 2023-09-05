@@ -12,7 +12,7 @@ const PartnerSlider = (props) => {
   };
   return (
     <section class="logo-scroller">
-      <h3>Brands & Partners</h3>
+      <h3>{props.text}</h3>
       <div id="brand-partners-slider">
         <div class="logos greyscale slick-sliders">
           <Slider {...settings} arrows={false} className="my-sliders">

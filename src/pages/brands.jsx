@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import NevBar from "../components/nevBar";
 import Slider from "react-slick";
+import PartnerSlider from "../components/home-component/partnerSlider";
+import Testimonial from "../components/home-component/testimonials";
 class Brands extends React.Component {
   render() {
     const settings = {
@@ -13,6 +15,83 @@ class Brands extends React.Component {
       autoplaySpeed: 2000,
       cssEase: "linear",
     };
+    const brandImgUrl = [
+      "./images/logos/partners/blanka.png",
+      "./images/logos/partners/colgate.png",
+      "./images/logos/partners/veritree.png",
+      "./images/logos/partners/walmart.png",
+      "./images/logos/partners/later.png",
+      "./images/logos/partners/think.png",
+      "./images/logos/partners/hootsuite.png",
+      "./images/logos/partners/hex.png",
+      "./images/logos/partners/vista.png",
+      "./images/logos/partners/scentuals.png",
+    ];
+    const testimonialData = [
+      {
+        class: "testimonial",
+        desktop: "testimonial desktop fade-in",
+        name: "Faisal Khan",
+        joined: "Jan 12, 2021",
+        message: "khub joss ekta website.",
+        stars: 5,
+        platformImg: "./images/all/icons/trustpilot.svg",
+      },
+      {
+        class: "testimonial",
+        desktop: "testimonial desktop fade-in",
+        name: "Abir Mia",
+        joined: "Fab 10, 2022",
+        message: "khub joss ekta website.",
+        stars: 4,
+        platformImg: "./images/all/icons/google.svg",
+      },
+      {
+        class: "testimonial",
+        desktop: "testimonial desktop fade-in",
+        name: "Imran Pranto",
+        joined: "Fab 10, 2022",
+        message: "khub joss ekta website.",
+        stars: 4,
+        platformImg: "./images/all/icons/google.svg",
+      },
+      {
+        class: "testimonial",
+        desktop: "testimonial desktop fade-in",
+        name: "Abir Mia",
+        joined: "Fab 10, 2022",
+        message: "khub joss ekta website.",
+        stars: 4,
+        platformImg: "./images/all/icons/google.svg",
+      },
+      {
+        class: "testimonial",
+        desktop: "testimonial desktop fade-in",
+        name: "Abir Mia",
+        joined: "Fab 10, 2022",
+        message: "khub joss ekta website.",
+        stars: 4,
+        platformImg: "./images/all/icons/google.svg",
+      },
+      {
+        class: "testimonial",
+        desktop: "testimonial desktop fade-in",
+        name: "Abir Mia",
+        joined: "Fab 10, 2022",
+        message: "khub joss ekta website.",
+        stars: 4,
+        platformImg: "./images/all/icons/google.svg",
+      },
+      {
+        class: "testimonial",
+        desktop: "testimonial desktop fade-in",
+        name: "Abir Mia",
+        joined: "Fab 10, 2022",
+        message: "khub joss ekta website.",
+        stars: 4,
+        platformImg: "./images/all/icons/google.svg",
+      },
+    ];
     return (
       <>
         <NevBar userType="Brands" />
@@ -48,644 +127,18 @@ class Brands extends React.Component {
             </div>
           </section>
 
-          <section class="testimonials-wrapper brand">
-            <div class="background">
-              <img src="../images/all/pages/brands/testimonial-bg.svg" alt="" />
-            </div>
-            <div class="inner">
-              <div class="intro-section">
-                <h2>Marketers love us</h2>
-                <p class="subtitle">
-                  Where brands and creators connect, collaborate, grow, & earn
-                  more money
-                </p>
-                <div class="review-sites-wrapper">
-                  <div class="review-site">
-                    <img
-                      class="icon"
-                      src="../images/all/icons/google.svg"
-                      alt="Google"
-                    />
-                    <div class="text">
-                      <p class="number">5.0</p>
-                    </div>
-                  </div>
-                  <div class="review-site">
-                    <img
-                      class="icon"
-                      src="../images/all/icons/g2.svg"
-                      alt="G2"
-                    />
-                    <div class="text">
-                      <p class="number">4.6</p>
-                    </div>
-                  </div>
-                  <div class="review-site">
-                    <img
-                      class="icon"
-                      src="../images/all/icons/trustpilot.svg"
-                      alt="TrustPilot"
-                    />
-                    <div class="text">
-                      <p class="number">4.5</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="testimonial desktop fade-in">
-                  <div class="testimonial-inner">
-                    <div class="upper">
-                      <div class="reviewer-info">
-                        <div class="avatar">
-                          <img src="../images/all/pages/home/kate.jpg" alt="" />
-                        </div>
-                        <div class="text">
-                          <p class="reviewer-name">Kate Slaney</p>
-                          <p class="date">Dec 2022</p>
-                        </div>
-                      </div>
-                      <div class="stars">
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <p class="message">
-                      As a Brand Manager, Creator.co full service option with
-                      influencer negotiation has made this part of my job
-                      seamless and we are receiving high quality content! Highly
-                      recommend working with them.
-                    </p>
-                    <img
-                      class="review-site-logo"
-                      src="../images/all/icons/google.svg"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div
-                id="brand-testimonials-slider-one"
-                class="testimonials-slider"
-              >
-                <div class="testimonial">
-                  <div class="testimonial-inner">
-                    <div class="upper">
-                      <div class="reviewer-info">
-                        <div class="avatar">
-                          <span class="initials">DD</span>
-                        </div>
-
-                        <div class="text">
-                          <p class="reviewer-name">Diana Danoff</p>
-                          <p class="date">Sep 27, 2022</p>
-                        </div>
-                      </div>
-                      <div class="stars">
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <p class="message">
-                      Creator.co support all four of our brands, and are doing
-                      an amazing job on each one of them. I’m so happy with all
-                      content the influencers are producing and the traction we
-                      are getting from new customers.
-                    </p>
-                    <img
-                      class="review-site-logo"
-                      src="../images/all/icons/google.svg"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div class="testimonial">
-                  <div class="testimonial-inner">
-                    <div class="upper">
-                      <div class="reviewer-info">
-                        <div class="avatar">
-                          <span class="initials">ES</span>
-                        </div>
-
-                        <div class="text">
-                          <p class="reviewer-name">Eden Spodek</p>
-                          <p class="date">Oct 3, 2022</p>
-                        </div>
-                      </div>
-                      <div class="stars">
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <p class="message">
-                      The platform is easy to use, it’s helpful managing
-                      creators and campaigns all in one place. The best part
-                      about Creator.co is having the option to work with an
-                      account rep who will take any aspects of the campaign and
-                      creator engagement process for your brand.
-                    </p>
-                    <img
-                      class="review-site-logo"
-                      src="../images/all/icons/google.svg"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div class="testimonial">
-                  <div class="testimonial-inner">
-                    <div class="upper">
-                      <div class="reviewer-info">
-                        <div class="avatar">
-                          <span class="initials">KS</span>
-                        </div>
-
-                        <div class="text">
-                          <p class="reviewer-name">Kate Slaney</p>
-                          <p class="date">Dec 2022</p>
-                        </div>
-                      </div>
-                      <div class="stars">
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <p class="message">
-                      As a Brand Manager, Creator.co full service option with
-                      influencer negotiation has made this part of my job
-                      seamless and we are receiving high quality content! Highly
-                      recommend working with them.
-                    </p>
-                    <img
-                      class="review-site-logo"
-                      src="../images/all/icons/google.svg"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div class="testimonial">
-                  <div class="testimonial-inner">
-                    <div class="upper">
-                      <div class="reviewer-info">
-                        <div class="avatar">
-                          <span class="initials">KC</span>
-                        </div>
-
-                        <div class="text">
-                          <p class="reviewer-name">Kevin Campbell</p>
-                          <p class="date">Oct 12, 2022</p>
-                        </div>
-                      </div>
-                      <div class="stars">
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <p class="message">
-                      Hands down the best Influencer platform out there!! I
-                      absolutely love Creator.co. The team is fantastic and they
-                      do a really good job. The influencers are wonderful as
-                      well as the service.
-                    </p>
-                    <img
-                      class="review-site-logo"
-                      src="../images/all/icons/trustpilot.svg"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div class="testimonial">
-                  <div class="testimonial-inner">
-                    <div class="upper">
-                      <div class="reviewer-info">
-                        <div class="avatar">
-                          <span class="initials">JF</span>
-                        </div>
-
-                        <div class="text">
-                          <p class="reviewer-name">Jessica Friedman</p>
-                          <p class="date">Sep 28, 2022</p>
-                        </div>
-                      </div>
-                      <div class="stars">
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <p class="message">
-                      The team at Creator.Co is amazing! They have helped our
-                      brand, Hydreight® build social proof on multiple
-                      platforms, as well as created video content that went
-                      viral on TikTok and Facebook.
-                    </p>
-                    <img
-                      class="review-site-logo"
-                      src="../images/all/icons/trustpilot.svg"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div class="testimonial">
-                  <div class="testimonial-inner">
-                    <div class="upper">
-                      <div class="reviewer-info">
-                        <div class="avatar">
-                          <span class="initials">SC</span>
-                        </div>
-
-                        <div class="text">
-                          <p class="reviewer-name">Sandro C.</p>
-                          <p class="date">Jul 19, 2022</p>
-                        </div>
-                      </div>
-                      <div class="stars">
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <p class="message">
-                      We explored multiple platforms before choosing Creator.co
-                      - after 1 week of our campaign going live we had hundreds
-                      of on-brand Influencers to work with at our discretion.
-                    </p>
-                    <img
-                      class="review-site-logo"
-                      src="../images/all/icons/g2.svg"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div class="testimonial">
-                  <div class="testimonial-inner">
-                    <div class="upper">
-                      <div class="reviewer-info">
-                        <div class="avatar">
-                          <span class="initials">A</span>
-                        </div>
-
-                        <div class="text">
-                          <p class="reviewer-name">Anonymous</p>
-                          <p class="date">Sep 12, 2022</p>
-                        </div>
-                      </div>
-                      <div class="stars">
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <p class="message">
-                      Best tool (and team!) for narrowing down your ideal
-                      creator audience. Creator.co makes this easy by providing
-                      a ton on filters that help narrow down so that you can
-                      find exactly who you want.
-                    </p>
-                    <img
-                      class="review-site-logo"
-                      src="../images/all/icons/g2.svg"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div class="desktop-testimonials">
-                <div class="testimonial desktop fade-in">
-                  <div class="testimonial-inner">
-                    <div class="upper">
-                      <div class="reviewer-info">
-                        <div class="avatar">
-                          <span class="initials">JF</span>
-                        </div>
-                        <div class="text">
-                          <p class="reviewer-name">Jessica Friedman</p>
-                          <p class="date">Sep 28, 2022</p>
-                        </div>
-                      </div>
-                      <div class="stars">
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <p class="message">
-                      The team at Creator.Co is amazing! They have helped our
-                      brand, Hydreight® build social proof on multiple
-                      platforms, as well as created video content that went
-                      viral on TikTok and Facebook.
-                    </p>
-                    <img
-                      class="review-site-logo"
-                      src="../images/all/icons/trustpilot.svg"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div class="testimonial desktop fade-in">
-                  <div class="testimonial-inner">
-                    <div class="upper">
-                      <div class="reviewer-info">
-                        <div class="avatar">
-                          <span class="initials">A</span>
-                        </div>
-                        <div class="text">
-                          <p class="reviewer-name">Anonymous</p>
-                          <p class="date">Sep 12, 2022</p>
-                        </div>
-                      </div>
-                      <div class="stars">
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                        <img
-                          class="icon"
-                          src="../images/all/icons/star.svg"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                    <p class="message">
-                      Best tool (and team!) for narrowing down your ideal
-                      creator audience. Creator.co makes this easy by providing
-                      a ton on filters that help narrow down so that you can
-                      find exactly who you want.
-                    </p>
-                    <img
-                      class="review-site-logo"
-                      src="../images/all/icons/g2.svg"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="logo-scroller">
-            <h3>Used by hundreds of brands</h3>
-            <div id="brand-partners-slider">
-                <div class="logos greyscale slick-sliders">
-              <Slider {...settings} className='my-sliders'>
-                  <div class="item">
-                    <img src=".././images/logos/partners/blanka.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img src=".././images/logos/partners/colgate.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img src=".././images/logos/partners/veritree.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img src=".././images/logos/partners/walmart.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img src=".././images/logos/partners/later.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img src=".././images/logos/partners/think.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img
-                      src=".././images/logos/partners/hootsuite.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="item">
-                    <img src=".././images/logos/partners/hex.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img src=".././images/logos/partners/vista.png" alt="" />
-                  </div>
-                  <div class="item">
-                    <img
-                      src=".././images/logos/partners/scentuals.png"
-                      alt=""
-                    />
-                  </div>
-              </Slider>
-                </div>
-            </div>
-          </section>
+          <Testimonial
+            background={"../images/all/pages/brands/testimonial-bg.svg"}
+            heading={"Marketers love us"}
+            text={
+              "Where brands and creators connect, collaborate, grow, & earn more money"
+            }
+            data={testimonialData}
+          />
+          <PartnerSlider
+            text={"Used by hundreds of brands"}
+            imgUrl={brandImgUrl}
+          />
 
           <section class="sign-up-banner fade-in">
             <div class="background">
