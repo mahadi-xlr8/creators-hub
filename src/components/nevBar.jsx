@@ -24,13 +24,14 @@ class NevBar extends React.Component {
 
                 {/* start */}
 
-                {login && role === "creator" ? null : (
+                
                   <div class="dropdown creator">
                     <div class="dropdown-title link">
                       Brands
                       <img
                         src="/images/creators/icons/arrow-black.svg"
                         alt=""
+                        className="dropdown-arrow"
                       />
                       <div className="creator-dropdown-content">
                         <Link className="dropdown-link" to="/brands">
@@ -39,9 +40,14 @@ class NevBar extends React.Component {
 
                         {login ? (
                           role == "brand" ? (
+                            <>
                             <Link className="dropdown-link" to="/">
                               Log Out
                             </Link>
+                            <Link className="dropdown-link" to="/creators/find">
+                            Find Creators
+                          </Link>
+                          </>
                           ) : null
                         ) : (
                           <>
@@ -63,15 +69,16 @@ class NevBar extends React.Component {
                     </div>
                     <div class="dropdown-content"></div>
                   </div>
-                )}
+                
 
-                {login && role === "brand" ? null : (
+                
                   <div class="dropdown creator">
                     <div class="dropdown-title link">
                       Creators
                       <img
                         src="/images/creators/icons/arrow-black.svg"
                         alt=""
+                        className="dropdown-arrow"
                       />
                       <div className="creator-dropdown-content">
                         <Link className="dropdown-link" to="/creators">
@@ -80,9 +87,14 @@ class NevBar extends React.Component {
 
                         {login ? (
                           role === "creator" ? (
+                            <>
                             <Link className="dropdown-link" to="/">
                               Log Out
                             </Link>
+                            <Link className="dropdown-link" to="/">
+                              Find Work
+                            </Link>
+                            </>
                           ) : null
                         ) : (
                           <>
@@ -104,16 +116,13 @@ class NevBar extends React.Component {
                     </div>
                     <div class="dropdown-content"></div>
                   </div>
-                )}
+
                 {login && role === "brand" ? (
                   <Link to="/creators" class="link">
                     Find Creators
                   </Link>
                 ) : null}
 
-                <a href="blog" class="link">
-                  Blog
-                </a>
                 {login ? (
                   this.props.profile ? (
                     <div className="link">
