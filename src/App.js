@@ -12,6 +12,7 @@ import CreatorsLogin from "./pages/creatorsLogin";
 import BrandsLogin from "./pages/brandsLogin";
 import Profile from "./pages/profile";
 import CreatorsHome from "./pages/creatorsHome";
+import BrandPost from "./pages/brandPost";
 function App() {
   return (
     <>
@@ -20,7 +21,8 @@ function App() {
         <Route path="/brands" element={<Brands />} />
         <Route path="/brands/signup" element={<BrandsSignup />} />
         <Route path="/brands/login" element={<BrandsLogin />} />
-
+        <Route path="/brands/post" element={<BrandPost />} />
+        
         <Route path="/creators/find" element={<Creators />} />
         <Route path="/creators/signup" element={<CreatorSignup />} />
         <Route path="/creators/login" element={<CreatorsLogin />} />

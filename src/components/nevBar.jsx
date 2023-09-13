@@ -91,7 +91,7 @@ class NevBar extends React.Component {
                             <Link className="dropdown-link" to="/">
                               Log Out
                             </Link>
-                            <Link className="dropdown-link" to="/">
+                            <Link className="dropdown-link" to="/brands/post">
                               Find Work
                             </Link>
                             </>
