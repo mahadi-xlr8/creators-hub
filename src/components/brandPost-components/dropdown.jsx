@@ -11,9 +11,6 @@ const Dropdown = (props) => {
     <>
       <div
         className="dropdown-container"
-        onMouseLeave={() => {
-          setActive(false);
-        }}
       >
         <div
           className="dropdown-box"

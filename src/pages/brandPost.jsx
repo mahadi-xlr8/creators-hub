@@ -8,6 +8,12 @@ const BrandPost = (props) => {
   function handleChange(e) {
     setSearchValue(e.target.value);
   }
+
+  function handleFilterData(data){
+    // TODO: complete the work
+    console.log(data)
+  }
+
   return (
     <>
       <NevBar
@@ -19,7 +25,7 @@ const BrandPost = (props) => {
       <main className="brand-post-container">
         <div className="filter-aside">
           <div className="filter">
-            <Filter />
+            <Filter onClick={handleFilterData}/>
           </div>
         </div>
         <div className="content">

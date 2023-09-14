@@ -1,24 +1,7 @@
 import Dropdown from "./dropdown";
 import Checkbox from "./checkbox";
 const RefineSearch = (props) => {
-  const country = [
-    {
-      name: "Bangladesh",
-      img: "https://raw.githubusercontent.com/hampusborgos/country-flags/ba2cf4101bf029d2ada26da2f95121de74581a4d/svg/bd.svg",
-    },
-    {
-      name: "India",
-      img: "https://raw.githubusercontent.com/hampusborgos/country-flags/ba2cf4101bf029d2ada26da2f95121de74581a4d/svg/in.svg",
-    },
-    {
-      name: "USA",
-      img: "https://raw.githubusercontent.com/hampusborgos/country-flags/ba2cf4101bf029d2ada26da2f95121de74581a4d/svg/us.svg",
-    },
-    {
-      name: "Canada",
-      img: "https://raw.githubusercontent.com/hampusborgos/country-flags/ba2cf4101bf029d2ada26da2f95121de74581a4d/svg/ca.svg",
-    },
-  ];
+  
 
   const order=[
     {
