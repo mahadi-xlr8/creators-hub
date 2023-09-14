@@ -2,16 +2,24 @@ import { useState } from "react";
 
 const Dropdown = (props) => {
   const [active, setActive] = useState(false);
-  const [data, setData] = useState({name:props.placeholder});
+  const [data, setData] = useState({ name: props.placeholder });
   function handleClick(value) {
+    let count = 0;
+    for (let i in data) {
+      if (data[i] == value[i]) count++;
+    }
+    if (count) {
+      setData({ name: props.placeholder });
+      props.onClick("");
+      return;
+    }
+
     setData(value);
     props.onClick(value.name);
   }
   return (
     <>
-      <div
-        className="dropdown-container"
-      >
+      <div className="dropdown-container">
         <div
           className="dropdown-box"
           onClick={() => {
@@ -20,7 +28,8 @@ const Dropdown = (props) => {
         >
           <span
             className={
-              "dropdown-display" + (data.name != props.placeholder ? " selected" : "")
+              "dropdown-display" +
+              (data.name != props.placeholder ? " selected" : "")
             }
           >
             {data.img != undefined ? (
@@ -46,7 +55,9 @@ const Dropdown = (props) => {
             {props.values.map((e) => {
               return (
                 <div
-                  className={"option" + (data.name == e.name ? " selected" : "")}
+                  className={
+                    "option" + (data.name == e.name ? " selected" : "")
+                  }
                   onClick={() => handleClick(e)}
                 >
                   {e.img != undefined ? (
