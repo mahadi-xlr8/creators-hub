@@ -5,6 +5,7 @@ import { getCreators } from "../DB";
 import "./creators.css";
 import SearchBox from "../components/search";
 import { toLower } from "lodash";
+import PostCard from "../components/brandPost-components/postCard";
 class Creators extends React.Component {
   state = { searchValue: "" };
   constructor() {
@@ -37,6 +38,7 @@ class Creators extends React.Component {
           {this.state.showCreator.map((creator) => (
             <CreatorCard {...creator} />
           ))}
+
         </div>
       </>
     );

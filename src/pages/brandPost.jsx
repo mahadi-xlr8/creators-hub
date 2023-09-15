@@ -3,6 +3,7 @@ import SearchBox from "../components/search";
 import Filter from "../components/brandPost-components/filter";
 import { useState } from "react";
 import Footer from './footer';
+import PostCard from "../components/brandPost-components/postCard";
 const BrandPost = (props) => {
   const [searchValue, setSearchValue] = useState("");
   function handleChange(e) {
@@ -30,8 +31,15 @@ const BrandPost = (props) => {
         </div>
         <div className="content">
           <SearchBox onChange={handleChange} value={searchValue} />
+          <div className="creators-cards">
+            <PostCard/>
+            <PostCard/>
+            <PostCard/>
+            <PostCard/>
+          </div>
         </div>
       </main>
+      <Footer/>
       
     </>
   );

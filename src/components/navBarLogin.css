@@ -1163,12 +1163,11 @@ button.ant-btn {
   font-family: "Campton-Medium", Verdana, sans-serif;
   overflow: scroll;
 }
-.filter-aside aside {
-  padding-bottom: 200px;
-}
+
 .brand-post-container {
   display: grid;
-  grid-template: 1fr 1fr / minmax(200px, 1fr) 5fr;
+  grid-template: 100vh / minmax(200px, 1fr) 5fr;
+  /* leter */
 }
 .brand-post-container .filter-aside {
   grid-row: 1/-1;
@@ -1323,3 +1322,32 @@ button.ant-btn {
 .btn-filter:hover {
   background-color: #b9dfff;
 }
+
+/* brandpost content */
+
+.brand-post-container .content {
+  overflow: scroll;
+}
+
+
+/* post */
+
+.post-container{
+  padding: 1rem;
+
+}
+@media screen and (min-width: 1170px) {
+
+  .post-container{
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    gap: .5rem;
+    align-items: center;
+  }
+
+}
+
+
+
+
+
