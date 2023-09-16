@@ -8,13 +8,15 @@ import "./style.css";
 import Playground from "./pages/playground";
 import { BrowserRouter } from "react-router-dom";
 
+import { Toaster } from "react-hot-toast";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
 
     <App />
-
+    <Toaster position="bottom-right"/>
     </BrowserRouter>
   </React.StrictMode>
 );

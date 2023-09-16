@@ -834,6 +834,8 @@ button.ant-btn {
   background-color: rgb(250, 205, 138);
 }
 
+/* nav bar */
+
 .navBar-btn {
   border: 1px solid var(--black-button);
   border-width: 1px;
@@ -856,6 +858,80 @@ button.ant-btn {
 .navBar-btn.signup:hover {
   background-color: rgb(231, 231, 231);
 }
+
+.notification{
+  cursor: pointer;
+}
+
+.notification .bell{
+width: 22px;
+}
+.notification .number{
+  color: red;
+  font-weight: bold;
+  font-size: 1rem;
+  position:absolute;
+  top: 5px;
+  margin: 0;
+}
+
+.notification-container{
+  position: absolute;
+  top: 48px;
+  right: 50px;
+  width: 300px;
+  background-color: #fff;
+  border-radius: 7px;
+  padding: 5px;
+}
+
+/* notification card */
+
+
+
+.notification-card{
+  display: flex;
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: all .2s;
+  color: #080830;
+}
+.notification-card:hover{
+  background-color: #e8e8e8;
+  border-radius: 6px;
+}
+.notification-card img{
+  aspect-ratio: 1/1;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.notification-card .text-part{
+  margin-left: 5px;
+}
+.notification-card .text-part .time{
+  color: gray;
+}
+
+.notification-card .text-part .message{
+  margin-bottom: 0;
+}
+.notification-card .text-part .message .name{
+  font-weight: bold;
+}
+
+.notification-card .unseen{
+  aspect-ratio: 1/1;
+  width: 30px;
+  height: 30px;
+}
+
+.temp-text{
+  display: flex;
+}
+
 
 /* dropdown */
 
@@ -1336,15 +1412,23 @@ button.ant-btn {
   padding: 1rem;
 
 }
-@media screen and (min-width: 1170px) {
 
-  .post-container{
-    display: grid;
-    grid-template-columns: repeat(3,auto);
-    gap: .5rem;
-    align-items: center;
-  }
-
+.btn-intarested{
+  
+  background-color: lightgray;
+  text-align: center;
+  padding: .2rem 0;
+  margin-top: .4rem;
+  border-radius: 16px;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: all .3s;
+}
+.btn-intarested:hover{
+  background-color: lightslategray;
+}
+.btn-intarested.clicked{
+  background-color: #a4d3ff;
 }
 
 

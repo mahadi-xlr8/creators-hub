@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import NotificationContainer from "./notification/notificationContainer";
 
 class NevBar extends React.Component {
-  state = { class: "" };
+  state = { class: "", notiClick: false };
+
+  handleNotificationClick = () => {
+    const temp = !this.state.notiClick;
+    this.setState({ notiClick: temp });
+  };
+
   render() {
     const login = this.props.login || this.props.profile;
     const role = this.props.role;
@@ -20,108 +27,98 @@ class NevBar extends React.Component {
             <div class="overlay"></div>
             <div class="inner">
               <div class="links">
-                
-
                 {/* start */}
 
-                
-                  <div class="dropdown creator">
-                    <div class="dropdown-title link">
-                      Brands
-                      <img
-                        src="/images/creators/icons/arrow-black.svg"
-                        alt=""
-                        className="dropdown-arrow"
-                      />
-                      <div className="creator-dropdown-content">
-                        <Link className="dropdown-link" to="/brands">
-                          Home
-                        </Link>
+                <div class="dropdown creator">
+                  <div class="dropdown-title link">
+                    Brands
+                    <img
+                      src="/images/creators/icons/arrow-black.svg"
+                      alt=""
+                      className="dropdown-arrow"
+                    />
+                    <div className="creator-dropdown-content">
+                      <Link className="dropdown-link" to="/brands">
+                        Home
+                      </Link>
+                      <Link className="dropdown-link" to="/brands/post">
+                        Work Post
+                      </Link>
 
-                        {login ? (
-                          role == "brand" ? (
-                            <>
+                      {login ? (
+                        role == "brand" ? (
+                          <>
                             <Link className="dropdown-link" to="/">
                               Log Out
                             </Link>
-                            <Link className="dropdown-link" to="/creators/find">
-                            Find Creators
+                          </>
+                        ) : null
+                      ) : (
+                        <>
+                          <Link className="dropdown-link" to="/brands/signup">
+                            Sign Up
                           </Link>
-                          </>
-                          ) : null
-                        ) : (
-                          <>
-                            <Link
-                              className="dropdown-link"
-                              to="/brands/signup"
-                            >
-                              Sign Up
-                            </Link>
-                            <Link
-                              className="dropdown-link"
-                              to="/brands/login"
-                            >
-                              Log In
-                            </Link>
-                          </>
-                        )}
-                      </div>
+                          <Link className="dropdown-link" to="/brands/login">
+                            Log In
+                          </Link>
+                        </>
+                      )}
                     </div>
-                    <div class="dropdown-content"></div>
                   </div>
-                
+                  <div class="dropdown-content"></div>
+                </div>
 
-                
-                  <div class="dropdown creator">
-                    <div class="dropdown-title link">
-                      Creators
-                      <img
-                        src="/images/creators/icons/arrow-black.svg"
-                        alt=""
-                        className="dropdown-arrow"
-                      />
-                      <div className="creator-dropdown-content">
-                        <Link className="dropdown-link" to="/creators">
-                          Home
-                        </Link>
+                <div class="dropdown creator">
+                  <div class="dropdown-title link">
+                    Creator
+                    <img
+                      src="/images/creators/icons/arrow-black.svg"
+                      alt=""
+                      className="dropdown-arrow"
+                    />
+                    <div className="creator-dropdown-content">
+                      <Link className="dropdown-link" to="/creators">
+                        Home
+                      </Link>
+                      <Link className="dropdown-link" to="/creators/find">
+                        Creators
+                      </Link>
 
-                        {login ? (
-                          role === "creator" ? (
-                            <>
+                      {login ? (
+                        role === "creator" ? (
+                          <>
                             <Link className="dropdown-link" to="/">
                               Log Out
                             </Link>
-                            <Link className="dropdown-link" to="/brands/post">
-                              Find Work
-                            </Link>
-                            </>
-                          ) : null
-                        ) : (
-                          <>
-                            <Link
-                              className="dropdown-link"
-                              to="/creators/signup"
-                            >
-                              Sign Up
-                            </Link>
-                            <Link
-                              className="dropdown-link"
-                              to="/creators/login"
-                            >
-                              Log In
-                            </Link>
                           </>
-                        )}
-                      </div>
+                        ) : null
+                      ) : (
+                        <>
+                          <Link className="dropdown-link" to="/creators/signup">
+                            Sign Up
+                          </Link>
+                          <Link className="dropdown-link" to="/creators/login">
+                            Log In
+                          </Link>
+                        </>
+                      )}
                     </div>
-                    <div class="dropdown-content"></div>
                   </div>
+                  <div class="dropdown-content"></div>
+                </div>
 
-                {login && role === "brand" ? (
-                  <Link to="/creators" class="link">
-                    Find Creators
-                  </Link>
+                {/* TODO: complete notification */}
+                {login ? (
+                  <div
+                    className="notification"
+                    onClick={this.handleNotificationClick}
+                    title="Notifications"
+                  >
+                    <img src="/images/icons/bell.svg" alt="" className="bell" />
+                    <sup className="number">9<sup>+</sup></sup>
+                  </div>
                 ) : null}
+                {this.state.notiClick ? <NotificationContainer /> : null}
 
                 {login ? (
                   this.props.profile ? (

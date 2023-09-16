@@ -18,7 +18,7 @@ const BrandPost = (props) => {
   return (
     <>
       <NevBar
-        role="creator"
+        role="brand"
         name="mehazabien"
         login={true}
         userType="work posts"
