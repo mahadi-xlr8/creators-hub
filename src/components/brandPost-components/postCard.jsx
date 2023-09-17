@@ -18,7 +18,7 @@ const PostCard = (props) => {
     <div class="CampaignCard__Wrapper-sc-1twbu8n-0 bbKwX">
       <div class="fade-in" style={{ opacity: 1 }}>
         <div class="campaign-card-inner">
-          <Link to={"/post/" + 1}>
+          <Link to={"/brand/post/" + 1}>
             <div class="basic-info">
               {/* name and title */}
               <p class="brand">{"Colgate"}</p>

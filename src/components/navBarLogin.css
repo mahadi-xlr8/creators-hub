@@ -576,6 +576,13 @@ button.ant-btn {
       "im im q"
       "im im q";
   }
+  .campaign-body.post-details {
+    grid-template-areas:
+      "p p q"
+      "im im q"
+      "im im br"
+      "cm cm br";
+  }
   .profile {
     grid-area: p;
   }
@@ -584,6 +591,12 @@ button.ant-btn {
   }
   .campaign-requirements {
     grid-area: q;
+  }
+  .comment-container {
+    grid-area: cm;
+  }
+  .brand-info-container {
+    grid-area: br;
   }
 }
 .contact-link {
@@ -859,23 +872,23 @@ button.ant-btn {
   background-color: rgb(231, 231, 231);
 }
 
-.notification{
+.notification {
   cursor: pointer;
 }
 
-.notification .bell{
-width: 22px;
+.notification .bell {
+  width: 22px;
 }
-.notification .number{
+.notification .number {
   color: red;
   font-weight: bold;
   font-size: 1rem;
-  position:absolute;
+  position: absolute;
   top: 5px;
   margin: 0;
 }
 
-.notification-container{
+.notification-container {
   position: absolute;
   top: 48px;
   right: 50px;
@@ -887,20 +900,18 @@ width: 22px;
 
 /* notification card */
 
-
-
-.notification-card{
+.notification-card {
   display: flex;
   margin-bottom: 5px;
   cursor: pointer;
-  transition: all .2s;
+  transition: all 0.2s;
   color: #080830;
 }
-.notification-card:hover{
+.notification-card:hover {
   background-color: #e8e8e8;
   border-radius: 6px;
 }
-.notification-card img{
+.notification-card img {
   aspect-ratio: 1/1;
   width: 60px;
   height: 60px;
@@ -908,30 +919,29 @@ width: 22px;
   border-radius: 100%;
 }
 
-.notification-card .text-part{
+.notification-card .text-part {
   margin-left: 5px;
 }
-.notification-card .text-part .time{
+.notification-card .text-part .time {
   color: gray;
 }
 
-.notification-card .text-part .message{
+.notification-card .text-part .message {
   margin-bottom: 0;
 }
-.notification-card .text-part .message .name{
+.notification-card .text-part .message .name {
   font-weight: bold;
 }
 
-.notification-card .unseen{
+.notification-card .unseen {
   aspect-ratio: 1/1;
   width: 30px;
   height: 30px;
 }
 
-.temp-text{
+.temp-text {
   display: flex;
 }
-
 
 /* dropdown */
 
@@ -1405,33 +1415,148 @@ width: 22px;
   overflow: scroll;
 }
 
-
 /* post */
 
-.post-container{
+.post-container {
   padding: 1rem;
-
 }
 
-.btn-intarested{
-  
+.btn-intarested {
   background-color: lightgray;
   text-align: center;
-  padding: .2rem 0;
-  margin-top: .4rem;
+  padding: 0.2rem 0;
+  margin-top: 0.4rem;
   border-radius: 16px;
   font-weight: bold;
   font-size: 1rem;
-  transition: all .3s;
+  transition: all 0.3s;
 }
-.btn-intarested:hover{
+.btn-intarested:hover {
   background-color: lightslategray;
 }
-.btn-intarested.clicked{
+.btn-intarested.clicked {
   background-color: #a4d3ff;
 }
 
+.temp {
+  background-color: red;
+  height: 300px;
+  width: 300px;
+}
 
+/* comment box */
 
+.comment-container {
+  height: 100%;
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  padding: 0.7rem;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
 
+/* comment */
+.comment-box {
+  display: flex;
+  flex-direction: column;
+  max-height: 400px;
+  overflow: scroll;
+  gap: 0.7rem;
+  font-family: "Poppins-Regular", sans-serif;
+  color: #080830;
+}
+.comment {
+  display: flex;
+  gap: 0.5rem;
+}
+.comment img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+.add-comment {
+  height: 50px;
+  border-top: 1px solid lightgray;
+}
+.comment-info p {
+  margin: 0;
+}
+.comment-info .name {
+  font-weight: bold;
+}
+.sent-comment {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+.sent-comment input {
+  border: none;
+  font-size: 1rem;
+}
+.sent-comment .sent-button {
+  background-color: #a2cbf1;
+  padding: 10px 1.6rem;
+  border-radius: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.sent-comment .comment-text {
+  width: 70%;
+}
 
+@media only screen and (max-width: 767px) {
+  .comment-container,
+  .brand-info-container {
+    margin-top: 1rem;
+  }
+}
+
+/* brandInfo */
+
+.brand-info-container {
+  height: 100%;
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  padding: 1rem 2rem;
+}
+.brand-info-container .title {
+  text-align: center;
+  margin: 1rem;
+  margin-bottom: 1.5rem;
+}
+.brand-info-container .container {
+  display: flex;
+  flex-direction: column;
+}
+.container .top {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.container .top img {
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+}
+.top .brand-detail p {
+  margin: 0;
+}
+.top .brand-detail a {
+  color: #080830;
+}
+.top .brand-detail .name {
+  font-weight: bold;
+  font-size: 1rem;
+}
+.container .bottom {
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-family: "Poppins-Regular", sans-serif;
+}

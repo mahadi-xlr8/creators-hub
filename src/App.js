@@ -13,23 +13,25 @@ import BrandsLogin from "./pages/brandsLogin";
 import Profile from "./pages/profile";
 import CreatorsHome from "./pages/creatorsHome";
 import BrandPost from "./pages/brandPost";
+import PostDetail from "./pages/postDetail";
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/brands" element={<Brands />} />
-        <Route path="/brands/signup" element={<BrandsSignup />} />
-        <Route path="/brands/login" element={<BrandsLogin />} />
-        <Route path="/brands/post" element={<BrandPost />} />
+        <Route path="/brand" element={<Brands />} />
+        <Route path="/brand/signup" element={<BrandsSignup />} />
+        <Route path="/brand/login" element={<BrandsLogin />} />
+        <Route path="/brand/post" element={<BrandPost />} />
+        <Route path="/brand/post/:id" element={<PostDetail />} />
         
-        <Route path="/creators/find" element={<Creators />} />
-        <Route path="/creators/signup" element={<CreatorSignup />} />
-        <Route path="/creators/login" element={<CreatorsLogin />} />
+        <Route path="/creator/find" element={<Creators />} />
+        <Route path="/creator/signup" element={<CreatorSignup />} />
+        <Route path="/creator/login" element={<CreatorsLogin />} />
         <Route path="/profile" element={<Profile name='Mehazabien Chowdhury'/>} />
-        <Route path="/creators" element={<CreatorsHome/>}/>
-        <Route path="/creators/:name" element={<CreatorsProfile />} />
-        <Route path="/creators/:name/previous work" element={<PreviousWork />} />
+        <Route path="/creator" element={<CreatorsHome/>}/>
+        <Route path="/creator/:name" element={<CreatorsProfile />} />
+        <Route path="/creator/:name/previous work" element={<PreviousWork />} />
       </Routes>
     </>
   );

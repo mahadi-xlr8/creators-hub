@@ -6,6 +6,7 @@ import CreatorQualification from "../components/creatorQualification";
 import CreatorImages from "../components/creatorsImages";
 import { getCreatorsByName } from "../DB";
 import PreviousWork from "./previousWork";
+import NevBar from "../components/nevBar";
 
 import Footer from "./footer";
 import { useState } from 'react';
@@ -15,7 +16,7 @@ const CreatorsProfile = () => {
   const [isFlipped,setFlipped]= useState(false)
   return (
     <>
-      <NavBarLogin />
+      <NevBar />
       <div className="htgZbY">
         <div className="creator-body">
           <BackButton />

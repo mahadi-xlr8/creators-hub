@@ -7,7 +7,7 @@ const CreatorImages = (props) => {
       <section className="image-galary">
         <div class="front">
           <img
-            src={"../" + props.images[currentImg]}
+            src={props.images[currentImg]}
             alt=""
             class="front-image"
           />

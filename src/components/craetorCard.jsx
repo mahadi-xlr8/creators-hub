@@ -10,7 +10,7 @@ const CreatorCard = (props) => {
   return (
     <div class="CampaignCard__Wrapper-sc-1twbu8n-0 bbKwX">
       <div class="fade-in" style={{ opacity: 1 }}>
-        <Link class="campaign-card-inner" to={"/creators/"+props.name}>
+        <Link class="campaign-card-inner" to={"/creator/"+props.name}>
           <div class="basic-info">
             <p class="brand">{props.name}</p>
             <p class="title">{props.title}</p>

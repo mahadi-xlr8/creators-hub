@@ -15,9 +15,9 @@ const Data = {
         videoLink: "https://youtube.com",
       },
       images: [
-        "images/creators/mehazabien/img1.jpg",
-        "images/creators/mehazabien/img2.jpg",
-        "images/creators/mehazabien/img3.jpg",
+        "/images/creators/mehazabien/img1.jpg",
+        "/images/creators/mehazabien/img2.jpg",
+        "/images/creators/mehazabien/img3.jpg",
       ],
       tags: ["Actress", "Social Media Influencer", "Beauty"],
       platforms: ["Youtube", "Facebook", "Instagram"],

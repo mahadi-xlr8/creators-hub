@@ -38,10 +38,10 @@ class NevBar extends React.Component {
                       className="dropdown-arrow"
                     />
                     <div className="creator-dropdown-content">
-                      <Link className="dropdown-link" to="/brands">
+                      <Link className="dropdown-link" to="/brand">
                         Home
                       </Link>
-                      <Link className="dropdown-link" to="/brands/post">
+                      <Link className="dropdown-link" to="/brand/post">
                         Work Post
                       </Link>
 
@@ -55,10 +55,10 @@ class NevBar extends React.Component {
                         ) : null
                       ) : (
                         <>
-                          <Link className="dropdown-link" to="/brands/signup">
+                          <Link className="dropdown-link" to="/brand/signup">
                             Sign Up
                           </Link>
-                          <Link className="dropdown-link" to="/brands/login">
+                          <Link className="dropdown-link" to="/brand/login">
                             Log In
                           </Link>
                         </>
@@ -77,10 +77,10 @@ class NevBar extends React.Component {
                       className="dropdown-arrow"
                     />
                     <div className="creator-dropdown-content">
-                      <Link className="dropdown-link" to="/creators">
+                      <Link className="dropdown-link" to="/creator">
                         Home
                       </Link>
-                      <Link className="dropdown-link" to="/creators/find">
+                      <Link className="dropdown-link" to="/creator/find">
                         Creators
                       </Link>
 
@@ -94,10 +94,10 @@ class NevBar extends React.Component {
                         ) : null
                       ) : (
                         <>
-                          <Link className="dropdown-link" to="/creators/signup">
+                          <Link className="dropdown-link" to="/creator/signup">
                             Sign Up
                           </Link>
-                          <Link className="dropdown-link" to="/creators/login">
+                          <Link className="dropdown-link" to="/creator/login">
                             Log In
                           </Link>
                         </>
@@ -133,11 +133,11 @@ class NevBar extends React.Component {
                 ) : (
                   <>
                     {""}
-                    <Link className="navBar-btn login" to="/creators/login">
+                    <Link className="navBar-btn login" to="/creator/login">
                       Log In
                     </Link>
                     {""}
-                    <Link className="navBar-btn signup" to="/creators/signup">
+                    <Link className="navBar-btn signup" to="/creator/signup">
                       Sign Up
                     </Link>
                   </>
