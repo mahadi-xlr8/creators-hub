@@ -11,9 +11,8 @@ class NevBar extends React.Component {
   };
 
   render() {
-    const login = this.props.login || this.props.profile;
+    const login = this.props.login;
     const role = this.props.role;
-
     return (
       <header id="main-header" class="">
         <div id="nav-bar" className={this.state.class}>
@@ -28,7 +27,6 @@ class NevBar extends React.Component {
             <div class="inner">
               <div class="links">
                 {/* start */}
-
                 <div class="dropdown creator">
                   <div class="dropdown-title link">
                     Brands
@@ -67,7 +65,6 @@ class NevBar extends React.Component {
                   </div>
                   <div class="dropdown-content"></div>
                 </div>
-
                 <div class="dropdown creator">
                   <div class="dropdown-title link">
                     Creator
@@ -106,7 +103,6 @@ class NevBar extends React.Component {
                   </div>
                   <div class="dropdown-content"></div>
                 </div>
-
                 {/* TODO: complete notification */}
                 {login ? (
                   <div
@@ -115,13 +111,14 @@ class NevBar extends React.Component {
                     title="Notifications"
                   >
                     <img src="/images/icons/bell.svg" alt="" className="bell" />
-                    <sup className="number">9<sup>+</sup></sup>
+                    <sup className="number">
+                      9<sup>+</sup>
+                    </sup>
                   </div>
                 ) : null}
                 {this.state.notiClick ? <NotificationContainer /> : null}
-
-                {login ? (
-                  this.props.profile ? (
+                {login && role === "creator" ? (
+                  !this.props.profileComplete ? (
                     <div className="link">
                       <Link to="/profile/edit">Edit Profile</Link>
                     </div>
@@ -130,7 +127,19 @@ class NevBar extends React.Component {
                       <Link to="/profile">{this.props.name}</Link>
                     </div>
                   )
-                ) : (
+                ) : null}
+
+                {login && role === "brand" ? (
+                  this.props.userType === "Post New Work" ? (
+                    <div className="brand-name-1">{this.props.name}</div>
+                  ) : (
+                    <Link className="navBar-btn login" to="/brand/new/post">
+                      Post New Work
+                    </Link>
+                  )
+                ) : null}
+
+                {!login ? (
                   <>
                     {""}
                     <Link className="navBar-btn login" to="/creator/login">
@@ -141,7 +150,7 @@ class NevBar extends React.Component {
                       Sign Up
                     </Link>
                   </>
-                )}
+                ) : null}
               </div>
             </div>
           </div>

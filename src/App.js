@@ -14,6 +14,7 @@ import Profile from "./pages/profile";
 import CreatorsHome from "./pages/creatorsHome";
 import BrandPost from "./pages/brandPost";
 import PostDetail from "./pages/postDetail";
+import PostNewWork from "./pages/postNewWork";
 function App() {
   return (
     <>
@@ -23,7 +24,9 @@ function App() {
         <Route path="/brand/signup" element={<BrandsSignup />} />
         <Route path="/brand/login" element={<BrandsLogin />} />
         <Route path="/brand/post" element={<BrandPost />} />
+        <Route path="/brand/new/post" element={<PostNewWork />} />
         <Route path="/brand/post/:id" element={<PostDetail />} />
+        
         
         <Route path="/creator/find" element={<Creators />} />
         <Route path="/creator/signup" element={<CreatorSignup />} />

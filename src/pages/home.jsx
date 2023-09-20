@@ -115,7 +115,7 @@ class Home extends React.Component {
 
     return (
       <>
-        <NevBar userType="" role="creator" login={true} name={"Mehazabien"} />
+        <NevBar userType="" role="brand" login={true} name={"Google"} />
 
         {/* <NavBarLogin/> */}
 
