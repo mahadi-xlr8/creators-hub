@@ -1685,7 +1685,31 @@ button.ant-btn {
   transition: all 0.2s;
 }
 
-.is-paid{
+.is-paid {
   font-size: large;
 }
 
+/* or login option */
+
+.or-section {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+  border: none;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 0;
+  padding: 24px 0 0;
+}
+
+.or-section::before,
+.or-section::after {
+  content: "";
+  border-bottom: 1px solid #c2c8d0;
+  flex: 1 0 auto;
+  height: 0.5em;
+  margin: 0 1rem;
+  position: relative;
+  bottom: -3px;
+}

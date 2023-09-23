@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 const PostCard = (props) => {
   const [intarested, setintarested] = useState(false);
   function handleIntarested() {

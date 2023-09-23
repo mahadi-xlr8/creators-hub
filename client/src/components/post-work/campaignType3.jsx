@@ -95,7 +95,7 @@ const CampaignType = (props) => {
         <Dropdown
           placeholder="content type"
           values={contentType}
-          onClick={handlePlatform}
+          onClick={handleContent}
         />
         <div className="job-buttons">
           <button className=" back-button" onClick={props.back}>

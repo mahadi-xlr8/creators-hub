@@ -1,30 +1,82 @@
 const mongoose = require("mongoose");
+const jwt=require("jsonwebtoken")
 
 mongoose
   .connect("mongodb://localhost/creators-hub")
   .then(() => console.log("connected to the database!"))
   .catch((err) => console.log(err));
 
+const CreatorSchema=new mongoose.Schema({
+  password: {
+    type:String,
+    minlength:5,
+    maxlength:1024,
+  },
+  email: {
+    type: String,
+    unique: true,
+    minlength: 5,
+    maxlength: 255,
+  },
+  country: {
+    type: String,
+    minlength: 5,
+    maxlength: 255,
+  },
+  name: {
+    type: String,
+    minlength: 5,
+    maxlength: 255,
+  },
+  age: Number,
+  title: {
+    type: String,
+    minlength: 5,
+    maxlength: 1000,
+  },
+  profileImg: {
+    type: String,
+    minlength: 5,
+    maxlength: 1000,
+  },
+  price: Number,
+  tags: {
+    type:[String],
+    minlength:5,
+    maxlength:255,
+  },
+  platforms: [{
+    name: String,
+    link: String,
+  }],
+  contactLink: {
+    type: String,
+    minlength: 5,
+    maxlength: 1000,
+  },
+  accessToken: {
+    type: String,
+    minlength: 5,
+    maxlength: 1000,
+  },
+  profileComplete:{
+    type:Boolean,
+    required:true,
+  }
+});
+CreatorSchema.methods.genToken = function () {
+  const jwtKey="sexy"
+  return jwt.sign({ id: this._id,role:"creator" }, jwtKey);
+};
+
+
+
 const Creator = mongoose.model(
   "creators",
-  new mongoose.Schema({
-    username: String,
-    password: String,
-    name: String,
-    age: Number,
-    title: String,
-    profileImg: String,
-    followers: String,
-    audiance: { low: Number, high: Number },
-    engagement: Number,
-    price: Number,
-    promoVideo: { platformName: String, iconSrc: String, videoLink: String },
-    images: [String],
-    tags: [String],
-    platforms: [String],
-    contactLink: String,
-  })
+  CreatorSchema
 );
+
+
 
 const Brand = mongoose.model(
   "brands",
@@ -59,42 +111,6 @@ const Collaboration = mongoose.model(
   })
 );
 
-async function addCreator() {
-  const creator = new Creator({
-    name: "Mehazabien Chowdhury",
-    age: 28,
-    title: "Boost your seles with Mehazabien Chowdhury",
-    profileImg: "images/creators/profile/mehazabien.jpeg",
-    followers: "10M",
-    audience: { low: 10, high: 60 },
-    engagement: 1.7,
-    price: 100000 / 1000,
-    promoVideo: {
-      platformName: "Facebook",
-      iconSrc: "/images/creators/icons/facebook.png",
-      videoLink: "https://facebook.com",
-    },
-    images: [
-      "images/creators/mehazabien/img1.jpg",
-      "images/creators/mehazabien/img2.jpg",
-      "images/creators/mehazabien/img3.jpg",
-    ],
-    tags: ["Actress", "Social Media Influencer", "Beauty"],
-    platforms: ["Youtube", "Facebook", "Instagram"],
-    contactLink: "https://www.facebook.com/messages/t/191936460846328",
-  });
-  const res = await creator.save();
-  console.log(res);
-}
-
-async function addBrand() {
-  const brand = new Brand({
-    name: "Colgate",
-    logo: "/images/logos/partners/colgate.png",
-  });
-  const res=await brand.save()
-  console.log(res)
-}
 
 
 async function getData() {
@@ -103,3 +119,4 @@ async function getData() {
 }
 
 module.exports.getName = getData;
+module.exports.Creator=Creator;

@@ -5,6 +5,11 @@ import InputPassword from "../components/inputPassword";
 import FileUpload from "../components/fileUpload";
 import SubmitButton from "../components/submitButton";
 import { Link } from "react-router-dom";
+import OrLine from "../components/login-creator/orLine";
+import { FacebookLoginButton } from "react-social-login-buttons";
+import { LoginSocialFacebook } from "reactjs-social-login";
+import axios from "axios";
+import toast from "react-hot-toast";
 class CreatorsLogin extends React.Component {
   state = {
     email: "",
@@ -16,6 +21,47 @@ class CreatorsLogin extends React.Component {
   };
   passwordChange = (data) => {
     this.setState({ password: data });
+  };
+
+  onFacebookSuccess = ({ data }) => {
+    // console.log(data.userID, data.accessToken);
+    const userAccessToken = data.accessToken;
+    const fields = "email,name,birthday,gender,link,location";
+    console.log(data.userID);
+    axios
+      .get(
+        `https://graph.facebook.com/v13.0/me?fields=${fields}&access_token=${userAccessToken}`
+      )
+      .then((res) => {
+        console.log(res.data);
+        const info = res.data;
+
+        axios
+          .post("/login/fb/new", {
+            id: data.userID,
+            accessToken: data.accessToken,
+            name: info.name,
+            birthday: info.birthday,
+            profileLink: info.link,
+            email: info.email,
+            location: info.location.name,
+          })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) =>
+            toast("Something went wrong! please try again leter.", {
+              icon: "❌",
+              duration: 2000,
+            })
+          );
+      })
+      .catch((err) =>
+        toast("Something went wrong!", {
+          icon: "❌",
+          duration: 2000,
+        })
+      );
   };
 
   render() {
@@ -32,7 +78,9 @@ class CreatorsLogin extends React.Component {
                   alt=""
                 />
                 <h1>Good to have you back!</h1>
-                <p className="subtext login">Please login to colab with brands.</p>
+                <p className="subtext login">
+                  Please login to colab with brands.
+                </p>
                 <div className="form-row">
                   <InputText
                     placeholder="Email Address"
@@ -45,7 +93,7 @@ class CreatorsLogin extends React.Component {
                     placeholder="Password"
                     onChange={this.passwordChange}
                   />
-                <p className='sub-links forget'>Forget Password?</p>
+                  <p className="sub-links forget">Forget Password?</p>
                   <SubmitButton />
                   <div class="sub-links">
                     Don't have an account?{" "}
@@ -53,6 +101,21 @@ class CreatorsLogin extends React.Component {
                   </div>
                 </div>
               </form>
+              <OrLine />
+              <div className="facebook-login">
+                <LoginSocialFacebook
+                  isOnlyGetToken
+                  appId={"appIdHere"}
+                  onResolve={this.onFacebookSuccess}
+                  onReject={(err) => {
+                    console.log(err);
+                  }}
+                  fields="name,email,picture"
+                  scope="user_location user_link"
+                >
+                  <FacebookLoginButton />
+                </LoginSocialFacebook>
+              </div>
             </section>
             <section className="img-slider">
               <img src="/images/creators/mehazabien/img1.jpg" alt="" />
