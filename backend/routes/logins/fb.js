@@ -2,10 +2,9 @@ const express = require("express");
 const jwtTokenGen = require("../../helper/encryptData");
 const app = express.Router();
 const { Creator } = require("../../database");
+const axios = require("axios");
 const calculateAge = require("../../helper/calculateAge");
 const getCountry = require("../../helper/getCountry");
-const axios = require("axios");
-
 
 app.post("/new", async (req, res) => {
   const age = calculateAge(req.body.birthday);

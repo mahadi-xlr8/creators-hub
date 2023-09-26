@@ -2,6 +2,10 @@ const express=require('express')
 const app = express();
 const login=require("./routes/logins/login")
 
+if(!process.env.facebookAppSecret){
+console.log("facebook app secret is not set!")
+process.exit(1)
+}
 
 app.use(express.json())
 

@@ -16,8 +16,22 @@ import BrandPost from "./pages/brandPost";
 import PostDetail from "./pages/postDetail";
 import PostNewWork from "./pages/postNewWork";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 function App() {
+  const [login,setLogin]=useState(false)
+  const[ data,setData]= useState({})
+  useEffect(()=>{
+    axios.get("/login/fb/auto",{
+      headers:{
+        "access-token":Cookies.get("access-token")
+      }
+    }).then(res=>{
+      setLogin(true)
+      setData(res.data)
+      console.log(res.data)
+    })
+  },[])
   return (
     <>
       <Routes>
