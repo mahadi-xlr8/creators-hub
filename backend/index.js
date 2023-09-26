@@ -1,15 +1,6 @@
 const express=require('express')
-const db=require('./database')
 const app = express();
 const login=require("./routes/logins/login")
-
-// app.get("/creators/name", (req, res) => {
-//   db.getName()
-//     .then((response) => {
-//       res.send(response);
-//     })
-//     .catch((err) => console.log(err));
-// });
 
 
 app.use(express.json())

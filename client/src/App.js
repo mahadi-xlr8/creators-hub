@@ -15,6 +15,8 @@ import CreatorsHome from "./pages/creatorsHome";
 import BrandPost from "./pages/brandPost";
 import PostDetail from "./pages/postDetail";
 import PostNewWork from "./pages/postNewWork";
+import axios from "axios";
+import { useEffect, useState } from "react";
 function App() {
   return (
     <>
@@ -26,13 +28,15 @@ function App() {
         <Route path="/brand/post" element={<BrandPost />} />
         <Route path="/brand/new/post" element={<PostNewWork />} />
         <Route path="/brand/post/:id" element={<PostDetail />} />
-        
-        
+
         <Route path="/creator/find" element={<Creators />} />
         <Route path="/creator/signup" element={<CreatorSignup />} />
         <Route path="/creator/login" element={<CreatorsLogin />} />
-        <Route path="/profile" element={<Profile name='Mehazabien Chowdhury'/>} />
-        <Route path="/creator" element={<CreatorsHome/>}/>
+        <Route
+          path="/profile"
+          element={<Profile name="Mehazabien Chowdhury" />}
+        />
+        <Route path="/creator" element={<CreatorsHome />} />
         <Route path="/creator/:name" element={<CreatorsProfile />} />
         <Route path="/creator/:name/previous work" element={<PreviousWork />} />
       </Routes>

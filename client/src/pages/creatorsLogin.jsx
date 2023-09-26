@@ -10,6 +10,7 @@ import { FacebookLoginButton } from "react-social-login-buttons";
 import { LoginSocialFacebook } from "reactjs-social-login";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 class CreatorsLogin extends React.Component {
   state = {
     email: "",
@@ -25,15 +26,14 @@ class CreatorsLogin extends React.Component {
 
   onFacebookSuccess = ({ data }) => {
     // console.log(data.userID, data.accessToken);
+
     const userAccessToken = data.accessToken;
     const fields = "email,name,birthday,gender,link,location";
-    console.log(data.userID);
     axios
       .get(
         `https://graph.facebook.com/v13.0/me?fields=${fields}&access_token=${userAccessToken}`
       )
       .then((res) => {
-        console.log(res.data);
         const info = res.data;
 
         axios
@@ -47,14 +47,18 @@ class CreatorsLogin extends React.Component {
             location: info.location.name,
           })
           .then((res) => {
-            console.log(res);
+            Cookies.set("access-token", res.headers["x-access-token"], {
+              expires: 60,
+            });
+            console.log(Cookies.get("access-token"))
+            toast.success(res.data);
           })
-          .catch((err) =>
-            toast("Something went wrong! please try again leter.", {
+          .catch((err) => {
+            toast(err.response.data, {
               icon: "❌",
               duration: 2000,
-            })
-          );
+            });
+          });
       })
       .catch((err) =>
         toast("Something went wrong!", {
@@ -63,7 +67,6 @@ class CreatorsLogin extends React.Component {
         })
       );
   };
-
   render() {
     return (
       <>
@@ -105,10 +108,10 @@ class CreatorsLogin extends React.Component {
               <div className="facebook-login">
                 <LoginSocialFacebook
                   isOnlyGetToken
-                  appId={"appIdHere"}
+                  appId={"311104531407144"}
                   onResolve={this.onFacebookSuccess}
                   onReject={(err) => {
-                    console.log(err);
+                    console.log(err.message);
                   }}
                   fields="name,email,picture"
                   scope="user_location user_link"
