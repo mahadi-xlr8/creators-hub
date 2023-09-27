@@ -1,6 +1,18 @@
 import { Link } from "react-router-dom";
 
 const CreatorQualification = (props) => {
+  const countryTag = {
+    Bangladesh: "bd",
+    India: "in",
+  };
+  let country="";
+  for (let i in countryTag) {
+    if (i == props.data.country) {
+      country = countryTag[i];
+      break;
+    }
+  }
+
   return (
     <div class="campaign-requirements">
       <section class="qualifications">
@@ -8,25 +20,21 @@ const CreatorQualification = (props) => {
         <div class="qualification">
           <span class="label">Platforms</span>
           {props.data.platforms.map((e) => {
-            return <span class="value">{e}</span>;
+            return <span class="value">{e.name}</span>;
           })}
         </div>
-        <div class="qualification">
-          <span class="label">Followers</span>
-          <span class="value">{props.data.followers}+</span>
-        </div>
-        <div class="qualification">
-          <span class="label">Engagement</span>
-          <span class="value">{props.data.engagement}%+</span>
-        </div>
+
+        
         <div class="qualification">
           <span class="label">Age</span>
           <span class="value">{props.data.age}+</span>
         </div>
-        <div class="qualification">
-          <span class="label">Price</span>
-          <span class="value">{props.data.price}k+ per post</span>
-        </div>
+        {props.data.price ? (
+          <div class="qualification">
+            <span class="label">Price</span>
+            <span class="value">{props.data.price}k+ per post</span>
+          </div>
+        ) : null}
         <div class="qualification">
           <span class="label">Nationality</span>
           <span class="value">
@@ -35,7 +43,7 @@ const CreatorQualification = (props) => {
               class="flag"
               title="bd"
               height="30"
-              src="https://hatscripts.github.io/circle-flags/flags/bd.svg"
+              src={`https://hatscripts.github.io/circle-flags/flags/${country}.svg`}
             />
           </span>
         </div>

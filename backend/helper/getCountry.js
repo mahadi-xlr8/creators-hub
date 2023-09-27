@@ -1,4 +1,9 @@
 module.exports= (data)=>{
     const country=data.split(",");
-    return(country[country.length-1])
+    let temp=country[country.length-1];
+    let name='';
+    for(let i=0;i<temp.length;i++){
+        if(temp[i]!=' ')name+=temp[i];
+    }
+    return(name)
 }

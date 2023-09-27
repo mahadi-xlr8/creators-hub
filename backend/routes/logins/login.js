@@ -11,14 +11,16 @@ app.get("/auto", jwtChecker, async (req, res) => {
   try {
     const data = await Creator.findOne({ _id: req.user.id });
     const newData = { role: "creator", ...data["_doc"] };
-    if (data.accessToken) {
-      const isValid = await validateFacebookAccessToken(newData.accessToken);
+    const accessToken=newData.accessToken;
+    delete newData.accessToken;
+    if (accessToken) {
+      const isValid = await validateFacebookAccessToken(accessToken);
       if (isValid) res.status(200).json(newData);
       else res.status(401).send("Access Token Expired");
     } else res.status(200).json(newData);
   } catch (err) {
     console.log(err.message);
-    res.status(401).send("Invalid id!");
+    res.status(400).send("Invalid id!");
   }
 });
 

@@ -103,7 +103,7 @@ class NevBar extends React.Component {
                   </div>
                   <div class="dropdown-content"></div>
                 </div>
-                {/* TODO: complete notification */}
+                        {/* notification bell */}
                 {login ? (
                   <div
                     className="notification"
@@ -118,13 +118,13 @@ class NevBar extends React.Component {
                 ) : null}
                 {this.state.notiClick ? <NotificationContainer /> : null}
                 {login && role === "creator" ? (
-                  !this.props.profileComplete ? (
+                  this.props.profilePage ? (
                     <div className="link">
                       <Link to="/profile/edit">Edit Profile</Link>
                     </div>
                   ) : (
                     <div className="link">
-                      <Link to="/profile">{this.props.name}</Link>
+                      <Link to={`/creator/${this.props.profileId}`}>{this.props.name}</Link>
                     </div>
                   )
                 ) : null}

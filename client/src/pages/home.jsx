@@ -112,10 +112,17 @@ class Home extends React.Component {
         platformImg: "./images/all/icons/google.svg",
       },
     ];
-
     return (
       <>
-        <NevBar userType="" role="creator" login={true} name={"Google"} profileComplete={false}/>
+        <NevBar
+          userType=""
+          role={this.props.data.role}
+          login={this.props.login}
+          name={this.props.data.name}
+          profileComplete={this.props.data.profileComplete}
+          profilePage={false}
+          profileId={this.props.data._id}
+        />
 
         {/* <NavBarLogin/> */}
 

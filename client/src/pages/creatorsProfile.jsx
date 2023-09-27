@@ -9,32 +9,42 @@ import PreviousWork from "./previousWork";
 import NevBar from "../components/nevBar";
 
 import Footer from "./footer";
-import { useState } from 'react';
-const CreatorsProfile = () => {
-  const { name } = useParams();
-  const data = getCreatorsByName(name)[0];
-  const [isFlipped,setFlipped]= useState(false)
+import { useState } from "react";
+const CreatorsProfile = (props) => {
+  const { id } = useParams();
+  const data = props.data;
+  const [isFlipped, setFlipped] = useState(false);
   return (
     <>
-      <NevBar />
+      <NevBar
+        login={props.login}
+        userType={props.data.role}
+        role={props.data.role}
+        profilePage={true}
+      />
       <div className="htgZbY">
         <div className="creator-body">
           <BackButton />
           <div className="campaign-body">
-            <CreatorNameBlock name={name} tags={data.tags}/>
-            <CreatorImages images={data.images} />
-            <CreatorQualification data={data}/>
-            
+            <CreatorNameBlock
+              name={props.data.name}
+              joined={props.data.joined}
+              tags={data.tags}
+            />
+            <CreatorImages image={data.profileImg} />
+            <CreatorQualification data={data} />
           </div>
         </div>
-        <div className="previous-works">
+
+        {/* TODO: complete previous work after finishing the backend */}
+        {/* <div className="previous-works">
           <h1>previous works</h1>
-          <PreviousWork name={name} isFlipped={isFlipped} handleFlipped={()=>{
+          <PreviousWork name={data.name} isFlipped={isFlipped} handleFlipped={()=>{
             setFlipped(!isFlipped)
           }}/>
-        </div>
+        </div> */}
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

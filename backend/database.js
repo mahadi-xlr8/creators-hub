@@ -1,16 +1,16 @@
 const mongoose = require("mongoose");
-const jwt=require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
 mongoose
   .connect("mongodb://localhost/creators-hub")
   .then(() => console.log("connected to the database!"))
   .catch((err) => console.log(err));
 
-const CreatorSchema=new mongoose.Schema({
+const CreatorSchema = new mongoose.Schema({
   password: {
-    type:String,
-    minlength:5,
-    maxlength:1024,
+    type: String,
+    minlength: 5,
+    maxlength: 1024,
   },
   email: {
     type: String,
@@ -41,14 +41,16 @@ const CreatorSchema=new mongoose.Schema({
   },
   price: Number,
   tags: {
-    type:[String],
-    minlength:5,
-    maxlength:255,
+    type: [String],
+    minlength: 5,
+    maxlength: 255,
   },
-  platforms: [{
-    name: String,
-    link: String,
-  }],
+  platforms: [
+    {
+      name: String,
+      link: String,
+    },
+  ],
   contactLink: {
     type: String,
     minlength: 5,
@@ -59,24 +61,27 @@ const CreatorSchema=new mongoose.Schema({
     minlength: 5,
     maxlength: 1000,
   },
-  profileComplete:{
-    type:Boolean,
-    required:true,
-  }
+  profileComplete: {
+    type: Boolean,
+    required: true,
+  },
+  joined: {
+    type: String,
+    minlength: 5,
+    maxlength: 1000,
+  },
+  contactLink: {
+    type: String,
+    minlength: 5,
+    maxlenght: 1000,
+  },
 });
 CreatorSchema.methods.genToken = function () {
-  const jwtKey="sexy"
-  return jwt.sign({ id: this._id,role:"creator" }, jwtKey);
+  const jwtKey = "sexy";
+  return jwt.sign({ id: this._id, role: "creator" }, jwtKey);
 };
 
-
-
-const Creator = mongoose.model(
-  "creators",
-  CreatorSchema
-);
-
-
+const Creator = mongoose.model("creators", CreatorSchema);
 
 const Brand = mongoose.model(
   "brands",
@@ -111,12 +116,10 @@ const Collaboration = mongoose.model(
   })
 );
 
-
-
 async function getData() {
   const res = await Creator.find().select({ name: 1, _id: 0 });
   return res;
 }
 
 module.exports.getName = getData;
-module.exports.Creator=Creator;
+module.exports.Creator = Creator;

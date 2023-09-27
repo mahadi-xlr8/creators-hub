@@ -22,20 +22,22 @@ function App() {
   const [login,setLogin]=useState(false)
   const[ data,setData]= useState({})
   useEffect(()=>{
-    axios.get("/login/fb/auto",{
+    axios.get("/login/auto",{
       headers:{
         "access-token":Cookies.get("access-token")
       }
     }).then(res=>{
       setLogin(true)
       setData(res.data)
-      console.log(res.data)
+    })
+    .catch(err=>{
+      console.log(err)
     })
   },[])
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home login={login} data={data}/>} />
         <Route path="/brand" element={<Brands />} />
         <Route path="/brand/signup" element={<BrandsSignup />} />
         <Route path="/brand/login" element={<BrandsLogin />} />
@@ -51,7 +53,8 @@ function App() {
           element={<Profile name="Mehazabien Chowdhury" />}
         />
         <Route path="/creator" element={<CreatorsHome />} />
-        <Route path="/creator/:name" element={<CreatorsProfile />} />
+        {/* TODO:creator proifle */}
+        <Route path="/creator/:id" element={<CreatorsProfile login={login} data={data}/>} />
         <Route path="/creator/:name/previous work" element={<PreviousWork />} />
       </Routes>
     </>

@@ -4,15 +4,15 @@ const CreatorNameBlock = (props) => {
       <h1 class="profileName">{props.name}</h1>
 
       <div class="tags">
-        {props.tags.map((e, index) => {
+        {props.tags?props.tags.map((e, index) => {
           return (
             <span key={index} class="tag">
               {e}
             </span>
           );
-        })}
+        }):null}
       </div>
-      <p class="joining-date">Joined: Apr 9, 2023</p>
+      <p class="joining-date">Joined: {props.joined} </p>
     </section>
   );
 };
