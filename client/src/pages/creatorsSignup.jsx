@@ -5,22 +5,18 @@ import InputPassword from "../components/inputPassword";
 import FileUpload from "../components/fileUpload";
 import SubmitButton from "../components/submitButton";
 import { Link } from "react-router-dom";
+import DragAndDropUpload from "../components/dragAndDrop";
 class CreatorSignup extends React.Component {
   state = {
-    firstName: "",
-    lastName: "",
+    name: "",
 
     email: "",
     password: "",
     cPassword: "",
-    profile: null,
-    otherPhoto: null,
+    profileUrl: "",
   };
-  firstNameChange = (data) => {
-    this.setState({ firstName: data });
-  };
-  lastNameChange = (data) => {
-    this.setState({ lastName: data });
+  nameChange = (data) => {
+    this.setState({ name: data });
   };
   emailChange = (data) => {
     this.setState({ email: data });
@@ -31,8 +27,9 @@ class CreatorSignup extends React.Component {
   cPasswordChange = (data) => {
     this.setState({ cPassword: data });
   };
-  profileChange = (data) => {
-    console.log(data.fullName);
+  profileUpload = (data) => {
+    console.log(data)
+    this.setState({profileUrl:data})
   };
 
   render() {
@@ -43,11 +40,6 @@ class CreatorSignup extends React.Component {
           <div className="creator-signup">
             <section className="img-slider">
               <img src="/images/creators/mehazabien/img1.jpg" alt="" />
-              <img
-                className="img2"
-                src="/images/creators/mehazabien/img2.jpg"
-                alt=""
-              />
             </section>
             <section className="form-container">
               <form action="" className="form-text">
@@ -60,14 +52,9 @@ class CreatorSignup extends React.Component {
                 <p className="subtext">Let's get you started.</p>
                 <div className="form-row">
                   <InputText
-                    placeholder="first name"
+                    placeholder="full name"
                     value={this.state.firstName}
-                    onChange={this.firstNameChange}
-                  />
-                  <InputText
-                    placeholder="last name"
-                    value={this.state.lastName}
-                    onChange={this.lastNameChange}
+                    onChange={this.nameChange}
                   />
                   <InputText
                     placeholder="email"
@@ -85,15 +72,10 @@ class CreatorSignup extends React.Component {
                     placeholder="comfirm password"
                     onChange={this.cPasswordChange}
                   />
-                  <h3 className="personal-info">Social Links:</h3>
-                  <p className="subtext require">one is required!</p>
-                  <InputText placeholder="Facebook" />
-                  <InputText placeholder="Instagram" />
-                  <InputText placeholder="Youtube" />
+                  
                   <h3 className="personal-info">upload your pictures</h3>
                   <p className="subtext require">profile photo is required!</p>
-                  <FileUpload label="Profile" onClick={this.profileChange} />
-                  <FileUpload label="Other" />
+                  <DragAndDropUpload onUpload={this.profileUpload}/>
                   <SubmitButton />
                   <div class="sub-links">
                     Already have an account? <a href="/login">Log In</a>
