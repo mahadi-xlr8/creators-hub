@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import NevBar from "../components/nevBar";
 import InputText from "../components/inputText";
 import InputPassword from "../components/inputPassword";
-import FileUpload from "../components/fileUpload";
 import SubmitButton from "../components/submitButton";
 import { Link } from "react-router-dom";
 import DragAndDropUpload from "../components/dragAndDrop";
+import axios from "axios";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
+import SignupDataValidation from "../components/helper/signupDataValidation";
 class CreatorSignup extends React.Component {
   state = {
     name: "",
@@ -14,6 +17,7 @@ class CreatorSignup extends React.Component {
     password: "",
     cPassword: "",
     profileUrl: "",
+    error: "",
   };
   nameChange = (data) => {
     this.setState({ name: data });
@@ -28,8 +32,45 @@ class CreatorSignup extends React.Component {
     this.setState({ cPassword: data });
   };
   profileUpload = (data) => {
-    console.log(data)
-    this.setState({profileUrl:data})
+    console.log(data);
+    this.setState({ profileUrl: data });
+  };
+  handleSubmit = () => {
+     
+
+    
+    const { error } = SignupDataValidation({
+      name:this.state.name,
+      email:this.state.email,
+      password:this.state.password,
+      confirm_password:this.state.cPassword,
+      profile_photo:this.state.profileUrl
+    })
+    if (error) {
+      this.setState({ error: error.details[0].message });
+    }
+    else {
+      axios
+      .post("/login/creator/signup", {
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+        profile_photo: this.state.profileUrl,
+      })
+      .then((res) => {
+        Cookies.set("access-token", res.headers["x-access-token"], {
+          expires: 60,
+        });
+        window.location.replace("/")
+        toast.success(res.data);
+      })
+      .catch((err) => {
+        toast(err.response.data, {
+          icon: "❌",
+          duration: 2000,
+        });
+      });
+    }
   };
 
   render() {
@@ -53,7 +94,7 @@ class CreatorSignup extends React.Component {
                 <div className="form-row">
                   <InputText
                     placeholder="full name"
-                    value={this.state.firstName}
+                    value={this.state.name}
                     onChange={this.nameChange}
                   />
                   <InputText
@@ -66,17 +107,25 @@ class CreatorSignup extends React.Component {
                     value={this.state.password}
                     placeholder="password"
                     onChange={this.passwordChange}
+                    cpassword={false}
                   />
                   <InputPassword
                     value={this.state.cPassword}
                     placeholder="comfirm password"
                     onChange={this.cPasswordChange}
+                    password={this.state.password}
                   />
-                  
+
                   <h3 className="personal-info">upload your pictures</h3>
                   <p className="subtext require">profile photo is required!</p>
-                  <DragAndDropUpload onUpload={this.profileUpload}/>
-                  <SubmitButton />
+                  <DragAndDropUpload
+                    onUpload={this.profileUpload}
+                    value={this.state.profileUrl}
+                  />
+                  <p className="validation-message">
+                    {this.state.error}
+                  </p>
+                  <SubmitButton onClick={this.handleSubmit} />
                   <div class="sub-links">
                     Already have an account? <a href="/login">Log In</a>
                   </div>

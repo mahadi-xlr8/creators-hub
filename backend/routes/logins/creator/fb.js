@@ -1,11 +1,11 @@
 const express = require("express");
-const jwtTokenGen = require("../../helper/encryptData");
+const jwtTokenGen = require("../../../helper/encryptData");
 const app = express.Router();
-const { Creator } = require("../../database");
+const { Creator } = require("../../../database");
 const axios = require("axios");
-const calculateAge = require("../../helper/calculateAge");
-const getCountry = require("../../helper/getCountry");
-const getToady = require("../../helper/getToday");
+const calculateAge = require("../../../helper/calculateAge");
+const getCountry = require("../../../helper/getCountry");
+const getToady = require("../../../helper/getToday");
 app.post("/new", async (req, res) => {
   const age = calculateAge(req.body.birthday);
   const country = getCountry(req.body.location);
@@ -44,8 +44,7 @@ app.post("/new", async (req, res) => {
       .status(200)
       .send("Logged in successfully!");
   } catch (err) {
-    console.log(err.message);
-    res.status(400).send("Email already exist here");
+    res.status(400).send("Email already exist!");
   }
 });
 

@@ -1,10 +1,14 @@
 const express = require("express");
 const app = express.Router();
-const fb = require("./fb");
+const fb = require("./creator/fb");
+const creator=require("./creator/creator")
 const jwtChecker = require("../../middleware/jwtChecker");
+
 const { Creator } = require("../../database");
+
 const validateFacebookAccessToken = require("../../helper/validateFacebookAccessToken");
 
+app.use("/creator",creator)
 app.use("/fb", fb);
 
 app.get("/auto", jwtChecker, async (req, res) => {

@@ -61,10 +61,6 @@ const CreatorSchema = new mongoose.Schema({
     minlength: 5,
     maxlength: 1000,
   },
-  profileComplete: {
-    type: Boolean,
-    required: true,
-  },
   joined: {
     type: String,
     minlength: 5,

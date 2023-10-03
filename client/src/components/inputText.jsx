@@ -1,6 +1,7 @@
 import { useState } from "react";
 const InputText = (props) => {
   const [type, setType] = useState(props.type);
+
   return (
     <div className="input-field-baap">
       <input

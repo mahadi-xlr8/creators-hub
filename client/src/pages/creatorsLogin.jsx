@@ -50,7 +50,7 @@ class CreatorsLogin extends React.Component {
             Cookies.set("access-token", res.headers["x-access-token"], {
               expires: 60,
             });
-            console.log(Cookies.get("access-token"))
+            window.location.replace("/")
             toast.success(res.data);
           })
           .catch((err) => {
