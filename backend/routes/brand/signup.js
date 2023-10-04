@@ -11,7 +11,7 @@ app.post("/", signupDataCheck, async (req, res) => {
     profileImg: req.body.profile_photo,
     password: req.body.password,
     joined: getToday(),
-    website: req.body.website,
+    contactLink: req.body.website,
   });
 
   try {

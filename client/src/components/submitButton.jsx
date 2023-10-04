@@ -5,7 +5,7 @@ const SubmitButton = (props) => {
       props.onClick()
     }}>
       <button type="submit" class="ant-btn ant-btn-primary">
-        <span>Create Account</span>
+        <span>{props.text}</span>
       </button>
     </div>
   );

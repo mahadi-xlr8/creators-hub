@@ -64,6 +64,16 @@ const CreatorSchema = new mongoose.Schema({
   contactLink: {
     type: String,
     minlength: 5,
+    maxlenght: 500,
+  },
+  title: {
+    type: String,
+    minlength: 5,
+    maxlenght: 200,
+  },
+  description: {
+    type: String,
+    minlength: 5,
     maxlenght: 1000,
   },
 });
@@ -74,7 +84,7 @@ CreatorSchema.methods.genToken = function () {
 
 const Creator = mongoose.model("creators", CreatorSchema);
 
-const brandSchema=new mongoose.Schema({
+const brandSchema = new mongoose.Schema({
   password: {
     type: String,
     minlength: 5,
@@ -116,20 +126,23 @@ const brandSchema=new mongoose.Schema({
     minlength: 5,
     maxlength: 1000,
   },
-
-  
-  
-})
+  profileComplete: {
+    type: Boolean,
+    default: false,
+  },
+  description: {
+    type: String,
+    minlength: 5,
+    maxlenght: 1000,
+  },
+});
 
 brandSchema.methods.genToken = function () {
   const jwtKey = "sexy";
   return jwt.sign({ id: this._id, role: "brand" }, jwtKey);
 };
 
-const Brand = mongoose.model(
-  "brands",
-  brandSchema
-);
+const Brand = mongoose.model("brands", brandSchema);
 
 const Collaboration = mongoose.model(
   "collaboration",
@@ -155,8 +168,6 @@ const Collaboration = mongoose.model(
     platfomrs: [String],
   })
 );
-
-
 
 module.exports.Creator = Creator;
 module.exports.Brand = Brand;

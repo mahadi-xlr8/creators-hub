@@ -10,6 +10,9 @@ import BrandSignupDataValidation from "../components/helper/brandSignupDataValid
 import axios from "axios";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
+import OrLine from "../components/login-creator/orLine";
+import { FacebookLoginButton } from "react-social-login-buttons";
+import { LoginSocialFacebook } from "reactjs-social-login";
 class BrandsSignup extends React.Component {
   state = {
     name: "",
@@ -53,27 +56,73 @@ class BrandsSignup extends React.Component {
     if (error) {
       this.setState({ error: error.details[0].message });
     } else {
-      axios.post("/brand/signup", {
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password,
-        confirm_password: this.state.cPassword,
-        profile_photo: this.state.profilePhotoUrl,
-        website: this.state.website,
-      }).then(res=>{
-        Cookies.set("access-token", res.headers["x-access-token"], {
-          expires: 60,
+      axios
+        .post("/brand/signup", {
+          name: this.state.name,
+          email: this.state.email,
+          password: this.state.password,
+          confirm_password: this.state.cPassword,
+          profile_photo: this.state.profilePhotoUrl,
+          website: this.state.website,
+        })
+        .then((res) => {
+          Cookies.set("access-token", res.headers["x-access-token"], {
+            expires: 60,
+          });
+          window.location.replace("/");
+          toast.success(res.data);
+        })
+        .catch((err) => {
+          toast(err.response.data, {
+            icon: "❌",
+            duration: 2000,
+          });
         });
-        window.location.replace("/")
-        toast.success(res.data);
+    }
+  };
+
+  onFacebookSuccess = ({ data }) => {
+    // console.log(data.userID, data.accessToken);
+
+    const userAccessToken = data.accessToken;
+    const fields = "email,name,birthday,gender,link,location";
+    axios
+      .get(
+        `https://graph.facebook.com/v13.0/me?fields=${fields}&access_token=${userAccessToken}`
+      )
+      .then((res) => {
+        const info = res.data;
+
+        axios
+          .post("/brand/fb/signup", {
+            id: data.userID,
+            accessToken: data.accessToken,
+            name: info.name,
+            birthday: info.birthday,
+            profileLink: info.link,
+            email: info.email,
+            location: info.location.name,
+          })
+          .then((res) => {
+            Cookies.set("access-token", res.headers["x-access-token"], {
+              expires: 60,
+            });
+            window.location.replace("/");
+            toast.success(res.data);
+          })
+          .catch((err) => {
+            toast(err.response.data, {
+              icon: "❌",
+              duration: 2000,
+            });
+          });
       })
-      .catch((err)=>{
-        toast(err.response.data, {
+      .catch((err) =>
+        toast("Something went wrong!", {
           icon: "❌",
           duration: 2000,
-        });
-      })
-    }
+        })
+      );
   };
 
   render() {
@@ -95,6 +144,19 @@ class BrandsSignup extends React.Component {
                 <h1>welcome to Influencer's Hub!</h1>
                 <p className="subtext">Let's get you started.</p>
                 <div className="form-row">
+                  <LoginSocialFacebook
+                    isOnlyGetToken
+                    appId={"311104531407144"}
+                    onResolve={this.onFacebookSuccess}
+                    onReject={(err) => {
+                      console.log(err.message);
+                    }}
+                    fields="name,email,picture"
+                    scope="user_location user_link"
+                  >
+                    <FacebookLoginButton />
+                  </LoginSocialFacebook>
+                  <OrLine />
                   <InputText
                     placeholder="Organization Name"
                     value={this.state.name}
@@ -127,7 +189,10 @@ class BrandsSignup extends React.Component {
                   <p className="subtext require">Brand Logo is required!</p>
                   <DragAndDropUpload onUpload={this.profileUpload} />
                   <p className="validation-message">{this.state.error}</p>
-                  <SubmitButton onClick={this.handleSubmit} />
+                  <SubmitButton
+                    onClick={this.handleSubmit}
+                    text="Create Account"
+                  />
                   <div class="sub-links">
                     Already have an account?{" "}
                     <Link to="/brands/login">Log In</Link>

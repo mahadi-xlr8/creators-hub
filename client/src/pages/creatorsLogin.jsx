@@ -96,8 +96,9 @@ class CreatorsLogin extends React.Component {
                     placeholder="Password"
                     onChange={this.passwordChange}
                   />
-                  <p className="sub-links forget">Forget Password?</p>
-                  <SubmitButton />
+                  {/* TODO: implement forget password */}
+                  {/* <p className="sub-links forget">Forget Password?</p> */}
+                  <SubmitButton text="Login"/>
                   <div class="sub-links">
                     Don't have an account?{" "}
                     <Link to="/creator/signup">Sign Up</Link>
