@@ -9,6 +9,9 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import SignupDataValidation from "../components/helper/signupDataValidation";
+import OrLine from "../components/login-creator/orLine";
+import { FacebookLoginButton } from "react-social-login-buttons";
+import { LoginSocialFacebook } from "reactjs-social-login";
 class CreatorSignup extends React.Component {
   state = {
     name: "",
@@ -69,6 +72,51 @@ class CreatorSignup extends React.Component {
     }
   };
 
+
+  onFacebookSuccess = ({ data }) => {
+    // console.log(data.userID, data.accessToken);
+
+    const userAccessToken = data.accessToken;
+    const fields = "email,name,birthday,gender,link,location";
+    axios
+      .get(
+        `https://graph.facebook.com/v13.0/me?fields=${fields}&access_token=${userAccessToken}`
+      )
+      .then((res) => {
+        const info = res.data;
+
+        axios
+          .post("/creator/fb/signup", {
+            id: data.userID,
+            accessToken: data.accessToken,
+            name: info.name,
+            birthday: info.birthday,
+            profileLink: info.link,
+            email: info.email,
+            location: info.location.name,
+          })
+          .then((res) => {
+            Cookies.set("access-token", res.headers["x-access-token"], {
+              expires: 60,
+            });
+            window.location.replace("/");
+            toast.success(res.data);
+          })
+          .catch((err) => {
+            toast(err.response.data, {
+              icon: "❌",
+              duration: 2000,
+            });
+          });
+      })
+      .catch((err) =>
+        toast("Something went wrong!", {
+          icon: "❌",
+          duration: 2000,
+        })
+      );
+  };
+
   render() {
     return (
       <>
@@ -88,6 +136,19 @@ class CreatorSignup extends React.Component {
                 <h1>welcome to Influencer's Hub!</h1>
                 <p className="subtext">Let's get you started.</p>
                 <div className="form-row">
+                <LoginSocialFacebook
+                    isOnlyGetToken
+                    appId={"311104531407144"}
+                    onResolve={this.onFacebookSuccess}
+                    onReject={(err) => {
+                      console.log(err.message);
+                    }}
+                    fields="name,email,picture"
+                    scope="user_location user_link"
+                  >
+                    <FacebookLoginButton />
+                  </LoginSocialFacebook>
+                  <OrLine />
                   <InputText
                     placeholder="full name"
                     value={this.state.name}
@@ -119,7 +180,7 @@ class CreatorSignup extends React.Component {
                     value={this.state.profileUrl}
                   />
                   <p className="validation-message">{this.state.error}</p>
-                  <SubmitButton onClick={this.handleSubmit} />
+                  <SubmitButton onClick={this.handleSubmit} text="SignUp"/>
                   <div class="sub-links">
                     Already have an account? <a href="/login">Log In</a>
                   </div>

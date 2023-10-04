@@ -37,7 +37,7 @@ class CreatorsLogin extends React.Component {
         const info = res.data;
 
         axios
-          .post("/login/fb/new", {
+          .post("/creator/fb/login", {
             id: data.userID,
             accessToken: data.accessToken,
             name: info.name,
