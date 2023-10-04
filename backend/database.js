@@ -51,11 +51,6 @@ const CreatorSchema = new mongoose.Schema({
       link: String,
     },
   ],
-  contactLink: {
-    type: String,
-    minlength: 5,
-    maxlength: 1000,
-  },
   accessToken: {
     type: String,
     minlength: 5,
@@ -79,12 +74,61 @@ CreatorSchema.methods.genToken = function () {
 
 const Creator = mongoose.model("creators", CreatorSchema);
 
+const brandSchema=new mongoose.Schema({
+  password: {
+    type: String,
+    minlength: 5,
+    maxlength: 1024,
+  },
+  email: {
+    type: String,
+    unique: true,
+    minlength: 5,
+    maxlength: 255,
+  },
+  country: {
+    type: String,
+    minlength: 5,
+    maxlength: 255,
+  },
+  name: {
+    type: String,
+    minlength: 5,
+    maxlength: 255,
+  },
+  contactLink: {
+    type: String,
+    minlength: 5,
+    maxlength: 1000,
+  },
+  accessToken: {
+    type: String,
+    minlength: 5,
+    maxlength: 1000,
+  },
+  joined: {
+    type: String,
+    minlength: 5,
+    maxlength: 1000,
+  },
+  profileImg: {
+    type: String,
+    minlength: 5,
+    maxlength: 1000,
+  },
+
+  
+  
+})
+
+brandSchema.methods.genToken = function () {
+  const jwtKey = "sexy";
+  return jwt.sign({ id: this._id, role: "brand" }, jwtKey);
+};
+
 const Brand = mongoose.model(
   "brands",
-  new mongoose.Schema({
-    name: String,
-    logo: String,
-  })
+  brandSchema
 );
 
 const Collaboration = mongoose.model(
@@ -112,10 +156,7 @@ const Collaboration = mongoose.model(
   })
 );
 
-async function getData() {
-  const res = await Creator.find().select({ name: 1, _id: 0 });
-  return res;
-}
 
-module.exports.getName = getData;
+
 module.exports.Creator = Creator;
+module.exports.Brand = Brand;

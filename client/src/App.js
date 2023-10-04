@@ -15,29 +15,11 @@ import CreatorsHome from "./pages/creatorsHome";
 import BrandPost from "./pages/brandPost";
 import PostDetail from "./pages/postDetail";
 import PostNewWork from "./pages/postNewWork";
-import axios from "axios";
-import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
 function App() {
-  const [login,setLogin]=useState(false)
-  const[ data,setData]= useState({})
-  useEffect(()=>{
-    axios.get("/login/auto",{
-      headers:{
-        "access-token":Cookies.get("access-token")
-      }
-    }).then(res=>{
-      setLogin(true)
-      setData(res.data)
-    })
-    .catch(err=>{
-      console.log(err)
-    })
-  },[])
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home login={login} data={data}/>} />
+        <Route path="/" element={<Home/>} />
         <Route path="/brand" element={<Brands />} />
         <Route path="/brand/signup" element={<BrandsSignup />} />
         <Route path="/brand/login" element={<BrandsLogin />} />
@@ -48,13 +30,8 @@ function App() {
         <Route path="/creator/find" element={<Creators />} />
         <Route path="/creator/signup" element={<CreatorSignup />} />
         <Route path="/creator/login" element={<CreatorsLogin />} />
-        <Route
-          path="/profile"
-          element={<Profile name="Mehazabien Chowdhury" />}
-        />
         <Route path="/creator" element={<CreatorsHome />} />
-        {/* TODO:creator proifle */}
-        <Route path="/creator/:id" element={<CreatorsProfile login={login} data={data}/>} />
+        <Route path="/creator/:id" element={<CreatorsProfile />} />
         <Route path="/creator/:name/previous work" element={<PreviousWork />} />
       </Routes>
     </>

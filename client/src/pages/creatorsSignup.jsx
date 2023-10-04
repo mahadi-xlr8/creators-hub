@@ -32,44 +32,40 @@ class CreatorSignup extends React.Component {
     this.setState({ cPassword: data });
   };
   profileUpload = (data) => {
-    console.log(data);
     this.setState({ profileUrl: data });
   };
   handleSubmit = () => {
-     
-
-    
     const { error } = SignupDataValidation({
-      name:this.state.name,
-      email:this.state.email,
-      password:this.state.password,
-      confirm_password:this.state.cPassword,
-      profile_photo:this.state.profileUrl
-    })
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      confirm_password: this.state.cPassword,
+      profile_photo: this.state.profileUrl,
+    });
     if (error) {
       this.setState({ error: error.details[0].message });
-    }
-    else {
+    } else {
       axios
-      .post("/login/creator/signup", {
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password,
-        profile_photo: this.state.profileUrl,
-      })
-      .then((res) => {
-        Cookies.set("access-token", res.headers["x-access-token"], {
-          expires: 60,
+        .post("/login/creator/signup", {
+          name: this.state.name,
+          email: this.state.email,
+          password: this.state.password,
+          profile_photo: this.state.profileUrl,
+        })
+        .then((res) => {
+          Cookies.set("access-token", res.headers["x-access-token"], {
+            expires: 60,
+          });
+          window.location.replace("/");
+          toast.success(res.data);
+        })
+        .catch((err) => {
+          toast(err.response.data, {
+            icon: "❌",
+            duration: 2000,
+          });
         });
-        window.location.replace("/")
-        toast.success(res.data);
-      })
-      .catch((err) => {
-        toast(err.response.data, {
-          icon: "❌",
-          duration: 2000,
-        });
-      });
+      this.setState({ error: "" });
     }
   };
 
@@ -122,9 +118,7 @@ class CreatorSignup extends React.Component {
                     onUpload={this.profileUpload}
                     value={this.state.profileUrl}
                   />
-                  <p className="validation-message">
-                    {this.state.error}
-                  </p>
+                  <p className="validation-message">{this.state.error}</p>
                   <SubmitButton onClick={this.handleSubmit} />
                   <div class="sub-links">
                     Already have an account? <a href="/login">Log In</a>

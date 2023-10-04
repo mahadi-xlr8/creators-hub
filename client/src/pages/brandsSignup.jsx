@@ -5,24 +5,25 @@ import InputPassword from "../components/inputPassword";
 import FileUpload from "../components/fileUpload";
 import SubmitButton from "../components/submitButton";
 import { Link } from "react-router-dom";
+import DragAndDropUpload from "../components/dragAndDrop";
+import BrandSignupDataValidation from "../components/helper/brandSignupDataValidation";
+import axios from "axios";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 class BrandsSignup extends React.Component {
   state = {
-    firstName: "",
+    name: "",
     lastName: "",
 
     email: "",
     password: "",
     cPassword: "",
-    website:'',
-    profile: null,
-    otherPhoto: null,
-
+    website: "",
+    profilePhotoUrl: "",
+    error: "",
   };
-  firstNameChange = (data) => {
-    this.setState({ firstName: data });
-  };
-  lastNameChange = (data) => {
-    this.setState({ lastName: data });
+  nameChange = (data) => {
+    this.setState({ name: data });
   };
   emailChange = (data) => {
     this.setState({ email: data });
@@ -37,8 +38,42 @@ class BrandsSignup extends React.Component {
   websiteChange = (data) => {
     this.setState({ website: data });
   };
-  profileChange = (data) => {
-    console.log(data.fullName);
+  profileUpload = (data) => {
+    console.log(data);
+    this.setState({ profilePhotoUrl: data });
+  };
+  handleSubmit = () => {
+    const { error } = BrandSignupDataValidation({
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      confirm_password: this.state.cPassword,
+      brand_logo: this.state.profilePhotoUrl,
+    });
+    if (error) {
+      this.setState({ error: error.details[0].message });
+    } else {
+      axios.post("/brand/signup", {
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+        confirm_password: this.state.cPassword,
+        profile_photo: this.state.profilePhotoUrl,
+        website: this.state.website,
+      }).then(res=>{
+        Cookies.set("access-token", res.headers["x-access-token"], {
+          expires: 60,
+        });
+        window.location.replace("/")
+        toast.success(res.data);
+      })
+      .catch((err)=>{
+        toast(err.response.data, {
+          icon: "❌",
+          duration: 2000,
+        });
+      })
+    }
   };
 
   render() {
@@ -61,14 +96,9 @@ class BrandsSignup extends React.Component {
                 <p className="subtext">Let's get you started.</p>
                 <div className="form-row">
                   <InputText
-                    placeholder="first name"
-                    value={this.state.firstName}
-                    onChange={this.firstNameChange}
-                  />
-                  <InputText
-                    placeholder="last name"
-                    value={this.state.lastName}
-                    onChange={this.lastNameChange}
+                    placeholder="Organization Name"
+                    value={this.state.name}
+                    onChange={this.nameChange}
                   />
                   <InputText
                     placeholder="email"
@@ -86,21 +116,21 @@ class BrandsSignup extends React.Component {
                     placeholder="comfirm password"
                     onChange={this.cPasswordChange}
                   />
-                    <InputText
+                  <InputText
                     placeholder="Website (optional)"
                     value={this.state.website}
                     type="text"
                     onChange={this.websiteChange}
                   />
-                  
 
                   <h3 className="personal-info">Upload your brand picture</h3>
                   <p className="subtext require">Brand Logo is required!</p>
-                  <FileUpload label="Brand's Logo" onClick={this.profileChange} />
-
-                  <SubmitButton />
+                  <DragAndDropUpload onUpload={this.profileUpload} />
+                  <p className="validation-message">{this.state.error}</p>
+                  <SubmitButton onClick={this.handleSubmit} />
                   <div class="sub-links">
-                    Already have an account? <Link to="/brands/login">Log In</Link>
+                    Already have an account?{" "}
+                    <Link to="/brands/login">Log In</Link>
                   </div>
                 </div>
               </form>

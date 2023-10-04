@@ -2,30 +2,11 @@ const express = require("express");
 const app = express.Router();
 const fb = require("./creator/fb");
 const creator=require("./creator/creator")
-const jwtChecker = require("../../middleware/jwtChecker");
 
-const { Creator } = require("../../database");
-
-const validateFacebookAccessToken = require("../../helper/validateFacebookAccessToken");
 
 app.use("/creator",creator)
 app.use("/fb", fb);
 
-app.get("/auto", jwtChecker, async (req, res) => {
-  try {
-    const data = await Creator.findOne({ _id: req.user.id });
-    const newData = { role: "creator", ...data["_doc"] };
-    const accessToken=newData.accessToken;
-    delete newData.accessToken;
-    if (accessToken) {
-      const isValid = await validateFacebookAccessToken(accessToken);
-      if (isValid) res.status(200).json(newData);
-      else res.status(401).send("Access Token Expired");
-    } else res.status(200).json(newData);
-  } catch (err) {
-    console.log(err.message);
-    res.status(400).send("Invalid id!");
-  }
-});
+
 
 module.exports = app;

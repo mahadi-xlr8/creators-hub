@@ -116,12 +116,7 @@ class Home extends React.Component {
       <>
         <NevBar
           userType=""
-          role={this.props.data.role}
-          login={this.props.login}
-          name={this.props.data.name}
-          profileComplete={this.props.data.profileComplete}
           profilePage={false}
-          profileId={this.props.data._id}
         />
 
         {/* <NavBarLogin/> */}

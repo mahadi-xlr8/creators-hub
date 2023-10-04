@@ -1,18 +1,44 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NotificationContainer from "./notification/notificationContainer";
-
+import axios from "axios";
+import Cookies from "js-cookie";
 class NevBar extends React.Component {
   state = { class: "", notiClick: false };
+
+  constructor() {
+    super();
+    axios
+      .get("/isLogin", {
+        headers: {
+          "access-token": Cookies.get("access-token"),
+        },
+      })
+      .then(({ data }) => {
+        this.setState({
+          login: data.login,
+          name: data.name,
+          role: data.role,
+          id: data.id,
+        });
+      })
+      .catch((err) => {
+        console.log(err)
+        this.setState({ login: false });
+      });
+  }
 
   handleNotificationClick = () => {
     const temp = !this.state.notiClick;
     this.setState({ notiClick: temp });
   };
+  handleLogout=()=>{
+    Cookies.remove("access-token")
+  }
 
   render() {
-    const login = this.props.login;
-    const role = this.props.role;
+    const login = this.state.login;
+    const role = this.state.role;
     return (
       <header id="main-header" class="">
         <div id="nav-bar" className={this.state.class}>
@@ -46,9 +72,9 @@ class NevBar extends React.Component {
                       {login ? (
                         role == "brand" ? (
                           <>
-                            <Link className="dropdown-link" to="/">
+                            <a className="dropdown-link" href="/" onClick={this.handleLogout}>
                               Log Out
-                            </Link>
+                            </a>
                           </>
                         ) : null
                       ) : (
@@ -103,7 +129,7 @@ class NevBar extends React.Component {
                   </div>
                   <div class="dropdown-content"></div>
                 </div>
-                        {/* notification bell */}
+                {/* notification bell */}
                 {login ? (
                   <div
                     className="notification"
@@ -124,14 +150,16 @@ class NevBar extends React.Component {
                     </div>
                   ) : (
                     <div className="link">
-                      <Link to={`/creator/${this.props.profileId}`}>{this.props.name}</Link>
+                      <Link to={`/creator/${this.state.profileId}`}>
+                        {this.state.name}
+                      </Link>
                     </div>
                   )
                 ) : null}
 
                 {login && role === "brand" ? (
                   this.props.userType === "Post New Work" ? (
-                    <div className="brand-name-1">{this.props.name}</div>
+                    <div className="brand-name-1">{this.state.name}</div>
                   ) : (
                     <Link className="navBar-btn login" to="/brand/new/post">
                       Post New Work

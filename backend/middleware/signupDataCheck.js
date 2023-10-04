@@ -1,5 +1,6 @@
 const Joi = require("joi");
-module.exports = function (req, res, next) {
+const bcrypt = require("bcrypt");
+module.exports = async function (req, res, next) {
   const dataSchema = Joi.object({
     name: Joi.string().min(3).max(100).required(),
     email: Joi.string()
@@ -17,5 +18,10 @@ module.exports = function (req, res, next) {
   });
   if (error) {
     return res.status(400).send(error.details[0].message);
-  } else next();
+  } else {
+    const SALT_ROUNDS = 10;
+    const hash = await bcrypt.hash(req.body.password, SALT_ROUNDS);
+    req.body.password = hash;
+    next();
+  }
 };
