@@ -110,9 +110,9 @@ class NevBar extends React.Component {
                       {login ? (
                         role === "creator" ? (
                           <>
-                            <Link className="dropdown-link" to="/">
+                            <a className="dropdown-link" href="/" onClick={this.handleLogout}>
                               Log Out
-                            </Link>
+                            </a>
                           </>
                         ) : null
                       ) : (
