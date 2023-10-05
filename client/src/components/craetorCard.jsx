@@ -1,26 +1,32 @@
 import { Link } from "react-router-dom";
-
-const CreatorCard = (props) => {
-  let linkName = "";
-
-  for (let i of props.name) {
-    if (i === " ") linkName += '-';
-    else linkName += i;
+// TODO: this page has some small works.
+const CreatorCard = ({creator}) => {
+  const countryTag = {
+    Bangladesh: "bd",
+    India: "in",
+  };
+  let country="";
+  for (let i in countryTag) {
+    if (i == creator.country) {
+      country = countryTag[i];
+      break;
+    }
   }
+
   return (
     <div class="CampaignCard__Wrapper-sc-1twbu8n-0 bbKwX">
       <div class="fade-in" style={{ opacity: 1 }}>
-        <Link class="campaign-card-inner" to={"/creator/"+props.name}>
+        <Link class="campaign-card-inner" to={"/creator/"+creator._id}>
           <div class="basic-info">
-            <p class="brand">{props.name}</p>
-            <p class="title">{props.title}</p>
+            <p class="brand">{creator.name}</p>
+            {creator.title?<p class="title">{creator.title}</p>:""}
           </div>
           <div class="details">
             <div class="product">
               <div class="thumbnail">
                 <div class="ImageLoader__Wrapper-sc-1fuj46z-0 igigqf">
                   <img
-                    src={props.profileImg}
+                    src={creator.profileImg}
                     alt=""
                     class="smooth-image visible"
                   />
@@ -29,21 +35,13 @@ const CreatorCard = (props) => {
             </div>
             <div class="requirements">
               <div class="qualifications">
-                <div class="requirement">
-                  <span class="label">Followers</span>
-                  <span class="value">{props.followers}+</span>
-                </div>
-                <div class="requirement">
-                  <span class="label">Engagement</span>
-                  <span class="value">{props.engagement}%+</span>
-                </div>
-                <div class="requirement">
-                  <span class="label">Audience Age</span>
+                {creator.age?<div class="requirement">
+                  <span class="label">Age</span>
                   <span class="value">
-                    {props.audience.low} to {props.audience.high}
+                    {creator.age}
                   </span>
-                </div>
-                <div class="requirement">
+                </div>:""}
+                {country!=""?<div class="requirement">
                   <span class="label">Residence</span>
                   <span class="value">
                     <img
@@ -51,15 +49,15 @@ const CreatorCard = (props) => {
                       class="flag"
                       title="bd"
                       height="100"
-                      src="https://hatscripts.github.io/circle-flags/flags/bd.svg"
+                      src={`https://hatscripts.github.io/circle-flags/flags/${country}.svg`}
                     />
                   </span>
-                </div>
+                </div>:""}
                 <div class="requirement">
-                  <span class="niche null">{props.price}k BDT per post</span>
+                  <span class="niche null">10k BDT per post</span>
                 </div>
               </div>
-              <div class="objectives">
+              {/* <div class="objectives">
                 <a
                   class="strategy"
                   href={props.promoVideo.videoLink}
@@ -69,7 +67,7 @@ const CreatorCard = (props) => {
                   <p>{props.promoVideo.platformName}</p>
                   <span class="format">Video (1)</span>
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </Link>

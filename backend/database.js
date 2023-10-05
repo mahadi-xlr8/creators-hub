@@ -76,6 +76,10 @@ const CreatorSchema = new mongoose.Schema({
     minlength: 5,
     maxlenght: 1000,
   },
+  profileComplete: {
+    type: Boolean,
+    default: false,
+  },
 });
 CreatorSchema.methods.genToken = function () {
   const jwtKey = "sexy";
@@ -125,10 +129,6 @@ const brandSchema = new mongoose.Schema({
     type: String,
     minlength: 5,
     maxlength: 1000,
-  },
-  profileComplete: {
-    type: Boolean,
-    default: false,
   },
   description: {
     type: String,
