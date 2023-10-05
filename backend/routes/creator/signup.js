@@ -1,9 +1,9 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const app = express.Router();
-const dataCheck = require("../../../middleware/signupDataCheck");
-const { Creator } = require("../../../database");
-const getToday = require("../../../helper/getToday");
+const dataCheck = require("../../middleware/signupDataCheck");
+const { Creator } = require("../../database");
+const getToday = require("../../helper/getToday");
 app.post("/", dataCheck, async (req, res) => {
   
 

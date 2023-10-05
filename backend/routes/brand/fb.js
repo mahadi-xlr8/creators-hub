@@ -38,7 +38,7 @@ app.post("/signup", async (req, res) => {
       .status(200)
       .send("Logged in successfully!");
   } catch (err) {
-    res.status(400).send("Email already exist!");
+    res.status(400).send("Email already exist! Please Login.");
   }
 });
 
@@ -86,7 +86,7 @@ app.post("/login", async (req, res) => {
         .status(200)
         .send("Logged in successfully!");
     } catch (err) {
-      res.status(400).send("Email already exist!");
+      res.status(400).send("Email already exist! Please Login.");
     }
   }
 });

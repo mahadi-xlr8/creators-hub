@@ -49,7 +49,7 @@ class CreatorSignup extends React.Component {
       this.setState({ error: error.details[0].message });
     } else {
       axios
-        .post("/login/creator/signup", {
+        .post("/creator/signup", {
           name: this.state.name,
           email: this.state.email,
           password: this.state.password,

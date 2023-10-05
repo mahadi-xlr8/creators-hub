@@ -24,6 +24,28 @@ class CreatorsLogin extends React.Component {
     this.setState({ password: data });
   };
 
+  handleSubmit = () => {
+    axios
+      .post("/creator/login", {
+        email: this.state.email,
+        password: this.state.password,
+      })
+      .then((res) => {
+        Cookies.set("access-token", res.headers["x-access-token"], {
+          expires: 60,
+        });
+        window.location.replace("/");
+        toast.success(res.data);
+      })
+      .catch((err) => {
+        toast(err.response.data, {
+          icon: "❌",
+          duration: 2000,
+        });
+      });
+  };
+
+
   onFacebookSuccess = ({ data }) => {
     // console.log(data.userID, data.accessToken);
 
@@ -98,7 +120,7 @@ class CreatorsLogin extends React.Component {
                   />
                   {/* TODO: implement forget password */}
                   {/* <p className="sub-links forget">Forget Password?</p> */}
-                  <SubmitButton text="Login"/>
+                  <SubmitButton text="Login" onClick={this.handleSubmit}/>
                   <div class="sub-links">
                     Don't have an account?{" "}
                     <Link to="/creator/signup">Sign Up</Link>
