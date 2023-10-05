@@ -150,7 +150,7 @@ class NevBar extends React.Component {
                     </div>
                   ) : (
                     <div className="link">
-                      <Link to={`/creator/${this.state.profileId}`}>
+                      <Link to={`/creator/${this.state.id}`}>
                         {this.state.name}
                       </Link>
                     </div>
