@@ -52,7 +52,7 @@ app.post("/login", async (req, res) => {
 
   try {
     const exist = await Brand.findOne({ email: req.body.email });
-    console.log("exist value ",exist)
+
     exist.accessToken = longAccessToken;
     await exist.save();
     res
@@ -60,7 +60,7 @@ app.post("/login", async (req, res) => {
       .status(200)
       .send("Logged in successfully!");
   } catch (err) {
-    console.log("error message ",err.message)
+
     const age = calculateAge(req.body.birthday);
     const country = getCountry(req.body.location);
     const today = getToday();

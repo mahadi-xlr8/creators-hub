@@ -3,6 +3,8 @@ const TextArea = (props) => {
     <textarea
       placeholder="Write description..."
       className="job-description"
+      value={props.value}
+      onChange={props.onChange}
     ></textarea>
   );
 };

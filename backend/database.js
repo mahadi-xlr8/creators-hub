@@ -9,23 +9,21 @@ mongoose
 const CreatorSchema = new mongoose.Schema({
   password: {
     type: String,
-    minlength: 5,
+    minlength: 6,
     maxlength: 1024,
   },
   email: {
     type: String,
     unique: true,
-    minlength: 5,
-    maxlength: 255,
+    maxlength: 100,
   },
   country: {
     type: String,
-    minlength: 5,
-    maxlength: 255,
+    maxlength: 50,
   },
   name: {
     type: String,
-    minlength: 5,
+    minlength: 3,
     maxlength: 255,
   },
   age: Number,
@@ -42,7 +40,6 @@ const CreatorSchema = new mongoose.Schema({
   price: Number,
   tags: {
     type: [String],
-    minlength: 5,
     maxlength: 255,
   },
   platforms: [
@@ -66,11 +63,6 @@ const CreatorSchema = new mongoose.Schema({
     minlength: 5,
     maxlenght: 500,
   },
-  title: {
-    type: String,
-    minlength: 5,
-    maxlenght: 200,
-  },
   description: {
     type: String,
     minlength: 5,
@@ -91,7 +83,7 @@ const Creator = mongoose.model("creators", CreatorSchema);
 const brandSchema = new mongoose.Schema({
   password: {
     type: String,
-    minlength: 5,
+    minlength: 6,
     maxlength: 1024,
   },
   email: {
@@ -107,12 +99,11 @@ const brandSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    minlength: 5,
+    minlength: 3,
     maxlength: 255,
   },
   contactLink: {
     type: String,
-    minlength: 5,
     maxlength: 1000,
   },
   accessToken: {

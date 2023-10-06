@@ -177,7 +177,7 @@ class CreatorSignup extends React.Component {
                   <p className="subtext require">profile photo is required!</p>
                   <DragAndDropUpload
                     onUpload={this.profileUpload}
-                    value={this.state.profileUrl}
+                    path="/creators"
                   />
                   <p className="validation-message">{this.state.error}</p>
                   <SubmitButton onClick={this.handleSubmit} text="SignUp"/>

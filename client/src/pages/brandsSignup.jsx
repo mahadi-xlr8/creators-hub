@@ -187,7 +187,7 @@ class BrandsSignup extends React.Component {
 
                   <h3 className="personal-info">Upload your brand picture</h3>
                   <p className="subtext require">Brand Logo is required!</p>
-                  <DragAndDropUpload onUpload={this.profileUpload} />
+                  <DragAndDropUpload onUpload={this.profileUpload} path="/brands"/>
                   <p className="validation-message">{this.state.error}</p>
                   <SubmitButton
                     onClick={this.handleSubmit}
