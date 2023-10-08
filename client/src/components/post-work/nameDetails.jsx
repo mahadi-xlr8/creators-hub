@@ -3,14 +3,24 @@ import Message from "./message";
 import JobInput from "./jobInput";
 import TextArea from "./textArea";
 import { useState } from "react";
+import Joi from "joi";
+
 const NameDetails = (props) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
+  const dataValidation = Joi.object({
+    title: Joi.string().max(100).required(),
+    description: Joi.string().max(1000).required(),
+  });
+  const [validation, setValidation] = useState("");
+  const handleNext = () => {
+    const { error } = dataValidation.validate({
+      title: props.title,
+      description: props.description,
+    });
+    if (error) setValidation(error.details[0].message);
+    else {
+      props.next();
+      setValidation("");
+    }
   };
   return (
     <>
@@ -20,15 +30,22 @@ const NameDetails = (props) => {
       />
       <div className="right-side">
         <Message text="Write a title for your job post" />
-        <JobInput value={title} onChange={handleTitleChange} />
+        <JobInput
+          value={props.title}
+          onChange={(e) => props.onChange(e, "title")}
+        />
         <Message text="Write a brief description about the job" />
-        <TextArea value={description} onChange={handleDescriptionChange} />
+        <TextArea
+          value={props.description}
+          onChange={(e) => props.onChange(e, "description")}
+        />
+        <p className="job-validation-message">{validation}</p>
         <div className="job-buttons">
           <button className=" back-button" onClick={props.back}>
             <img src="/images/icons/next-arrow.png" alt="" srcset="" />
             Back
           </button>
-          <button className=" next-button" onClick={props.next}>
+          <button className=" next-button" onClick={handleNext}>
             Next Scope
             <img src="/images/icons/next-arrow.png" alt="" srcset="" />
           </button>

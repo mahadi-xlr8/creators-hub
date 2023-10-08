@@ -1,7 +1,8 @@
 import LeftSide from "./leftSide";
 import Message from "./message";
-import JobInput from "./jobInput";
 import Dropdown from "../brandPost-components/dropdown";
+import Joi from "joi";
+import { useState } from "react";
 const InfluencerType = (props) => {
   const followerDropdown = [
     { name: "less than 10k" },
@@ -38,17 +39,31 @@ const InfluencerType = (props) => {
     let temp = { name: text };
     age.push(temp);
   }
+  const gender = [
+    { name: "male" },
+    { name: "female" },
+    { name: "other" },
+    { name: "any" },
+  ];
 
-  function handleFollower(value) {
-    console.log(value);
-  }
-  function handleCountry(value) {
-    console.log(value);
-  }
+  const dataValidation = Joi.object({
+    country: Joi.string().max(50).required(),
+    gender: Joi.string().max(20).required(),
+  });
 
-  function handleAge(value) {
-    console.log(value);
-  }
+  const [validation, setValidation] = useState("");
+
+  const handleNext = () => {
+    const { error } = dataValidation.validate({
+      country: props.country.name,
+      gender: props.gender.name,
+    });
+    if (error) setValidation(error.details[0].message);
+    else {
+      props.next();
+      setValidation("");
+    }
+  };
 
   return (
     <>
@@ -61,22 +76,42 @@ const InfluencerType = (props) => {
         <Dropdown
           values={followerDropdown}
           placeholder="Optional"
-          onClick={handleFollower}
+          onChange={props.onChange}
+          selectedData={props.follower}
+          field="follower"
         />
         <Message text="Which country you wanna do the campaign?" />
         <Dropdown
           placeholder="Required"
           values={countryDropdown}
-          onClick={handleCountry}
+          onChange={props.onChange}
+          selectedData={props.country}
+          field="country"
         />
         <Message text="Minimum age of the influencer" />
-        <Dropdown placeholder="required" values={age} onClick={handleAge} />
+        <Dropdown
+          placeholder="optional"
+          values={age}
+          onChange={props.onChange}
+          selectedData={props.age}
+          field="age"
+        />
+        <Message text="Prefered gender of the influencer" />
+        <Dropdown
+          placeholder="required"
+          values={gender}
+          onChange={props.onChange}
+          selectedData={props.gender}
+          field="gender"
+        />
+        <p className="job-validation-message">{validation}</p>
+
         <div className="job-buttons">
           <button className=" back-button" onClick={props.back}>
             <img src="/images/icons/next-arrow.png" alt="" srcset="" />
             Back
           </button>
-          <button className=" next-button" onClick={props.next}>
+          <button className=" next-button" onClick={handleNext}>
             Next Scope
             <img src="/images/icons/next-arrow.png" alt="" srcset="" />
           </button>

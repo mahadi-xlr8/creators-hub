@@ -124,7 +124,7 @@ const brandSchema = new mongoose.Schema({
   description: {
     type: String,
     minlength: 5,
-    maxlenght: 1000,
+    maxlength: 1000,
   },
 });
 
@@ -134,6 +134,68 @@ brandSchema.methods.genToken = function () {
 };
 
 const Brand = mongoose.model("brands", brandSchema);
+
+const JobSchema = new mongoose.Schema({
+  brandId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "Brand",
+    maxlength: 300,
+  },
+  title: {
+    type: String,
+    required: true,
+    maxlength: 500,
+  },
+  description: {
+    type: String,
+    required: true,
+    maxlength: 500,
+  },
+  followers: {
+    type: String,
+    maxlength: 100,
+  },
+  country: {
+    type: String,
+    required: true,
+    maxlength: 100,
+  },
+  age: {
+    type: Number,
+  },
+  gender: {
+    type: String,
+    required: true,
+    maxlength: 50,
+  },
+  paid: {
+    type: Boolean,
+    required: true,
+  },
+  benefit: {
+    type: String,
+    require: true,
+    maxlength: 500,
+  },
+  images: {
+    type: [String],
+    required: true,
+    maxlength: 500,
+  },
+  platform: {
+    type: String,
+    require: true,
+    maxlength: 500,
+  },
+  content: {
+    type: String,
+    required: true,
+    maxlength: 50,
+  },
+});
+
+const Job = mongoose.model("Job", JobSchema);
 
 const Collaboration = mongoose.model(
   "collaboration",
@@ -162,3 +224,4 @@ const Collaboration = mongoose.model(
 
 module.exports.Creator = Creator;
 module.exports.Brand = Brand;
+module.exports.Job = Job;

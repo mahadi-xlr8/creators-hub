@@ -1713,9 +1713,16 @@ button.ant-btn {
   position: relative;
   bottom: -3px;
 }
-.validation-message{
-text-align: center;
-color: rgb(254, 95, 95);
-font-size: 1rem;
-font-weight: 500;
+.validation-message {
+  text-align: center;
+  color: rgb(254, 95, 95);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.job-validation-message {
+  color: rgb(254, 95, 95);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: 1rem;
 }

@@ -5,11 +5,11 @@ import Dropdown from "../brandPost-components/dropdown";
 import { useState } from "react";
 import TextArea from "./textArea";
 import DragAndDropUpload from "../dragAndDrop";
+import Joi from "joi";
 
 const CampaignType = (props) => {
-  const [paid, setPaid] = useState(true);
-  const [benifit, setBenifit] = useState("");
   const [images, setImages] = useState([]);
+  const [validation, setValidation] = useState("");
   const platform = [
     { name: "Youtube", img: "/images/creators/icons/youtube.png" },
     { name: "Facebook", img: "/images/creators/icons/facebook.png" },
@@ -23,15 +23,29 @@ const CampaignType = (props) => {
     { name: "Reel" },
   ];
 
-  function handlePlatform(value) {
-    console.log(value);
-  }
-  function handleContent(value) {
-    console.log(value);
-  }
-  const handleBanifitChange = (e) => {
-    setBenifit(e.target.value);
+  const dataValidation = Joi.object({
+    benefit: props.paid
+      ? Joi.string().max(20).required()
+      : Joi.string().max(150).required(),
+    image: Joi.array().items(Joi.string()).min(1).max(3).required(),
+    platform: Joi.string().max(20).required(),
+    content_type: Joi.string().max(20).required(),
+  });
+
+  const handleNext = () => {
+    const { error } = dataValidation.validate({
+      benefit: props.benefit,
+      image: images,
+      platform: props.platform.name,
+      content_type: props.content.name,
+    });
+    if (error) setValidation(error.details[0].message);
+    else {
+      props.next();
+      setValidation("");
+    }
   };
+
   const handleFileUpload = (data) => {
     let check = true;
     for (let i of images) {
@@ -40,11 +54,12 @@ const CampaignType = (props) => {
         break;
       }
     }
-    if (check)
+    if (check) {
       setImages((prev) => {
         return [...prev, data];
       });
-    console.log(images);
+      props.onImageChange(data);
+    }
   };
 
   return (
@@ -60,9 +75,9 @@ const CampaignType = (props) => {
             <input
               type="radio"
               id="yes"
-              checked={paid}
+              checked={props.paid}
               onChange={() => {
-                setPaid(true);
+                props.onPaidChange(true);
               }}
             />
             <label htmlFor="yes">Yes</label>
@@ -71,19 +86,22 @@ const CampaignType = (props) => {
             <input
               type="radio"
               id="no"
-              checked={!paid}
+              checked={!props.paid}
               onChange={() => {
-                setPaid(false);
+                props.onPaidChange(false);
               }}
             />
             <label htmlFor="no">No</label>
           </div>
         </div>
         {/* if paid campaign */}
-        {paid ? (
+        {props.paid ? (
           <>
             <Message text="How much you're offering for the influencer?" />
-            <JobInput value={benifit} onChange={handleBanifitChange} />
+            <JobInput
+              value={props.benefit}
+              onChange={(e) => props.onTextChange(e, "benefit")}
+            />
           </>
         ) : (
           ""
@@ -91,10 +109,15 @@ const CampaignType = (props) => {
 
         {/* if not paid */}
 
-        {!paid ? (
+        {!props.paid ? (
           <>
             <Message text="What the influencer will get from this campaign?" />
-            <TextArea value={benifit} onChange={handleBanifitChange} />
+            <TextArea
+              value={props.benefit}
+              onChange={(e) => {
+                props.onTextChange(e, "benefit");
+              }}
+            />
           </>
         ) : (
           ""
@@ -109,9 +132,11 @@ const CampaignType = (props) => {
         {/* platform type */}
         <Message text="which platform you want use for this campaign?" />
         <Dropdown
-          placeholder="platform"
+          placeholder="required"
           values={platform}
-          onClick={handlePlatform}
+          selectedData={props.platform}
+          field="platform"
+          onChange={props.onDropdownChange}
         />
 
         {/* content type */}
@@ -119,23 +144,22 @@ const CampaignType = (props) => {
         <Dropdown
           placeholder="content type"
           values={contentType}
-          onClick={handleContent}
-          onUpload={handleFileUpload}
+          onChange={props.onDropdownChange}
+          selectedData={props.content}
+          field="content"
         />
+        <p className="job-validation-message">{validation}</p>
         <div className="job-buttons">
           <button className=" back-button" onClick={props.back}>
             <img src="/images/icons/next-arrow.png" alt="" srcset="" />
             Back
           </button>
-          <button className=" next-button" onClick={props.next}>
+          <button className=" next-button" onClick={handleNext}>
             {props.submit ? "Post Job" : "Next Scope"}
             <img src="/images/icons/next-arrow.png" alt="" srcset="" />
           </button>
         </div>
       </div>
-      {images.map((img) => {
-        return <img src={img} alt="" srcset="" />;
-      })}
     </>
   );
 };

@@ -2,20 +2,17 @@ import { useState } from "react";
 
 const Dropdown = (props) => {
   const [active, setActive] = useState(false);
-  const [data, setData] = useState({ name: props.placeholder });
   function handleClick(value) {
     let count = 0;
-    for (let i in data) {
-      if (data[i] == value[i]) count++;
+    for (let i in props.selectedData) {
+      if (props.selectedData[i] == value[i]) count++;
     }
     if (count) {
-      setData({ name: props.placeholder });
-      props.onClick("");
-      return;
-    }
+      props.onChange({name:""},props.field)
 
-    setData(value);
-    props.onClick(value.name);
+    }
+    else props.onChange(value,props.field)
+    setActive(!active)
   }
   return (
     <>
@@ -29,17 +26,17 @@ const Dropdown = (props) => {
           <span
             className={
               "dropdown-display" +
-              (data.name != props.placeholder ? " selected" : "")
+              (props.selectedData.name != "" ? " selected" : "")
             }
           >
-            {data.img != undefined ? (
+            {props.selectedData.img != undefined ? (
               <span className="dropdown-img">
-                <img src={data.img} alt="" />
+                <img src={props.selectedData.img} alt="" />
               </span>
             ) : (
               ""
             )}
-            <span>{data.name}</span>
+            <span>{props.selectedData.name==""?props.placeholder:props.selectedData.name}</span>
           </span>
           <span className="dropdown-arrow">
             <img
@@ -52,13 +49,14 @@ const Dropdown = (props) => {
         </div>
         {active ? (
           <div className="dropdown-options">
-            {props.values.map((e) => {
+            {props.values.map((e,index) => {
               return (
                 <div
                   className={
-                    "option" + (data.name == e.name ? " selected" : "")
+                    "option" + (props.selectedData.name == e.name ? " selected" : "")
                   }
                   onClick={() => handleClick(e)}
+                  key={index}
                 >
                   {e.img != undefined ? (
                     <span className="dropdown-img">
