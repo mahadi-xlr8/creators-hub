@@ -28,16 +28,26 @@ const Qualification = (props) => {
   return (
     <>
       <h2 className="filter-title">Require Qualification</h2>
-      <Dropdown placeholder="Age" values={age} onClick={props.onAgeChange} />
+      <Dropdown
+        placeholder="Age"
+        values={age}
+        onChange={props.onDropdownChange}
+        field="age"
+        selectedData={props.age}
+      />
       <Dropdown
         placeholder="Country"
         values={country}
-        onClick={props.onCountryChange}
+        onChange={props.onDropdownChange}
+        field="country"
+        selectedData={props.country}
       />
       <Dropdown
         placeholder="Gender"
         values={gender}
-        onClick={props.onGenderChange}
+        onChange={props.onDropdownChange}
+        field="gender"
+        selectedData={props.gender}
       />
     </>
   );

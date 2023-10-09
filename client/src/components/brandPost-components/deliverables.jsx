@@ -19,12 +19,17 @@ const Deliverables = (props) => {
       <Dropdown
         placeholder="Select Platform"
         values={platform}
-        onClick={props.onPlatformChange}
+        onChange={props.onDropdownChange}
+        field="platform"
+        selectedData={props.platform}
       />
       <Dropdown
         placeholder="Content Type"
         values={contentType}
-        onClick={props.onContentChange}
+        onChange={props.onDropdownChange}
+        field="content"
+        selectedData={props.content}
+
       />
       
     </>

@@ -51,11 +51,11 @@ class BrandsLogin extends React.Component {
     const fields = "email,name,birthday,gender,link,location";
     axios
       .get(
-        `https://graph.facebook.com/v13.0/me?fields=${fields}&access_token=${userAccessToken}`
+        `https://graph.facebook.com/me?fields=${fields}&access_token=${userAccessToken}`
       )
       .then((res) => {
         const info = res.data;
-
+        console.log("info is : ",info)
         axios
           .post("/brand/fb/login", {
             id: data.userID,
@@ -81,7 +81,7 @@ class BrandsLogin extends React.Component {
           });
       })
       .catch((err) =>
-        toast("Something went wrong!", {
+        toast(err.message, {
           icon: "❌",
           duration: 2000,
         })

@@ -1,9 +1,7 @@
 import Dropdown from "./dropdown";
 import Checkbox from "./checkbox";
 const RefineSearch = (props) => {
-  
-
-  const order=[
+  const order = [
     {
       name: "Latest",
       img: "/images/creators/icons/arrow-up.svg",
@@ -16,7 +14,7 @@ const RefineSearch = (props) => {
       name: "Completed",
       img: "/images/creators/icons/completed.svg",
     },
-  ]
+  ];
 
   const brand = [
     { name: "Colgate" },
@@ -31,10 +29,19 @@ const RefineSearch = (props) => {
       <Dropdown
         placeholder="Select Order"
         values={order}
-        onClick={props.onOrderChange}
+        onChange={props.onDropdownChange}
+        field="order"
+        selectedData={props.order}
       />
-      <Dropdown placeholder="Select Brand" values={brand} onClick={props.onBrandChange}/>
-      <Checkbox value={props.paidValue} onPaidChange={props.onPaidChange}/>
+      <Dropdown
+        placeholder="Select Brand"
+        values={brand}
+        onChange={props.onDropdownChange}
+        field="brand"
+        selectedData={props.brand}
+
+      />
+      <Checkbox paid={props.paid} onPaidChange={props.onPaidChange} />
     </>
   );
 };

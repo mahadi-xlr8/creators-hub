@@ -4,7 +4,6 @@ import NameDetails from "../components/post-work/nameDetails";
 import InfluencerType from "../components/post-work/influnerType2";
 import CampaignType from "../components/post-work/campaignType3";
 import BrandDescription from "../components/post-work/brandDescription";
-import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 import toast from "react-hot-toast";
