@@ -7,9 +7,10 @@ import BrandDescription from "../components/post-work/brandDescription";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
+import toast from "react-hot-toast";
 class PostNewWork extends React.Component {
   state = {
-    step: 2,
+    step: 1,
     stepComponent: [],
     totalSteps: 3,
     job: {
@@ -73,6 +74,24 @@ class PostNewWork extends React.Component {
     if (this.state.step + 1 <= this.state.totalSteps) {
       const prev = this.state.step;
       this.setState({ step: prev + 1 });
+    } else {
+      console.log(this.state.job);
+      axios
+        .post("/brand/newJob", this.state.job, {
+          headers: {
+            "access-token": Cookies.get("access-token"),
+          },
+        })
+        .then((res) => {
+          window.location.replace("/");
+          toast.success(res.data);
+        })
+        .catch((err) => {
+          toast(err.response.data, {
+            icon: "❌",
+            duration: 2000,
+          });
+        });
     }
   };
 

@@ -126,6 +126,10 @@ const brandSchema = new mongoose.Schema({
     minlength: 5,
     maxlength: 1000,
   },
+  profileComplete:{
+    type:Boolean,
+    default:false,
+  }
 });
 
 brandSchema.methods.genToken = function () {
