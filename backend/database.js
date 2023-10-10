@@ -149,6 +149,11 @@ const JobSchema = new mongoose.Schema(
       ref: "Brand",
       maxlength: 300,
     },
+    brandName: {
+      type: String,
+      required: true,
+      maxlenght: 100,
+    },
     title: {
       type: String,
       required: true,

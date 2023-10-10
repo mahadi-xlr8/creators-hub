@@ -23,12 +23,13 @@ app.get("/", async (req, res) => {
     filter.paid = filter.paid === "false" ? false : true;
     delete filter.page;
 
-    console.log(filter);
     let validFilter = {};
     let sort = false;
     let sortValue = -1;
     for (let i in filter) {
-      if (filter[i]) {
+      if (i == "paid") {
+        validFilter[i] = filter[i];
+      } else if (filter[i]) {
         if (i == "age") {
           validFilter.age = { $gte: parseInt(filter[i]) };
         } else if (i == "order") {
@@ -52,7 +53,7 @@ app.get("/", async (req, res) => {
           .status(200)
           .json({ data: result, total: Object.keys(result).length });
       } else {
-        console.log("sorted block");
+
         const result = await Job.find()
           .sort({
             createdAt: sortValue,

@@ -23,7 +23,7 @@ const PostCard = ({ data }) => {
           <Link to={"/brand/post/" + data._id.toString()}>
             <div class="basic-info">
               {/* name and title */}
-              <p class="brand">{"Colgate"}</p>
+              <p class="brand">{data.brandName}</p>
               <p class="title">{data.title}</p>
             </div>
             <div class="details">

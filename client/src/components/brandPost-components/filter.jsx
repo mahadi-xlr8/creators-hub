@@ -12,7 +12,7 @@ class Filter extends React.Component {
     content: { name: "" },
     age: { name: "" },
     gender: { name: "" },
-    paid: true,
+    paid: false,
   };
 
   handleDropdownChange = (data, field) => {

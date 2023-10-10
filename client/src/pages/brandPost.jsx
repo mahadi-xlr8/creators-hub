@@ -70,7 +70,7 @@ class BrandPost extends React.Component {
             <div className="creators-cards">
               {this.state.jobs
                 ? this.state.jobs.map((job) => <PostCard key={job._id} data={job}/>)
-                : ""}
+                : <h2>Sorry, no jobs to show!</h2>}
             </div>
 
             <Pagination
