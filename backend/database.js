@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-
+const getToday = require("./helper/getToday");
 mongoose
   .connect("mongodb://localhost/creators-hub")
   .then(() => console.log("connected to the database!"))
@@ -57,6 +57,7 @@ const CreatorSchema = new mongoose.Schema({
     type: String,
     minlength: 5,
     maxlength: 1000,
+    default: getToday(),
   },
   contactLink: {
     type: String,
@@ -115,6 +116,7 @@ const brandSchema = new mongoose.Schema({
     type: String,
     minlength: 5,
     maxlength: 1000,
+    default: getToday(),
   },
   profileImg: {
     type: String,
@@ -126,10 +128,10 @@ const brandSchema = new mongoose.Schema({
     minlength: 5,
     maxlength: 1000,
   },
-  profileComplete:{
-    type:Boolean,
-    default:false,
-  }
+  profileComplete: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 brandSchema.methods.genToken = function () {
@@ -139,65 +141,79 @@ brandSchema.methods.genToken = function () {
 
 const Brand = mongoose.model("brands", brandSchema);
 
-const JobSchema = new mongoose.Schema({
-  brandId: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: "Brand",
-    maxlength: 300,
+const JobSchema = new mongoose.Schema(
+  {
+    brandId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "Brand",
+      maxlength: 300,
+    },
+    title: {
+      type: String,
+      required: true,
+      maxlength: 500,
+    },
+    description: {
+      type: String,
+      required: true,
+      maxlength: 500,
+    },
+    followers: {
+      type: String,
+      maxlength: 100,
+    },
+    country: {
+      type: String,
+      required: true,
+      maxlength: 100,
+    },
+    age: {
+      type: Number,
+    },
+    gender: {
+      type: String,
+      required: true,
+      maxlength: 50,
+    },
+    paid: {
+      type: Boolean,
+      required: true,
+    },
+    benefit: {
+      type: String,
+      require: true,
+      maxlength: 500,
+    },
+    images: {
+      type: [String],
+      required: true,
+      maxlength: 500,
+    },
+    platform: {
+      type: String,
+      require: true,
+      maxlength: 500,
+    },
+    content: {
+      type: String,
+      required: true,
+      maxlength: 50,
+    },
+    added: {
+      type: String,
+      minlength: 5,
+      maxlength: 1000,
+      default: getToday(),
+    },
+    completed: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
-  title: {
-    type: String,
-    required: true,
-    maxlength: 500,
-  },
-  description: {
-    type: String,
-    required: true,
-    maxlength: 500,
-  },
-  followers: {
-    type: String,
-    maxlength: 100,
-  },
-  country: {
-    type: String,
-    required: true,
-    maxlength: 100,
-  },
-  age: {
-    type: Number,
-  },
-  gender: {
-    type: String,
-    required: true,
-    maxlength: 50,
-  },
-  paid: {
-    type: Boolean,
-    required: true,
-  },
-  benefit: {
-    type: String,
-    require: true,
-    maxlength: 500,
-  },
-  images: {
-    type: [String],
-    required: true,
-    maxlength: 500,
-  },
-  platform: {
-    type: String,
-    require: true,
-    maxlength: 500,
-  },
-  content: {
-    type: String,
-    required: true,
-    maxlength: 50,
-  },
-});
+  { timestamps: true }
+);
 
 const Job = mongoose.model("Job", JobSchema);
 

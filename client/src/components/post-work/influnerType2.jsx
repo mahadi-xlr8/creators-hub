@@ -40,10 +40,10 @@ const InfluencerType = (props) => {
     age.push(temp);
   }
   const gender = [
-    { name: "male" },
-    { name: "female" },
-    { name: "other" },
-    { name: "any" },
+    { name: "Male" },
+    { name: "Female" },
+    { name: "Other" },
+    { name: "Any" },
   ];
 
   const dataValidation = Joi.object({
