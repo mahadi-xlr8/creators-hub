@@ -42,17 +42,15 @@ class BrandPost extends React.Component {
       .then((res) => {
         const jobData = res.data.data;
         const totalData = res.data.total;
-        console.log(jobData)
         this.setState({ jobs: jobData, totalJobs: totalData });
       })
       .catch((err) => console.log(err.message));
   };
   handlePageChange = (page) => {
-    console.log(page);
+    this.setState({currentPage:page})
   };
 
   render() {
-    console.log(this.state.jobs);
     return (
       <>
         <NevBar userType="work posts" />
@@ -68,7 +66,7 @@ class BrandPost extends React.Component {
               value={this.state.searchValue}
             />
             <div className="creators-cards">
-              {this.state.jobs
+              {this.state.jobs && this.state.totalJobs>0
                 ? this.state.jobs.map((job) => <PostCard key={job._id} data={job}/>)
                 : <h2>Sorry, no jobs to show!</h2>}
             </div>

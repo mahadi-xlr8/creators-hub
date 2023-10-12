@@ -27,9 +27,7 @@ app.get("/", async (req, res) => {
     let sort = false;
     let sortValue = -1;
     for (let i in filter) {
-      if (i == "paid") {
-        validFilter[i] = filter[i];
-      } else if (filter[i]) {
+       if (filter[i]) {
         if (i == "age") {
           validFilter.age = { $gte: parseInt(filter[i]) };
         } else if (i == "order") {
@@ -46,6 +44,7 @@ app.get("/", async (req, res) => {
         }
       }
     }
+    console.log(validFilter)
     try {
       if (!sort) {
         const result = await Job.find(validFilter).skip(skip).limit(pageSize);

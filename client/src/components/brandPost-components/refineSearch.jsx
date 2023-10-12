@@ -1,5 +1,7 @@
 import Dropdown from "./dropdown";
 import Checkbox from "./checkbox";
+import {useState,useEffect} from "react"
+import axios from 'axios'
 const RefineSearch = (props) => {
   const order = [
     {
@@ -15,14 +17,19 @@ const RefineSearch = (props) => {
       img: "/images/creators/icons/completed.svg",
     },
   ];
+  const[brand,setBrand]=useState([]);
 
-  const brand = [
-    { name: "Colgate" },
-    { name: "Spacex" },
-    { name: "Apple" },
-    { name: "Google" },
-  ];
-
+  useEffect(()=>{
+    axios.get("/brand/names")
+    .then(res=>{
+      const values=[]
+      res.data.map(e=>{
+        values.push({name:e.name})
+      })
+      setBrand(values)
+    })
+    .catch(err=>console.log(err.message))
+  },[])
   return (
     <>
       <h2 className="filter-title">Refine Search</h2>
@@ -39,7 +46,6 @@ const RefineSearch = (props) => {
         onChange={props.onDropdownChange}
         field="brand"
         selectedData={props.brand}
-
       />
       <Checkbox paid={props.paid} onPaidChange={props.onPaidChange} />
     </>

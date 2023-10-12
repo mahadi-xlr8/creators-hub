@@ -23,7 +23,7 @@ app.post("/", jwtChecker, async (req, res) => {
   try {
     const job = new Job({
       brandId: req.user.id,
-      brandName:brandName,
+      brand:brandName,
       title: data.title,
       description: data.description,
       followers: data.follower.name,

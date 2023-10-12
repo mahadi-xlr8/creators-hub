@@ -1,4 +1,3 @@
-import { useState } from "react";
 const Checkbox = (props) => {
   return (
     <div className="checkbox-container" onClick={props.onPaidChange}>
