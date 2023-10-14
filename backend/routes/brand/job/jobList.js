@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express.Router();
-const { Job } = require("../../database");
+const { Job } = require("../../../database");
 
 function isEmptyObject(obj) {
   return Object.keys(obj).length === 1;

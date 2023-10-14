@@ -20,7 +20,7 @@ const PostDetail = () => {
   const [brand, setBrand] = useState({});
   useEffect(() => {
     axios
-      .get("/brand/jobById", {
+      .get("/brand/job/findById", {
         headers: {
           "access-token": Cookies.get("access-token"),
         },
@@ -30,14 +30,7 @@ const PostDetail = () => {
       })
       .then((res) => {
         setJobData(res.data);
-        setBrand(res.data.brandId)
-        
-      })
-      .catch((err) => {
-        toast(err.message, {
-          icon: "❗️",
-          duration: 2000,
-        });
+        setBrand(res.data.brandId);
       });
   }, []);
   const data = {
@@ -48,30 +41,57 @@ const PostDetail = () => {
     age: jobData.age,
     benefit: jobData.benefit,
     country: jobData.country,
+    contact:"https://google.com",
+  };
+  console.log("job data: ", Object.keys(jobData).length);
+  const handleDelete = () => {
+    axios
+      .delete("/brand/job/delete", {
+        params: { job: jobData._id, brand: brand._id },
+        headers: {
+          "access-token": Cookies.get("access-token"),
+        },
+        data: { images: jobData.images },
+      })
+      .then((res) => {
+        toast.success(res.data);
+        window.location.replace("/");
+      })
+      .catch((err) => toast.error(err.message));
   };
   return (
     <>
       <NevBar />
-      <div className="htgZbY">
-        <div className="creator-body">
-          <BackButton />
-          <div className="campaign-body post-details">
-            <JobName
-              name={jobData.title}
-              description={jobData.description}
-              joined={jobData.added}
-            />
-            <ProductImages
-              images={jobData.images ? jobData.images : ["no img"]}
-            />
-            <IntarestedBox />
-            <Requirments data={data} />
-            <CommentBox />
-            <BrandInfo brand={brand}/>
+      {Object.keys(jobData).length != 0 ? (
+        <>
+          <div className="htgZbY">
+            <div className="creator-body">
+              <BackButton />
+              <div className="campaign-body post-details">
+                <JobName
+                  name={jobData.title}
+                  description={jobData.description}
+                  joined={jobData.added}
+                />
+                <ProductImages
+                  images={jobData.images ? jobData.images : ["no img"]}
+                />
+                <IntarestedBox />
+                <Requirments
+                  data={data}
+                  brandId={brand._id}
+                  onDelete={handleDelete}
+                />
+                <CommentBox />
+                <BrandInfo brand={brand} />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <Footer />
+          <Footer />
+        </>
+      ) : (
+        <h2 style={{padding:"40px", textAlign:"center"}}>404 not found!</h2>
+      )}
     </>
   );
 };

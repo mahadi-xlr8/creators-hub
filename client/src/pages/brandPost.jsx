@@ -16,7 +16,7 @@ class BrandPost extends React.Component {
   constructor() {
     super();
     axios
-      .get("/brand/job-list", { params: { page: this.state.currentPage } })
+      .get("/brand/job/list", { params: { page: this.state.currentPage } })
       .then((res) => {
         const jobData = res.data.data;
         const totalData = res.data.total;
@@ -37,7 +37,7 @@ class BrandPost extends React.Component {
   handleFilter = (data) => {
     data.page = this.state.currentPage;
     axios
-      .get("/brand/job-list", {
+      .get("/brand/job/list", {
         params: data,
       })
       .then((res) => {

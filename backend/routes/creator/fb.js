@@ -53,7 +53,6 @@ app.post("/login", async (req, res) => {
 
   try {
     const exist = await Creator.findOne({ email: req.body.email });
-    console.log("exist value ", exist);
     exist.accessToken = longAccessToken;
     await exist.save();
     res

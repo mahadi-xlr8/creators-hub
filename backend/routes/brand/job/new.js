@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express.Router();
-const { Job, Brand } = require("../../database");
-const jwtChecker = require("../../middleware/jwtChecker");
+const { Job, Brand } = require("../../../database");
+const jwtChecker = require("../../../middleware/jwtChecker");
 
 app.post("/", jwtChecker, async (req, res) => {
     let brandName=''

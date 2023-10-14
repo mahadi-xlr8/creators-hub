@@ -76,7 +76,7 @@ class PostNewWork extends React.Component {
     } else {
       console.log(this.state.job);
       axios
-        .post("/brand/newJob", this.state.job, {
+        .post("/brand/job/new", this.state.job, {
           headers: {
             "access-token": Cookies.get("access-token"),
           },

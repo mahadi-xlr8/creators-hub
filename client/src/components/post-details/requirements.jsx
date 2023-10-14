@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { loginInfo } from "../../globalState";
 import { useAtom } from "jotai";
 
-const Requirments = ({ data }) => {
+const Requirments = ({ data,brandId,onDelete }) => {
   const [user] = useAtom(loginInfo);
   const countryTag = {
     Bangladesh: "bd",
@@ -63,13 +63,14 @@ const Requirments = ({ data }) => {
         </div>
         <div class="opt-in">
           <div class="buttons">
-            {user.id === data.brandId ? (
+            {user.id === brandId ? (
               <button
                 type="button"
                 class="ant-btn ant-btn-secondary creators--previous-works"
                 disabled=""
+                onClick={onDelete}
               >
-                <span> Delete Job</span>
+                <span>Delete Job</span>
               </button>
             ) : (
               <button
@@ -87,6 +88,9 @@ const Requirments = ({ data }) => {
             <button
               type="button"
               class="ant-btn ant-btn-primary brand-contact-link"
+              onClick={()=>{
+                window.location.assign(data.contact)
+              }}
             >
               <span>Contact </span>
               <span

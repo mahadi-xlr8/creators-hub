@@ -146,7 +146,7 @@ const JobSchema = new mongoose.Schema(
     brandId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "Brand",
+      ref: "brands",
       maxlength: 300,
     },
     brand: {
