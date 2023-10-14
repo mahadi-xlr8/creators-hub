@@ -1,52 +1,32 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NotificationContainer from "./notification/notificationContainer";
-import axios from "axios";
 import Cookies from "js-cookie";
-class NevBar extends React.Component {
-  state = { class: "", notiClick: false };
-
-  constructor() {
-    super();
-    axios
-      .get("/isLogin", {
-        headers: {
-          "access-token": Cookies.get("access-token"),
-        },
-      })
-      .then(({ data }) => {
-        this.setState({
-          login: data.login,
-          name: data.name,
-          role: data.role,
-          id: data.id,
-        });
-      })
-      .catch((err) => {
-        console.log(err)
-        this.setState({ login: false });
-      });
-  }
-
-  handleNotificationClick = () => {
-    const temp = !this.state.notiClick;
-    this.setState({ notiClick: temp });
+import { useState } from "react";
+import { loginInfo } from "../globalState";
+import { useAtom } from "jotai";
+const NevBar =(props)=> {
+  const [cls,setCls]=useState('');
+  const [notiClick,setNotiClick]=useState(false)
+  const [userInfo]=useAtom(loginInfo)
+  const handleNotificationClick = () => {
+    setNotiClick(!notiClick)
   };
-  handleLogout=()=>{
+  const handleLogout=()=>{
     Cookies.remove("access-token")
   }
 
-  render() {
-    const login = this.state.login;
-    const role = this.state.role;
+
+    const login = userInfo.login;
+    const role = userInfo.role;
     return (
       <header id="main-header" class="">
-        <div id="nav-bar" className={this.state.class}>
+        <div id="nav-bar" className={cls}>
           <div class="logo-wrapper">
             <Link to="/" class="logo">
               Influences Hub
             </Link>
-            <p class="user-type">{this.props.userType}</p>
+            <p class="user-type">{props.userType}</p>
           </div>
           <div class="nav-menu">
             <div class="overlay"></div>
@@ -72,7 +52,7 @@ class NevBar extends React.Component {
                       {login ? (
                         role == "brand" ? (
                           <>
-                            <a className="dropdown-link" href="/" onClick={this.handleLogout}>
+                            <a className="dropdown-link" href="/" onClick={handleLogout}>
                               Log Out
                             </a>
                           </>
@@ -110,7 +90,7 @@ class NevBar extends React.Component {
                       {login ? (
                         role === "creator" ? (
                           <>
-                            <a className="dropdown-link" href="/" onClick={this.handleLogout}>
+                            <a className="dropdown-link" href="/" onClick={handleLogout}>
                               Log Out
                             </a>
                           </>
@@ -133,7 +113,7 @@ class NevBar extends React.Component {
                 {login ? (
                   <div
                     className="notification"
-                    onClick={this.handleNotificationClick}
+                    onClick={handleNotificationClick}
                     title="Notifications"
                   >
                     <img src="/images/icons/bell.svg" alt="" className="bell" />
@@ -142,24 +122,24 @@ class NevBar extends React.Component {
                     </sup>
                   </div>
                 ) : null}
-                {this.state.notiClick ? <NotificationContainer /> : null}
+                {notiClick ? <NotificationContainer /> : null}
                 {login && role === "creator" ? (
-                  this.props.profilePage ? (
+                  props.profilePage ? (
                     <div className="link">
                       <Link to="/profile/edit">Edit Profile</Link>
                     </div>
                   ) : (
                     <div className="link">
-                      <Link to={`/creator/${this.state.id}`}>
-                        {this.state.name}
+                      <Link to={`/creator/${userInfo.id}`}>
+                        {userInfo.name}
                       </Link>
                     </div>
                   )
                 ) : null}
 
                 {login && role === "brand" ? (
-                  this.props.userType === "Post New Work" ? (
-                    <div className="brand-name-1">{this.state.name}</div>
+                  props.userType === "Post New Work" ? (
+                    <div className="brand-name-1">{userInfo.name}</div>
                   ) : (
                     <Link className="navBar-btn login" to="/brand/new/post">
                       Post New Work
@@ -186,8 +166,8 @@ class NevBar extends React.Component {
             class="hamburger"
             onClick={() => {
               let name = "active";
-              if (this.state.class === "active") name = "";
-              this.setState({ class: name });
+              if (cls === "active") name = "";
+              setCls(name);
             }}
           >
             <div></div>
@@ -197,7 +177,7 @@ class NevBar extends React.Component {
         </div>
       </header>
     );
-  }
+  
 }
 
 export default NevBar;

@@ -1,7 +1,7 @@
 import { UploadDropzone } from "@bytescale/upload-widget-react";
 const DragAndDropUpload = (props) => {
   const options = {
-    apiKey: "public_W142iFYDgnBuypfe9mFQzmbyEd5f",
+    apiKey: "public_12a1ydQBmVaKzboa7Ur4wbgosE8d",
     maxFileCount: props.maxFile?props.maxFile:1,
     styles: {
       colors: {

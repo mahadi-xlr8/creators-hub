@@ -15,11 +15,36 @@ import CreatorsHome from "./pages/creatorsHome";
 import BrandPost from "./pages/brandPost";
 import PostDetail from "./pages/postDetail";
 import PostNewWork from "./pages/postNewWork";
+import { loginInfo } from "./globalState";
+import { useAtom } from "jotai";
+import { useEffect } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
 function App() {
+  const [login, setLogin] = useAtom(loginInfo);
+  useEffect(() => {
+    axios
+      .get("/isLogin", {
+        headers: {
+          "access-token": Cookies.get("access-token"),
+        },
+      })
+      .then(({ data }) => {
+        setLogin({
+          login: data.login,
+          name: data.name,
+          role: data.role,
+          id: data.id,
+        });
+      })
+      .catch((err) => {
+        setLogin({ login: false });
+      });
+  }, []);
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home />} />
         <Route path="/brand" element={<Brands />} />
         <Route path="/brand/signup" element={<BrandsSignup />} />
         <Route path="/brand/login" element={<BrandsLogin />} />

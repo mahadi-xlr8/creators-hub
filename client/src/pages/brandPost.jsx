@@ -6,6 +6,7 @@ import React from "react";
 import Pagination from "../components/pagination";
 import axios from "axios";
 import toast from "react-hot-toast";
+import JotaiWrapper from "../components/helper/jotaiWrapper";
 
 class BrandPost extends React.Component {
   state = {
@@ -47,38 +48,50 @@ class BrandPost extends React.Component {
       .catch((err) => console.log(err.message));
   };
   handlePageChange = (page) => {
-    this.setState({currentPage:page})
+    this.setState({ currentPage: page });
   };
 
   render() {
     return (
-      <>
-        <NevBar userType="work posts" />
-        <main className="brand-post-container">
-          <div className="filter-aside">
-            <div className="filter">
-              <Filter onClick={this.handleFilter} />
-            </div>
-          </div>
-          <div className="content">
-            <SearchBox
-              onChange={this.handleSearch}
-              value={this.state.searchValue}
-            />
-            <div className="creators-cards">
-              {this.state.jobs && this.state.totalJobs>0
-                ? this.state.jobs.map((job) => <PostCard key={job._id} data={job}/>)
-                : <h2>Sorry, no jobs to show!</h2>}
-            </div>
+      <JotaiWrapper>
+        {({ loginData }) => (
+          <>
+            <NevBar userType="work posts" />
+            <main className="brand-post-container">
+              <div className="filter-aside">
+                <div className="filter">
+                  <Filter onClick={this.handleFilter} />
+                </div>
+              </div>
+              <div className="content">
+                <SearchBox
+                  onChange={this.handleSearch}
+                  value={this.state.searchValue}
+                />
+                <div className="creators-cards">
+                  {this.state.jobs && this.state.totalJobs > 0 ? (
+                    this.state.jobs.map((job) => (
+                      <PostCard
+                        key={job._id}
+                        data={job}
+                        loginData={loginData}
+                      />
+                    ))
+                  ) : (
+                    <h2>Sorry, no jobs to show!</h2>
+                  )}
+                </div>
 
-            <Pagination
-              onePage={10}
-              totalData={this.state.totalJobs}
-              onPageChange={this.handlePageChange}
-            />
-          </div>
-        </main>
-      </>
+                <Pagination
+                  onePage={10}
+                  totalData={this.state.totalJobs}
+                  onPageChange={this.handlePageChange}
+                />
+              </div>
+            </main>
+          </>
+        )}
+      </JotaiWrapper>
     );
   }
 }

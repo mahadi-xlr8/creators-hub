@@ -1,24 +1,23 @@
-const BrandInfo = (props) => {
+const BrandInfo = ({brand}) => {
   return (
     <div className="brand-info-container">
       <h2 className="title">Brand Info</h2>
       <div className="container">
         <div className="top">
           <a href="https://google.com">
-            <img src="/images/icons/google.svg" alt="" />
+            <img src={brand.profileImg} alt="" style={{borderRadius:'100%'}}/>
           </a>
 
           <div className="brand-detail">
-            <a href="https://google.com">
-              <p className="name">Google</p>
+            <a href={brand.contactLink}>
+              <p className="name">{brand.name}</p>
             </a>
 
-            <p className="joining-date">Joined: 26 sep, 2003 </p>
+            <p className="joining-date">Joined: {brand.joined} </p>
           </div>
         </div>
         <p className="bottom">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum,
-          eaque.
+          {brand.description}
         </p>
       </div>
     </div>

@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
-const PostCard = ({ data }) => {
+const PostCard = ({ data, loginData }) => {
   const [intarested, setintarested] = useState(false);
   function handleIntarested() {
+    if (!loginData.login) {
+      toast("Please login for this feature.", {
+        icon: "❗️",
+        duration: 2000,
+      });
+      return;
+    }
+
     if (!intarested) {
       toast.success("Notification sended to the brand!", { duration: 2000 });
     } else {
@@ -69,9 +77,11 @@ const PostCard = ({ data }) => {
                     <div class="requirement">
                       <span class="niche null">{data.benefit}</span>
                     </div>
-                  ) : <div class="requirement">
-                  <span class="niche null">Not a paid campaign</span>
-                </div>}
+                  ) : (
+                    <div class="requirement">
+                      <span class="niche null">Not a paid campaign</span>
+                    </div>
+                  )}
                 </div>
                 <div class="objectives">
                   <a class="strategy" href={"#"} style={{ color: "black" }}>
@@ -83,12 +93,14 @@ const PostCard = ({ data }) => {
               </div>
             </div>
           </Link>
-          <div
-            className={"btn-intarested" + (intarested ? " clicked" : "")}
-            onClick={handleIntarested}
-          >
-            Intarested
-          </div>
+          {!loginData.login || loginData.role === "creator" ? (
+            <div
+              className={"btn-intarested" + (intarested ? " clicked" : "")}
+              onClick={handleIntarested}
+            >
+              Intarested
+            </div>
+          ) : undefined}
         </div>
       </div>
     </div>
