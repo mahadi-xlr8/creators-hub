@@ -73,6 +73,11 @@ const CreatorSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  gender: {
+    type: String,
+    minlength: 3,
+    maxlenght: 10,
+  },
 });
 CreatorSchema.methods.genToken = function () {
   const jwtKey = "sexy";

@@ -126,7 +126,7 @@ const NevBar =(props)=> {
                 {login && role === "creator" ? (
                   props.profilePage ? (
                     <div className="link">
-                      <Link to="/profile/edit">Edit Profile</Link>
+                      <Link to={`/creator/profile/edit/${userInfo.id}`}>Edit Profile</Link>
                     </div>
                   ) : (
                     <div className="link">

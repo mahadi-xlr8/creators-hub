@@ -5,14 +5,17 @@ const dataCheck = require("../../middleware/signupDataCheck");
 const { Creator } = require("../../database");
 const getToday = require("../../helper/getToday");
 app.post("/", dataCheck, async (req, res) => {
-  
-
   const creator = new Creator({
     name: req.body.name,
     email: req.body.email,
     profileImg: req.body.profile_photo,
     password: req.body.password,
     joined: getToday(),
+    platforms: [
+      { name: "Facebook", link: "" },
+      { name: "Youtube", link: "" },
+      { name: "Instagram", link: "" },
+    ],
   });
   try {
     await creator.save();

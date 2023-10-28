@@ -1,7 +1,7 @@
 const TextArea = (props) => {
   return (
     <textarea
-      placeholder="Write description..."
+      placeholder={props.placeholder?props.placeholder:"Write description..."}
       className="job-description"
       value={props.value}
       onChange={props.onChange}

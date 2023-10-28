@@ -42,7 +42,6 @@ class BrandsSignup extends React.Component {
     this.setState({ website: data });
   };
   profileUpload = (data) => {
-    console.log(data);
     this.setState({ profilePhotoUrl: data });
   };
   handleSubmit = () => {
@@ -187,7 +186,7 @@ class BrandsSignup extends React.Component {
 
                   <h3 className="personal-info">Upload your brand picture</h3>
                   <p className="subtext require">Brand Logo is required!</p>
-                  <DragAndDropUpload onUpload={this.profileUpload} path="/brands"/>
+                  <DragAndDropUpload onUpload={this.profileUpload} path="/brand"/>
                   <p className="validation-message">{this.state.error}</p>
                   <SubmitButton
                     onClick={this.handleSubmit}

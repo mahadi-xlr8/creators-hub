@@ -15,6 +15,7 @@ import CreatorsHome from "./pages/creatorsHome";
 import BrandPost from "./pages/brandPost";
 import PostDetail from "./pages/postDetail";
 import PostNewWork from "./pages/postNewWork";
+import CreatorProfileEdit from "./pages/creatorProfileEdit";
 import { loginInfo } from "./globalState";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
@@ -58,6 +59,8 @@ function App() {
         <Route path="/creator" element={<CreatorsHome />} />
         <Route path="/creator/:id" element={<CreatorsProfile />} />
         <Route path="/creator/:name/previous work" element={<PreviousWork />} />
+        <Route path="/creator/profile/edit/:id" element={<CreatorProfileEdit />} />
+        
       </Routes>
     </>
   );

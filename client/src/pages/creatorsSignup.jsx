@@ -72,7 +72,6 @@ class CreatorSignup extends React.Component {
     }
   };
 
-
   onFacebookSuccess = ({ data }) => {
     // console.log(data.userID, data.accessToken);
 
@@ -94,6 +93,7 @@ class CreatorSignup extends React.Component {
             profileLink: info.link,
             email: info.email,
             location: info.location.name,
+            gender: info.gender,
           })
           .then((res) => {
             Cookies.set("access-token", res.headers["x-access-token"], {
@@ -136,7 +136,7 @@ class CreatorSignup extends React.Component {
                 <h1>welcome to Influencer's Hub!</h1>
                 <p className="subtext">Let's get you started.</p>
                 <div className="form-row">
-                <LoginSocialFacebook
+                  <LoginSocialFacebook
                     isOnlyGetToken
                     appId={"311104531407144"}
                     onResolve={this.onFacebookSuccess}
@@ -180,7 +180,7 @@ class CreatorSignup extends React.Component {
                     path="/creators"
                   />
                   <p className="validation-message">{this.state.error}</p>
-                  <SubmitButton onClick={this.handleSubmit} text="SignUp"/>
+                  <SubmitButton onClick={this.handleSubmit} text="SignUp" />
                   <div class="sub-links">
                     Already have an account? <a href="/login">Log In</a>
                   </div>

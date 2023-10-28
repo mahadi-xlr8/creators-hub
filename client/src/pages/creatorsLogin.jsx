@@ -57,7 +57,6 @@ class CreatorsLogin extends React.Component {
       )
       .then((res) => {
         const info = res.data;
-
         axios
           .post("/creator/fb/login", {
             id: data.userID,
@@ -67,6 +66,7 @@ class CreatorsLogin extends React.Component {
             profileLink: info.link,
             email: info.email,
             location: info.location.name,
+            gender:info.gender,
           })
           .then((res) => {
             Cookies.set("access-token", res.headers["x-access-token"], {
