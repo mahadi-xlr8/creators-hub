@@ -1609,6 +1609,22 @@ button.ant-btn {
   margin: 10px;
   min-height: calc(100vh - 50px - 10px - 1rem);
 }
+
+@media only screen and (max-width: 767px) {
+  .work-form-container{
+    grid-template-columns: 1fr;
+    padding: .5rem;
+  }
+  .left-side,.right-side{
+    padding: 0;
+  }
+  .job-message{
+    margin-top: 1rem;
+    margin-bottom: .5rem;
+  }
+}
+
+
 .right-side {
   border-left: 1px solid lightgray;
   padding-left: 1rem;
