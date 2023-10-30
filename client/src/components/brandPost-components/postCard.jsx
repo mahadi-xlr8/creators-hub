@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { buttonDebounce } from "../helper/debounce";
 const PostCard = ({ data, loginData }) => {
   const [intarested, setintarested] = useState(false);
   function handleIntarested() {
@@ -96,7 +97,7 @@ const PostCard = ({ data, loginData }) => {
           {!loginData.login || loginData.role === "creator" ? (
             <div
               className={"btn-intarested" + (intarested ? " clicked" : "")}
-              onClick={handleIntarested}
+              onClick={buttonDebounce(handleIntarested)}
             >
               Intarested
             </div>
