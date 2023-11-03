@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-const NotificationCard = (props) => {
-  console.log(props);
 
+const NotificationCard = (props) => {
   return (
     <div className="notification-card">
       <img

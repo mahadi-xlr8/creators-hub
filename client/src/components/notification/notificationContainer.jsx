@@ -1,6 +1,14 @@
 import NotificationCard from "./notificationCard";
+import { loginInfo } from "../../globalState";
+import { useAtom } from "jotai";
+import { useEffect, useState } from "react";
+import {socket} from "../../socket"
+
+
 
 const NotificationContainer = (props) => {
+  const [userInfo] = useAtom(loginInfo);
+
   const data = [
     {
       img: "/images/creators/mehazabien/img1.jpg",

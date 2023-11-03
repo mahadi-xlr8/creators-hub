@@ -2,6 +2,12 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { buttonDebounce } from "../helper/debounce";
+import { socket } from "../../socket";
+import axios from "axios";
+import Cookies from "js-cookie";
+
+import NotificationToast from "../notificationToast";
+
 const PostCard = ({ data, loginData }) => {
   const [intarested, setintarested] = useState(false);
   function handleIntarested() {
@@ -14,14 +20,40 @@ const PostCard = ({ data, loginData }) => {
     }
 
     if (!intarested) {
+      const currentTime = new Date();
+      const hours = currentTime.getHours();
+      const minutes = currentTime.getMinutes();
+      const seconds = currentTime.getSeconds();
+
+      const formattedTime = `${hours}:${minutes}:${seconds}`;
+      socket.emit("interested-notification", {
+        jobId: data._id,
+        brand: data.brandId,
+        time:formattedTime,
+      });
       toast.success("Notification sended to the brand!", { duration: 2000 });
     } else {
-      toast("Removed from intarested!", {
+      toast("Removed from interested!", {
         icon: "❌",
         duration: 2000,
       });
     }
     setintarested(!intarested);
+
+    // experiment
+    /*
+    socket.on("notification", (values) => {
+      const action = values.action;
+      let message;
+      if (action == "intarest") {
+        message = " shows intarest on your job.";
+      } else if (action == "comment") {
+        message = " commented on your post.";
+      }
+      toast.success(values.name+ message)
+      console.log(values);
+    });
+    */
   }
   const countryMap = { Bangladesh: "bd", India: "in", USA: "us", Canada: "ca" };
   const country = countryMap[data.country];

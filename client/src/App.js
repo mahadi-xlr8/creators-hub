@@ -10,20 +10,23 @@ import CreatorSignup from "./pages/creatorsSignup";
 import BrandsSignup from "./pages/brandsSignup";
 import CreatorsLogin from "./pages/creatorsLogin";
 import BrandsLogin from "./pages/brandsLogin";
-import Profile from "./pages/profile";
 import CreatorsHome from "./pages/creatorsHome";
 import BrandPost from "./pages/brandPost";
 import PostDetail from "./pages/postDetail";
 import PostNewWork from "./pages/postNewWork";
 import CreatorProfileEdit from "./pages/creatorProfileEdit";
-import { loginInfo } from "./globalState";
+import { loginInfo, newNotifications } from "./globalState";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { socket } from "./socket";
+import toast from "react-hot-toast";
 function App() {
   const [login, setLogin] = useAtom(loginInfo);
+  const [notification, setNotification] = useAtom(newNotifications);
   useEffect(() => {
+    // getting the information if the logged in already
     axios
       .get("/isLogin", {
         headers: {
@@ -41,7 +44,17 @@ function App() {
       .catch((err) => {
         setLogin({ login: false });
       });
+
+    // receiving notification through socket io
+
+    socket.on("receive-notification", (data) => {
+      toast.success(`${data.userName} ${data.message}`, {
+        position: "top-center",
+      });
+      console.log("from app: ", data);
+    });
   }, []);
+
   return (
     <>
       <Routes>
@@ -59,8 +72,10 @@ function App() {
         <Route path="/creator" element={<CreatorsHome />} />
         <Route path="/creator/:id" element={<CreatorsProfile />} />
         <Route path="/creator/:name/previous work" element={<PreviousWork />} />
-        <Route path="/creator/profile/edit/:id" element={<CreatorProfileEdit />} />
-        
+        <Route
+          path="/creator/profile/edit/:id"
+          element={<CreatorProfileEdit />}
+        />
       </Routes>
     </>
   );
