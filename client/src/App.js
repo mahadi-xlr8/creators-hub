@@ -63,7 +63,7 @@ function App() {
         <Route path="/brand" element={<Brands />} />
         <Route path="/brand/signup" element={<BrandsSignup />} />
         <Route path="/brand/login" element={<BrandsLogin />} />
-        <Route path="/brand/post" element={<BrandPost />} />
+        <Route path="/brand/post" element={<BrandPost userId={login.id}/>} />
         <Route path="/brand/new/post" element={<PostNewWork />} />
         <Route path="/brand/post/:id" element={<PostDetail />} />
 

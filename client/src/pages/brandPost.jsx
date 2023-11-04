@@ -13,10 +13,11 @@ class BrandPost extends React.Component {
     searchValue: "",
     currentPage: 1,
   };
-  constructor() {
-    super();
+  componentDidMount() {
     axios
-      .get("/brand/job/list", { params: { page: this.state.currentPage } })
+      .get("/brand/job/list", {
+        params: { page: this.state.currentPage, userId: this.props.userId },
+      })
       .then((res) => {
         const jobData = res.data.data;
         const totalData = res.data.total;
@@ -28,6 +29,28 @@ class BrandPost extends React.Component {
           duration: 2000,
         });
       });
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.currentPage != this.state.currentPage ||
+      prevProps.userId != this.props.userId
+    ) {
+      axios
+        .get("/brand/job/list", {
+          params: { page: this.state.currentPage, userId: this.props.userId },
+        })
+        .then((res) => {
+          const jobData = res.data.data;
+          const totalData = res.data.total;
+          this.setState({ jobs: jobData, totalJobs: totalData });
+        })
+        .catch((err) => {
+          toast("Something went wrong while fetching the jobs!", {
+            icon: "❌",
+            duration: 2000,
+          });
+        });
+    }
   }
 
   handleSearch = (e) => {

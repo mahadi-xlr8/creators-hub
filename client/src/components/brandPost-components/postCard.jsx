@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { buttonDebounce } from "../helper/debounce";
 import { socket } from "../../socket";
@@ -9,7 +9,10 @@ import Cookies from "js-cookie";
 import NotificationToast from "../notificationToast";
 
 const PostCard = ({ data, loginData }) => {
-  const [intarested, setintarested] = useState(false);
+  const [intarested, setintarested] = useState(data.interested);
+  useEffect(()=>{
+    setintarested(data.interested)
+  },[data])
   function handleIntarested() {
     if (!loginData.login) {
       toast("Please login for this feature.", {
