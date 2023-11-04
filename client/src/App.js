@@ -15,7 +15,7 @@ import BrandPost from "./pages/brandPost";
 import PostDetail from "./pages/postDetail";
 import PostNewWork from "./pages/postNewWork";
 import CreatorProfileEdit from "./pages/creatorProfileEdit";
-import { loginInfo, newNotifications } from "./globalState";
+import { loginInfo, notifications } from "./globalState";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
 import axios from "axios";
@@ -24,7 +24,7 @@ import { socket } from "./socket";
 import toast from "react-hot-toast";
 function App() {
   const [login, setLogin] = useAtom(loginInfo);
-  const [notification, setNotification] = useAtom(newNotifications);
+  const [notification, setNotification] = useAtom(notifications);
   useEffect(() => {
     // getting the information if the logged in already
     axios
@@ -39,11 +39,22 @@ function App() {
           name: data.name,
           role: data.role,
           id: data.id,
-          profileImg:data.profileImg
+          profileImg: data.profileImg,
         });
       })
       .catch((err) => {
         setLogin({ login: false });
+      });
+
+    // fetching notifications from server
+    axios
+      .get("/notification", {
+        headers: {
+          "access-token": Cookies.get("access-token"),
+        },
+      })
+      .then((res) => {
+        setNotification(res.data);
       });
 
     // receiving notification through socket io
@@ -52,7 +63,9 @@ function App() {
       toast.success(`${data.userName} ${data.message}`, {
         position: "top-center",
       });
-      console.log("from app: ", data);
+      setNotification((prev)=>{
+        return [data,...prev];
+      });
     });
   }, []);
 
@@ -63,7 +76,7 @@ function App() {
         <Route path="/brand" element={<Brands />} />
         <Route path="/brand/signup" element={<BrandsSignup />} />
         <Route path="/brand/login" element={<BrandsLogin />} />
-        <Route path="/brand/post" element={<BrandPost userId={login.id}/>} />
+        <Route path="/brand/post" element={<BrandPost userId={login.id} />} />
         <Route path="/brand/new/post" element={<PostNewWork />} />
         <Route path="/brand/post/:id" element={<PostDetail />} />
 

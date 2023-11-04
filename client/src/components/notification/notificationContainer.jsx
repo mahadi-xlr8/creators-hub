@@ -1,45 +1,23 @@
 import NotificationCard from "./notificationCard";
-import { loginInfo } from "../../globalState";
+import { notifications } from "../../globalState";
 import { useAtom } from "jotai";
-import { useEffect, useState } from "react";
-import {socket} from "../../socket"
 
 
 
 const NotificationContainer = (props) => {
-  const [userInfo] = useAtom(loginInfo);
-
-  const data = [
-    {
-      img: "/images/creators/mehazabien/img1.jpg",
-      link: "/",
-      name: "Mehazabien",
-      action: "has commented on your work post.",
-      unseen: false,
-      date: "26 sep 2023",
-      profileLink: "/creators/Mehazabien%20Chowdhury",
-    },
-    {
-      img: "/images/creators/mehazabien/img1.jpg",
-      link: "/",
-      name: "Mehazabien",
-      action: "has intarest on your work post.",
-      unseen: true,
-      date: "26 sep 2023",
-      profileLink: "/creators/Mehazabien%20Chowdhury",
-    },
-  ];
+  const [notification]=useAtom(notifications)
   return (
     <div className="notification-container">
-      {data.map((e) => {
+      {notification.map((e) => {
         return (
           <NotificationCard
-            name={e.name}
-            link={e.link}
-            img={e.img}
-            action={e.action}
-            unseen={e.unseen}
-            profileLink={e.profileLink}
+            name={e.senderName}
+            link={e.clickLink}
+            img={e.senderImg}
+            action={e.message}
+            seen={e.seen}
+            profileLink={e.senderProfile}
+            time={e.time}
           />
         );
       })}

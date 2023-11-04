@@ -10,7 +10,7 @@ const creator = require("./routes/creator/creator");
 const socketJwtChecker = require("./middleware/socketJwtChecker");
 const { Creator, Brand } = require("./database");
 const notification = require("./sockets/notification");
-
+const notificationRoute = require("./routes/notification");
 if (!process.env.facebookAppSecret) {
   console.log("facebook app secret is not set!");
   process.exit(1);
@@ -32,9 +32,6 @@ io.on("connection", async (socket) => {
   const userData = socket.user;
   socketMap[userData.id] = socket.id;
   notification(socket, socketMap, userData.id, userData.name);
-  
-
-
 
   socket.on("disconnect", () => {
     for (let i in socketMap) {
@@ -50,6 +47,7 @@ app.use(express.json());
 app.use("/brand", brand);
 app.use("/creator", creator);
 app.use("/isLogin", isLogin);
+app.use("/notification", notificationRoute);
 
 const port = process.env.PORT || 5000;
 httpServer.listen(port, () => console.log(`listening on port ${port}...`));
