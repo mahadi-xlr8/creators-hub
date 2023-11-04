@@ -610,6 +610,7 @@ button.ant-btn {
   background-color: white;
   border-radius: var(--border-radius);
   padding: 0.7rem;
+  margin-bottom: 1rem;
 }
 .intarested-box h2 {
   text-align: center;

@@ -32,7 +32,6 @@ app.delete("/", jwtChecker, async (req, res) => {
       await Job.findByIdAndDelete(job);
       res.status(200).send("job has been deleted!");
     } catch (err) {
-      console.log(err.message);
       res.status(400).send(err.message);
     }
   } else {

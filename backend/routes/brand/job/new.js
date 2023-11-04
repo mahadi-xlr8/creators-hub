@@ -15,7 +15,6 @@ app.post("/", jwtChecker, async (req, res) => {
       await brand.save();
     }
   } catch (err) {
-    console.log(err.message)
     return res.status(400).send(err.message);
   }
 
@@ -40,7 +39,6 @@ app.post("/", jwtChecker, async (req, res) => {
     res.status(200).send("New job posted successfully!")
   } catch (err) {
     res.status(400).send(err.message)
-    console.log(err.message);
   }
 
 });

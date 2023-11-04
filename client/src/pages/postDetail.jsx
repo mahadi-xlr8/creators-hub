@@ -41,9 +41,8 @@ const PostDetail = () => {
     age: jobData.age,
     benefit: jobData.benefit,
     country: jobData.country,
-    contact:"https://google.com",
+    contact: "https://google.com",
   };
-  console.log("job data: ", Object.keys(jobData).length);
   const handleDelete = () => {
     axios
       .delete("/brand/job/delete", {
@@ -76,7 +75,7 @@ const PostDetail = () => {
                 <ProductImages
                   images={jobData.images ? jobData.images : ["no img"]}
                 />
-                <IntarestedBox />
+                <IntarestedBox jobId={id}/>
                 <Requirments
                   data={data}
                   brandId={brand._id}
@@ -90,7 +89,7 @@ const PostDetail = () => {
           <Footer />
         </>
       ) : (
-        <h2 style={{padding:"40px", textAlign:"center"}}>404 not found!</h2>
+        <h2 style={{ padding: "40px", textAlign: "center" }}>404 not found!</h2>
       )}
     </>
   );
