@@ -24,9 +24,18 @@ module.exports = (socket, socketMap, userId, userName) => {
     }
   });
 
-  socket.on("remove-interested", async ({ jobId }) => {
+  socket.on("remove-interested", async ({ jobId, brandId }) => {
     try {
-      await Notification.deleteOne({ jobId, sender: userId });
+      const result = await Notification.findOneAndDelete({
+        jobId,
+        sender: userId,
+      });
+      const socketId = socketMap[brandId];
+      if (socketId) {
+        socket
+          .to(socketId)
+          .emit("remove-interest", { notificationId: result._id });
+      }
     } catch (err) {
       return new Error(err.message);
     }

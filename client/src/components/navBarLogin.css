@@ -1991,3 +1991,80 @@ button.ant-btn {
   transform: translateX(-100%);
   cursor: pointer;
 }
+
+
+ /* custom notification popup */
+
+ .notification-popup-container {
+  display: flex;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 28rem;
+  background-color: #ffffff;
+  pointer-events: auto;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.notification-popup-container .left {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+.notification-popup-container .left > div {
+  padding-top: 0.125rem;
+}
+
+.notification-popup-container .left img {
+  border-radius: 100%;
+  width: 3rem;
+  height: 3rem;
+}
+.notification-popup-container .left .text {
+  margin-left: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+.notification-popup-container .left .text .name {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: #111827;
+  margin: 0;
+}
+
+.notification-popup-container .left .text .message {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #6b7280;
+}
+
+.notification-popup-container .right {
+  display: flex;
+  border-left: 1px solid;
+  border-color: #e5e7eb;
+}
+.notification-popup-container .right button {
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-width: 1px;
+  border-color: transparent;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: #4f46e5;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.notification-popup-container .right button:hover {
+  color: #6366f1;
+}

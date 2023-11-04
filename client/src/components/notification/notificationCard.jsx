@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-
+import axios from "axios";
 const NotificationCard = (props) => {
   return (
     <div className="notification-card" title={props.time}>
@@ -9,7 +8,15 @@ const NotificationCard = (props) => {
         onClick={() => (window.location = props.profileLink)}
       />
 
-      <div className="temp-text" onClick={() => (window.location = props.link)}>
+      <div
+        className="temp-text"
+        onClick={() => {
+          axios
+            .post("/notification/seen", { id: props.notificationId })
+            .then((res) => {});
+          window.location = props.link;
+        }}
+      >
         <div className="text-part">
           <p className="message">
             <span className="name">{props.name}</span> {props.action}

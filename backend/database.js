@@ -252,60 +252,63 @@ const Collaboration = mongoose.model(
   })
 );
 
-const NotificationSchema = new mongoose.Schema({
-  reciever: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: "brands",
-    maxlength: 100,
+const NotificationSchema = new mongoose.Schema(
+  {
+    reciever: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "brands",
+      maxlength: 100,
+    },
+    sender: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "creators",
+      maxlength: 100,
+    },
+    senderName: {
+      type: String,
+      required: true,
+      maxlenght: 100,
+    },
+    senderProfile: {
+      type: String,
+      required: true,
+      maxlenght: 100,
+    },
+    clickLink: {
+      type: String,
+      required: true,
+      maxlenght: 100,
+    },
+    seen: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
+    time: {
+      type: String,
+      required: true,
+      maxlength: 100,
+    },
+    message: {
+      type: String,
+      required: true,
+      maxlenght: 100,
+    },
+    jobId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "jobs",
+      maxlength: 100,
+    },
+    senderImg: {
+      type: String,
+      required: true,
+      maxlength: 500,
+    },
   },
-  sender: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: "creators",
-    maxlength: 100,
-  },
-  senderName: {
-    type: String,
-    required: true,
-    maxlenght: 100,
-  },
-  senderProfile: {
-    type: String,
-    required: true,
-    maxlenght: 100,
-  },
-  clickLink: {
-    type: String,
-    required: true,
-    maxlenght: 100,
-  },
-  seen: {
-    type: Boolean,
-    default: false,
-    required: true,
-  },
-  time: {
-    type: String,
-    required: true,
-    maxlength: 100,
-  },
-  message: {
-    type: String,
-    required: true,
-    maxlenght: 100,
-  },
-  jobId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "jobs",
-    maxlength: 100,
-  },
-  senderImg: {
-    type: String,
-    required: true,
-    maxlength: 500,
-  },
-});
+  { timestamps: true }
+);
 const Notification = mongoose.model("notifications", NotificationSchema);
 
 module.exports.Creator = Creator;

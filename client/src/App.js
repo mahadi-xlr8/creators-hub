@@ -22,6 +22,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { socket } from "./socket";
 import toast from "react-hot-toast";
+import NotificationPopup from "./components/notification/notificationPopup";
 function App() {
   const [login, setLogin] = useAtom(loginInfo);
   const [notification, setNotification] = useAtom(notifications);
@@ -60,12 +61,33 @@ function App() {
     // receiving notification through socket io
 
     socket.on("receive-notification", (data) => {
-      toast.success(`${data.userName} ${data.message}`, {
-        position: "top-center",
+      toast(
+        (t) => (
+          <NotificationPopup
+            img={data.senderImg}
+            name={data.senderName}
+            message={data.message}
+            terminate={() => {
+              toast.dismiss(t.id);
+            }}
+          />
+        ),
+        {
+          position: "top-center",
+          duration: 2000,
+          style: {
+            maxWidth: "400px",
+            padding: 0,
+          },
+        }
+      );
+      setNotification((prev) => {
+        return [data, ...prev];
       });
-      setNotification((prev)=>{
-        return [data,...prev];
-      });
+    });
+
+    socket.on("remove-interest", ({ notificationId }) => {
+      setNotification((prev) => prev.filter((e) => e._id != notificationId));
     });
   }, []);
 

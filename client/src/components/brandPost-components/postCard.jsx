@@ -3,16 +3,12 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { buttonDebounce } from "../helper/debounce";
 import { socket } from "../../socket";
-import axios from "axios";
-import Cookies from "js-cookie";
-
-import NotificationToast from "../notificationToast";
 
 const PostCard = ({ data, loginData }) => {
   const [intarested, setintarested] = useState(data.interested);
-  useEffect(()=>{
-    setintarested(data.interested)
-  },[data])
+  useEffect(() => {
+    setintarested(data.interested);
+  }, [data]);
   function handleIntarested() {
     if (!loginData.login) {
       toast("Please login for this feature.", {
@@ -34,6 +30,7 @@ const PostCard = ({ data, loginData }) => {
     } else {
       socket.emit("remove-interested", {
         jobId: data._id,
+        brandId: data.brandId,
       });
 
       toast("Removed from interested!", {

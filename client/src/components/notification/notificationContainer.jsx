@@ -18,6 +18,7 @@ const NotificationContainer = (props) => {
             seen={e.seen}
             profileLink={e.senderProfile}
             time={e.time}
+            notificationId={e._id}
           />
         );
       })}
