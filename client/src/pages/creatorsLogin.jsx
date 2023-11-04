@@ -46,9 +46,8 @@ class CreatorsLogin extends React.Component {
   };
 
 
-  onFacebookSuccess = ({ data }) => {
+  onFacebookSuccess = ({data}) => {
     // console.log(data.userID, data.accessToken);
-
     const userAccessToken = data.accessToken;
     const fields = "email,name,birthday,gender,link,location";
     axios

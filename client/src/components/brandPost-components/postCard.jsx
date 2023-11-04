@@ -20,19 +20,19 @@ const PostCard = ({ data, loginData }) => {
     }
 
     if (!intarested) {
-      const currentTime = new Date();
-      const hours = currentTime.getHours();
-      const minutes = currentTime.getMinutes();
-      const seconds = currentTime.getSeconds();
-
-      const formattedTime = `${hours}:${minutes}:${seconds}`;
       socket.emit("interested-notification", {
-        jobId: data._id,
         brand: data.brandId,
-        time:formattedTime,
+        time: new Date().toLocaleString("en-US"),
+        clickLink: "/brand/post/" + data._id.toString(),
+        jobId: data._id,
+        profileImg: loginData.profileImg,
       });
       toast.success("Notification sended to the brand!", { duration: 2000 });
     } else {
+      socket.emit("remove-interested", {
+        jobId: data._id,
+      });
+
       toast("Removed from interested!", {
         icon: "❌",
         duration: 2000,

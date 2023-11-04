@@ -39,6 +39,7 @@ function App() {
           name: data.name,
           role: data.role,
           id: data.id,
+          profileImg:data.profileImg
         });
       })
       .catch((err) => {

@@ -30,17 +30,19 @@ io.use(socketJwtChecker);
 
 io.on("connection", async (socket) => {
   const userData = socket.user;
-  const DB = userData.role === "creator" ? Creator : Brand;
-  try {
-    const result = await DB.findById(userData.id);
-    if (result) {
-      socketMap[result._id] = socket.id;
-      notification(socket, socketMap, result._id, result.name);
-    }
-  } catch (err) {
-    throw new Error("Invalid user ID!");
-  }
+  socketMap[userData.id] = socket.id;
+  notification(socket, socketMap, userData.id, userData.name);
   
+
+
+
+  socket.on("disconnect", () => {
+    for (let i in socketMap) {
+      if (socketMap[i] == socket.id) {
+        socketMap[i] = undefined;
+      }
+    }
+  });
 });
 
 // express
