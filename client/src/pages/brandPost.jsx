@@ -32,7 +32,6 @@ class BrandPost extends React.Component {
   }
   componentDidUpdate(prevProps, prevState) {
     if (
-      prevState.currentPage != this.state.currentPage ||
       prevProps.userId != this.props.userId
     ) {
       axios

@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 // TODO: this page has some small works.
-const CreatorCard = ({creator}) => {
+const CreatorCard = ({ creator }) => {
   const countryTag = {
     Bangladesh: "bd",
     India: "in",
   };
-  let country="";
+  let country = "";
   for (let i in countryTag) {
     if (i == creator.country) {
       country = countryTag[i];
@@ -16,10 +16,10 @@ const CreatorCard = ({creator}) => {
   return (
     <div class="CampaignCard__Wrapper-sc-1twbu8n-0 bbKwX">
       <div class="fade-in" style={{ opacity: 1 }}>
-        <Link class="campaign-card-inner" to={"/creator/"+creator._id}>
+        <Link class="campaign-card-inner" to={"/creator/" + creator._id}>
           <div class="basic-info">
             <p class="brand">{creator.name}</p>
-            {creator.title?<p class="title">{creator.title}</p>:""}
+            {creator.title ? <p class="title">{creator.title}</p> : ""}
           </div>
           <div class="details">
             <div class="product">
@@ -35,26 +35,44 @@ const CreatorCard = ({creator}) => {
             </div>
             <div class="requirements">
               <div class="qualifications">
-                {creator.age?<div class="requirement">
-                  <span class="label">Age</span>
-                  <span class="value">
-                    {creator.age}
-                  </span>
-                </div>:""}
-                {country!=""?<div class="requirement">
-                  <span class="label">Residence</span>
-                  <span class="value">
-                    <img
-                      data-testid="circle-country-flag"
-                      class="flag"
-                      title="bd"
-                      height="100"
-                      src={`https://hatscripts.github.io/circle-flags/flags/${country}.svg`}
-                    />
-                  </span>
-                </div>:""}
+                {creator.age ? (
+                  <div class="requirement">
+                    <span class="label">Age</span>
+                    <span class="value">{creator.age}</span>
+                  </div>
+                ) : (
+                  ""
+                )}
+                {creator.gender ? (
+                  <div class="requirement">
+                    <span class="label">Gender</span>
+                    <span class="value">{creator.gender}</span>
+                  </div>
+                ) : (
+                  ""
+                )}
+                {country != "" ? (
+                  <div class="requirement">
+                    <span class="label">Residence</span>
+                    <span class="value">
+                      <img
+                        data-testid="circle-country-flag"
+                        class="flag"
+                        title="bd"
+                        height="100"
+                        src={`https://hatscripts.github.io/circle-flags/flags/${country}.svg`}
+                      />
+                    </span>
+                  </div>
+                ) : (
+                  ""
+                )}
                 <div class="requirement">
-                  <span class="niche null">10k BDT per post</span>
+                  <span class="niche null">
+                    {creator.price
+                      ? `${creator.price} BDT per post`
+                      : "not given"}
+                  </span>
                 </div>
               </div>
               {/* <div class="objectives">

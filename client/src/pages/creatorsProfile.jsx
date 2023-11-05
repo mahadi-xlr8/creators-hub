@@ -4,6 +4,7 @@ import BackButton from "../components/backButton";
 import CreatorNameBlock from "../components/creatorNameBlock";
 import CreatorQualification from "../components/creatorQualification";
 import CreatorImages from "../components/creatorsImages";
+import Description from "../components/creator-profile/description";
 import { getCreatorsByName } from "../DB";
 import PreviousWork from "./previousWork";
 import NevBar from "../components/nevBar";
@@ -19,7 +20,7 @@ const CreatorsProfile = (props) => {
   useEffect(() => {
     axios
       .get("/creator/info", {
-        params:{id: id},
+        params: { id: id },
         headers: {
           "access-token": Cookies.get("access-token"),
         },
@@ -49,6 +50,9 @@ const CreatorsProfile = (props) => {
                 />
                 <CreatorImages image={data.profileImg} />
                 <CreatorQualification data={data} />
+                {data.description ? (
+                  <Description description={data.description} />
+                ) : undefined}
               </div>
             </div>
 

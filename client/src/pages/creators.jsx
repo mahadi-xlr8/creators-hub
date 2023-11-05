@@ -39,6 +39,7 @@ class Creators extends React.Component {
     }
   };
   render() {
+    console.log("creators:",this.state.data)
     return (
       <>
         <NevBar userType="Creators" />

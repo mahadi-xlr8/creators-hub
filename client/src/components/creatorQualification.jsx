@@ -5,7 +5,7 @@ const CreatorQualification = (props) => {
     Bangladesh: "bd",
     India: "in",
   };
-  let country="";
+  let country = "";
   for (let i in countryTag) {
     if (i == props.data.country) {
       country = countryTag[i];
@@ -20,19 +20,32 @@ const CreatorQualification = (props) => {
         <div class="qualification">
           <span class="label">Platforms</span>
           {props.data.platforms.map((e) => {
-            return <span class="value">{e.name}</span>;
+            if (e.link) {
+              return (
+                <span
+                  class="value"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => (window.location = e.link)}
+                >
+                  {e.name}
+                </span>
+              );
+            }
           })}
         </div>
 
-        
         <div class="qualification">
           <span class="label">Age</span>
-          <span class="value">{props.data.age}+</span>
+          <span class="value">{props.data.age}</span>
+        </div>
+        <div class="qualification">
+          <span class="label">Gender</span>
+          <span class="value">{props.data.gender}</span>
         </div>
         {props.data.price ? (
           <div class="qualification">
             <span class="label">Price</span>
-            <span class="value">{props.data.price}k+ per post</span>
+            <span class="value">{props.data.price} BDT per post</span>
           </div>
         ) : null}
         <div class="qualification">

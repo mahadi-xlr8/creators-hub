@@ -572,13 +572,23 @@ button.ant-btn {
   display: flex;
   flex-direction: column;
 }
+.campaign-body .creator-description{
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+}
+.campaign-body .creator-description .text{
+padding-top: .5rem;
+}
 @media only screen and (min-width: 980px) {
   .campaign-body {
     display: grid;
     grid-template-areas:
       "p p q"
       "im im q"
-      "im im q";
+      "im im d";
+      align-items: start;
+
   }
   .campaign-body.post-details {
     grid-template-areas:
@@ -586,6 +596,9 @@ button.ant-btn {
       "im im q"
       "im im ip"
       "cm cm br";
+  }
+  .campaign-body .creator-description{
+    grid-area: d;
   }
   .intarested-box {
     grid-area: ip;
