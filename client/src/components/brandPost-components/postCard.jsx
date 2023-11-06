@@ -19,12 +19,13 @@ const PostCard = ({ data, loginData }) => {
     }
 
     if (!intarested) {
-      socket.emit("interested-notification", {
+      socket.emit("notification", {
         brand: data.brandId,
         time: new Date().toLocaleString("en-US"),
         clickLink: "/brand/post/" + data._id.toString(),
         jobId: data._id,
         profileImg: loginData.profileImg,
+        message: "is interested on your job post."
       });
       toast.success("Notification sended to the brand!", { duration: 2000 });
     } else {

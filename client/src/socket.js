@@ -7,3 +7,4 @@ export const socket = io({
     token: jwtToken,
   },
 });
+export const commentSocket=io("/comment");

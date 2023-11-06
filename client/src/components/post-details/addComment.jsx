@@ -2,10 +2,6 @@ import { useState } from "react";
 
 const AddComment = (props) => {
   const [text, setText] = useState("");
-  function handleClick(){
-    console.log(text)
-    setText("")
-  }
   return (
     <div className="sent-comment">
       <input
@@ -16,7 +12,15 @@ const AddComment = (props) => {
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
-      <input type="button" value="Send" className="sent-button" onClick={handleClick}/>
+      <input
+        type="button"
+        value="Send"
+        className="sent-button"
+        onClick={() => {
+          props.onSend(text);
+          setText("");
+        }}
+      />
     </div>
   );
 };

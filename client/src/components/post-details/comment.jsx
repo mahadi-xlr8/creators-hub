@@ -1,13 +1,16 @@
 const Comment = (props) => {
   return (
-    <div className="comment">
-      <img src="/images/creators/mehazabien/img1.jpg" alt="" srcset="" />
+    <div className="comment" title={props.time}>
+      <img
+        src={props.senderImg}
+        alt=""
+        srcset=""
+        onClick={() => (window.location = props.senderProfile)}
+        style={{ cursor: "pointer" }}
+      />
       <div className="comment-info">
-        <p className="name">Mehazabien</p>
-        <p className="text">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab,
-          explicabo.
-        </p>
+        <p className="name">{props.senderName}</p>
+        <p className="text">{props.comment}</p>
       </div>
     </div>
   );

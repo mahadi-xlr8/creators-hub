@@ -14,10 +14,13 @@ import ProductImages from "../components/post-details/productImages";
 import IntarestedBox from "../components/post-details/intarestedBox";
 import JobName from "../components/post-details/jobName";
 import Requirments from "../components/post-details/requirements";
+import { loginInfo } from "../globalState";
+import { useAtom } from "jotai";
 const PostDetail = () => {
   const { id } = useParams();
   const [jobData, setJobData] = useState({});
   const [brand, setBrand] = useState({});
+  const [loginData] = useAtom(loginInfo);
   useEffect(() => {
     axios
       .get("/brand/job/findById", {
@@ -75,13 +78,16 @@ const PostDetail = () => {
                 <ProductImages
                   images={jobData.images ? jobData.images : ["no img"]}
                 />
-                <IntarestedBox jobId={id}/>
+                <IntarestedBox jobId={id} />
                 <Requirments
                   data={data}
                   brandId={brand._id}
                   onDelete={handleDelete}
                 />
-                <CommentBox />
+                <CommentBox
+                  userData={loginData}
+                  jobId={jobData._id}
+                />
                 <BrandInfo brand={brand} />
               </div>
             </div>

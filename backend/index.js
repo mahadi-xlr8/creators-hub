@@ -11,6 +11,8 @@ const socketJwtChecker = require("./middleware/socketJwtChecker");
 const { Creator, Brand } = require("./database");
 const notification = require("./sockets/notification");
 const notificationRoute = require("./routes/notification");
+const commentSocket = require("./sockets/comment");
+const commentRoute = require("./routes/getComment");
 if (!process.env.facebookAppSecret) {
   console.log("facebook app secret is not set!");
   process.exit(1);
@@ -42,12 +44,18 @@ io.on("connection", async (socket) => {
   });
 });
 
+const comment = io.of("/comment");
+
+comment.on("connection", async (socket) => {
+  commentSocket(socket, comment);
+});
+
 // express
 app.use(express.json());
 app.use("/brand", brand);
 app.use("/creator", creator);
 app.use("/isLogin", isLogin);
 app.use("/notification", notificationRoute);
-
+app.use("/get-comment", commentRoute);
 const port = process.env.PORT || 5000;
 httpServer.listen(port, () => console.log(`listening on port ${port}...`));

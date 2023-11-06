@@ -311,7 +311,46 @@ const NotificationSchema = new mongoose.Schema(
 );
 const Notification = mongoose.model("notifications", NotificationSchema);
 
+const CommentSchema = new mongoose.Schema(
+  {
+    senderName: {
+      type: String,
+      required: true,
+      maxlenght: 100,
+    },
+    senderProfile: {
+      type: String,
+      required: true,
+      maxlenght: 100,
+    },
+    time: {
+      type: String,
+      required: true,
+      maxlength: 100,
+    },
+    comment: {
+      type: String,
+      required: true,
+      maxlenght: 500,
+    },
+    jobId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "jobs",
+      maxlength: 100,
+    },
+    senderImg: {
+      type: String,
+      required: true,
+      maxlength: 500,
+    },
+  },
+  { timestamps: true }
+);
+
+const Comment = mongoose.model("comments", CommentSchema);
+
 module.exports.Creator = Creator;
 module.exports.Brand = Brand;
 module.exports.Job = Job;
 module.exports.Notification = Notification;
+module.exports.Comment = Comment;

@@ -1,6 +1,6 @@
 const { Notification } = require("../database");
 module.exports = (socket, socketMap, userId, userName) => {
-  socket.on("interested-notification", async (data) => {
+  socket.on("notification", async (data) => {
     const senderProfile = "/creator/" + userId;
     try {
       const notification = new Notification({
@@ -10,7 +10,7 @@ module.exports = (socket, socketMap, userId, userName) => {
         senderProfile,
         clickLink: data.clickLink,
         time: data.time,
-        message: "is interested on your job post.",
+        message: data.message,
         jobId: data.jobId,
         senderImg: data.profileImg,
       });
