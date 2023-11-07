@@ -137,7 +137,7 @@ const NevBar = (props) => {
                   <img src="/images/icons/bell.svg" alt="" className="bell" />
                   {newNotifications > 0 && (
                     <sup className="number">
-                      {newNotifications}
+                      {newNotifications > 9 ? 9 : newNotifications}
                       <sup>{newNotifications > 9 ? "+" : null}</sup>
                     </sup>
                   )}

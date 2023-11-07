@@ -4,7 +4,7 @@ import { useAtom } from "jotai";
 
 
 
-const NotificationContainer = (props) => {
+const NotificationContainer = () => {
   const [notification]=useAtom(notifications)
   return (
     <div className="notification-container">

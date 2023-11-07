@@ -343,6 +343,10 @@ const CommentSchema = new mongoose.Schema(
       required: true,
       maxlength: 500,
     },
+    isBrand: {
+      type: Boolean,
+      required: true,
+    },
   },
   { timestamps: true }
 );

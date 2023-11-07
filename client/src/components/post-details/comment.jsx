@@ -5,8 +5,10 @@ const Comment = (props) => {
         src={props.senderImg}
         alt=""
         srcset=""
-        onClick={() => (window.location = props.senderProfile)}
-        style={{ cursor: "pointer" }}
+        onClick={() => {
+          if (!props.isBrand) window.location = props.senderProfile;
+        }}
+        style={!props.isBrand ? { cursor: "pointer" } : null}
       />
       <div className="comment-info">
         <p className="name">{props.senderName}</p>

@@ -87,6 +87,7 @@ const PostDetail = () => {
                 <CommentBox
                   userData={loginData}
                   jobId={jobData._id}
+                  brandId={brand._id}
                 />
                 <BrandInfo brand={brand} />
               </div>

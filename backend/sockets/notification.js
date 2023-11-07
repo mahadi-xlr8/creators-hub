@@ -16,8 +16,10 @@ module.exports = (socket, socketMap, userId, userName) => {
       });
       const result = await notification.save();
       const socketId = socketMap[data.brand];
-      if (socketId) {
-        socket.to(socketId).emit("receive-notification", result);
+      if (socketId && data.brand != userId) {
+        socket
+          .to(socketId)
+          .emit("receive-notification", result);
       }
     } catch (err) {
       return new Error(err.message);

@@ -1,5 +1,5 @@
 const { Comment } = require("../database");
-module.exports = (socket,comment_namespace) => {
+module.exports = (socket, comment_namespace) => {
   socket.on("comment", async (data) => {
     const senderProfile = "/creator/" + data.senderId;
     try {
@@ -10,6 +10,7 @@ module.exports = (socket,comment_namespace) => {
         comment: data.comment,
         jobId: data.jobId,
         senderImg: data.senderImg,
+        isBrand: data.isBrand,
       });
       const result = await comment.save();
       comment_namespace.emit("newComment", result);
