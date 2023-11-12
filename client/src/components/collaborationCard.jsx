@@ -4,27 +4,28 @@ const CollaborationCard = (props) => {
       <section class="previoius-work-images">
         <div class="collaboration-images">
           <img
-            src={props.brandInfo.logo}
+            src={props.collaborationInfo.brandImg}
             alt=""
             class="collaboration--brand-image"
           />
           <img
-            src={"/" + props.creatorInfo.profileImg}
+            src={props.collaborationInfo.creatorImg}
             alt=""
             class="collaboration--creator-image"
           />
         </div>
         <h2 class="collaboration--title">
-          {props.brandInfo.name} & {props.creatorInfo.name}
+          {props.collaborationInfo.brandName} &{" "}
+          {props.collaborationInfo.creatorName}
         </h2>
       </section>
       <section class="previous-work-review">
         <p class="collaboration-rating">
-          {props.collaborationInfo.rating}
+          {props.collaborationInfo.star}
           <span> Rating</span>
         </p>
-        <p class="brand-message">"{props.collaborationInfo.brandMessage}"</p>
-        <p class="brand-name">{props.brandInfo.name}</p>
+        <p class="brand-message">"{props.collaborationInfo.description}"</p>
+        <p class="brand-name">{props.collaborationInfo.brandName}</p>
       </section>
     </div>
   );

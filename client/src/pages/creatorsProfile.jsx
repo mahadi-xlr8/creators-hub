@@ -41,7 +41,6 @@ const CreatorsProfile = (props) => {
         <>
           <div className="htgZbY">
             <div className="creator-body">
-              <BackButton />
               <div className="campaign-body">
                 <CreatorNameBlock
                   name={data.name}
@@ -57,12 +56,16 @@ const CreatorsProfile = (props) => {
             </div>
 
             {/* TODO: complete previous work after finishing the backend */}
-            {/* <div className="previous-works">
-          <h1>previous works</h1>
-          <PreviousWork name={data.name} isFlipped={isFlipped} handleFlipped={()=>{
-            setFlipped(!isFlipped)
-          }}/>
-        </div> */}
+            <div className="previous-works">
+              <h1>previous works</h1>
+              <PreviousWork
+                id={id}
+                isFlipped={isFlipped}
+                handleFlipped={() => {
+                  setFlipped(!isFlipped);
+                }}
+              />
+            </div>
           </div>
           <Footer />
         </>

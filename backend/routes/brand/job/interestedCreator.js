@@ -8,7 +8,7 @@ app.get("/", jwtChecker, async (req, res) => {
       reciever: req.user.id,
       jobId: req.query.jobId,
       message: "is interested on your job post.",
-    }).select("senderName senderImg _id");
+    }).select("senderName senderImg sender");
     res.status(200).json(creators);
   } catch (err) {
     res.status(400).send(err.message);

@@ -7,7 +7,8 @@ const info = require("./info");
 const list = require("./list");
 const byId = require("./byId");
 const changePassword = require("./changePassword");
-const updateProfile=require("./updateProfile");
+const updateProfile = require("./updateProfile");
+const previousWork = require("./previousWork");
 
 app.use("/fb", fb);
 app.use("/login", login);
@@ -16,6 +17,7 @@ app.use("/info", info);
 app.use("/list", list);
 app.use("/byId", byId);
 app.use("/change-password", changePassword);
-app.use("/update-profile",updateProfile)
+app.use("/update-profile", updateProfile);
+app.use("/previous-work", previousWork);
 
 module.exports = app;

@@ -25,7 +25,7 @@ const JobCompleteContainer = (props) => {
       .then((res) => {
         let data = [];
         res.data.map((e) => {
-          data.push({ name: e.senderName, img: e.senderImg, id: e._id });
+          data.push({ name: e.senderName, img: e.senderImg, id: e.sender });
         });
         setCreators(data);
       })
@@ -66,8 +66,8 @@ const JobCompleteContainer = (props) => {
         }
       )
       .then((res) => {
-          window.location.reload();
-          toast.success(res.data);
+        window.location.reload();
+        toast.success(res.data);
       })
       .catch((err) => console.log(err));
   };
