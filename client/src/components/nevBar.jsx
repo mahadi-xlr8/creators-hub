@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { useState } from "react";
 import { loginInfo, notifications } from "../globalState";
 import { useAtom } from "jotai";
+import JobCompleted from "./job-complete/jobCompleted";
 const NevBar = (props) => {
   const [cls, setCls] = useState("");
   const [notiClick, setNotiClick] = useState(false);
@@ -157,8 +158,14 @@ const NevBar = (props) => {
                   </div>
                 )
               ) : null}
-
-              {login && role === "brand" ? (
+              {/* post new job and job complete button */}
+              {login &&
+              role === "brand" &&
+              props.userType === "Jobs" &&
+              userInfo.id === props.brandId &&
+              !props.jobComplete ? (
+                <JobCompleted />
+              ) : login && role === "brand" ? (
                 props.userType === "Post New Work" ? (
                   <div className="brand-name-1">{userInfo.name}</div>
                 ) : (

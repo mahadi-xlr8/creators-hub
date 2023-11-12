@@ -14,13 +14,17 @@ import ProductImages from "../components/post-details/productImages";
 import IntarestedBox from "../components/post-details/intarestedBox";
 import JobName from "../components/post-details/jobName";
 import Requirments from "../components/post-details/requirements";
-import { loginInfo } from "../globalState";
+import { loginInfo, completeModal } from "../globalState";
 import { useAtom } from "jotai";
+import ModalWrapper from "../components/helper/modalWrapper";
+import JobCompleteContainer from "../components/job-complete/jobCompleteContainer";
 const PostDetail = () => {
   const { id } = useParams();
   const [jobData, setJobData] = useState({});
   const [brand, setBrand] = useState({});
   const [loginData] = useAtom(loginInfo);
+  const [completeModalStatus, setCompleteModalStatus] = useAtom(completeModal);
+  console.log("modal status: ", brand);
   useEffect(() => {
     axios
       .get("/brand/job/findById", {
@@ -63,12 +67,16 @@ const PostDetail = () => {
   };
   return (
     <>
-      <NevBar />
+      <NevBar
+        userType="Jobs"
+        brandId={brand._id}
+        jobComplete={jobData.completed}
+      />
       {Object.keys(jobData).length != 0 ? (
         <>
           <div className="htgZbY">
             <div className="creator-body">
-              <BackButton />
+              <BackButton status={jobData.completed} />
               <div className="campaign-body post-details">
                 <JobName
                   name={jobData.title}
@@ -98,6 +106,18 @@ const PostDetail = () => {
       ) : (
         <h2 style={{ padding: "40px", textAlign: "center" }}>404 not found!</h2>
       )}
+      <ModalWrapper
+        isOpen={completeModalStatus}
+        onClose={() => setCompleteModalStatus(false)}
+      >
+        <JobCompleteContainer
+          brandId={loginData.id}
+          jobId={jobData._id}
+          brandImg={brand.profileImg}
+          brandName={brand.name}
+          productImg={jobData.images ? jobData.images[0] : undefined}
+        />
+      </ModalWrapper>
     </>
   );
 };

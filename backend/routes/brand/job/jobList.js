@@ -21,6 +21,7 @@ app.get("/", async (req, res) => {
       if (userId) {
         const interestedJobs = await Notification.find({
           sender: userId,
+          message: "is interested on your job post.",
         }).select("jobId");
         for (let interested of interestedJobs) {
           for (let job = 0; job < data.length; job++) {
@@ -37,7 +38,7 @@ app.get("/", async (req, res) => {
     } catch (err) {
       res.status(400).send(err.message);
     }
-  } 
+  }
   // if client give filter data
   else {
     const filter = req.query;

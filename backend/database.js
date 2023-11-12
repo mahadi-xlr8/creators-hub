@@ -228,27 +228,61 @@ const JobSchema = new mongoose.Schema(
 const Job = mongoose.model("Job", JobSchema);
 
 const Collaboration = mongoose.model(
-  "collaboration",
+  "collaborations",
   new mongoose.Schema({
-    creator: {
-      name: String,
-      id: String,
+    brandName: {
+      type: String,
+      required: true,
+      maxlength: 100,
     },
-    brand: {
-      name: String,
-      id: String,
-      comment: String,
+    brandImg: {
+      type: String,
+      required: true,
+      maxlenght: 100,
     },
-    post: {
-      platform: String,
-      link: String,
-      reach: Number,
+    creatorId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "creators",
+      maxlength: 300,
     },
-    paid: {
-      amount: Number,
-      currency: String,
+    creatorName: {
+      type: String,
+      required: true,
+      maxlength: 100,
     },
-    platfomrs: [String],
+    creatorImg: {
+      type: String,
+      required: true,
+      maxlength: 100,
+    },
+    jobId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "jobs",
+      maxlength: 300,
+      unique: true,
+    },
+    productImg: {
+      type: String,
+      required: true,
+      maxlength: 100,
+    },
+    jobLink: {
+      type: String,
+      required: true,
+      maxlenght: 100,
+    },
+    star: {
+      type: Number,
+      required: true,
+      min: 1,
+      max: 5,
+    },
+    description: {
+      type: String,
+      maxlenght: 200,
+    },
   })
 );
 
@@ -356,5 +390,6 @@ const Comment = mongoose.model("comments", CommentSchema);
 module.exports.Creator = Creator;
 module.exports.Brand = Brand;
 module.exports.Job = Job;
+module.exports.Collaboration = Collaboration;
 module.exports.Notification = Notification;
 module.exports.Comment = Comment;
