@@ -44,6 +44,7 @@ const JobCompleteContainer = (props) => {
       setError("No creator selected!");
       return;
     }
+    console.log("clicked!!")
     axios
       .post(
         "/brand/job/complete",
@@ -68,8 +69,9 @@ const JobCompleteContainer = (props) => {
       .then((res) => {
         window.location.reload();
         toast.success(res.data);
+        window.location="/";
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.response));
   };
   return (
     <div className="job-complete-container">

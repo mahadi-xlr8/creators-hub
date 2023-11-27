@@ -5,13 +5,12 @@ import Joi from "joi";
 import { useState } from "react";
 const InfluencerType = (props) => {
   const followerDropdown = [
-    { name: "less than 10k" },
-    { name: "less than 50k" },
-    { name: "less than 100k" },
-    { name: "Less than 250k" },
-    { name: "Less than 500k" },
-    { name: "less than 1 Milion" },
-    { name: "More than 1 Million" },
+    { name: "More than 10k" },
+    { name: "More than 50k" },
+    { name: "More than 100k" },
+    { name: "More than 250k" },
+    { name: "More than 500k" },
+    { name: "More than 1 Milion" },
   ];
 
   const countryDropdown = [

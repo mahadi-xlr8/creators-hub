@@ -92,13 +92,13 @@ class BrandPost extends React.Component {
                 />
                 <div className="creators-cards">
                   {this.state.jobs && this.state.totalJobs > 0 ? (
-                    this.state.jobs.map((job) => (
-                      <PostCard
+                    this.state.jobs.map((job) => {
+                      return <PostCard
                         key={job._id}
                         data={job}
                         loginData={loginData}
-                      />
-                    ))
+                      />;
+                    })
                   ) : (
                     <h2>Sorry, no jobs to show!</h2>
                   )}

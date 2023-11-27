@@ -14,9 +14,10 @@ import Footer from "./footer";
 import axios from "axios";
 const CreatorsProfile = (props) => {
   const { id } = useParams();
-  const [isFlipped, setFlipped] = useState(false);
   const [foundMessage, setFoundMessage] = useState("Please wait...");
   const [data, setData] = useState({});
+  const [prevWorks, setPrevWorks] = useState([]);
+
   useEffect(() => {
     axios
       .get("/creator/info", {
@@ -31,6 +32,15 @@ const CreatorsProfile = (props) => {
       })
       .catch((err) => {
         setFoundMessage(err.response.data);
+      });
+
+    axios
+      .get(`/creator/previous-work?id=${id}`)
+      .then((res) => {
+        setPrevWorks(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
       });
   }, []);
 
@@ -58,13 +68,11 @@ const CreatorsProfile = (props) => {
             {/* TODO: complete previous work after finishing the backend */}
             <div className="previous-works">
               <h1>previous works</h1>
-              <PreviousWork
-                id={id}
-                isFlipped={isFlipped}
-                handleFlipped={() => {
-                  setFlipped(!isFlipped);
-                }}
-              />
+              <div className="previous-work-container">
+                {prevWorks
+                  ? prevWorks.map((e) => <PreviousWork data={e} />)
+                  : null}
+              </div>
             </div>
           </div>
           <Footer />

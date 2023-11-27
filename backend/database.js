@@ -238,7 +238,7 @@ const Collaboration = mongoose.model(
     brandImg: {
       type: String,
       required: true,
-      maxlenght: 100,
+      maxlenght: 500,
     },
     creatorId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -254,7 +254,7 @@ const Collaboration = mongoose.model(
     creatorImg: {
       type: String,
       required: true,
-      maxlength: 100,
+      maxlength: 500,
     },
     jobId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -266,7 +266,7 @@ const Collaboration = mongoose.model(
     productImg: {
       type: String,
       required: true,
-      maxlength: 100,
+      maxlength: 500,
     },
     jobLink: {
       type: String,

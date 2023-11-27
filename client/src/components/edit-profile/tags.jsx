@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 const Tags = (props) => {
   const [active, setActive] = useState(false);
   const [tagValue, setTagValue] = useState([
-    "hello",
-    "my",
-    "channel",
-    "what",
-    "is",
-    "up",
-    "hero",
+    "Blogger",
+    "Fashion",
+    "Model",
+    "Food",
+    "Travel",
+    "Beauty",
+    "Nature",
   ]);
 
   useEffect(() => {
