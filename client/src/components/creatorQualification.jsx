@@ -48,6 +48,12 @@ const CreatorQualification = (props) => {
             <span class="value">{props.data.price} BDT per post</span>
           </div>
         ) : null}
+        {props.data.payment ? (
+          <div class="qualification">
+            <span class="label">Bkash Number</span>
+            <span class="value">{props.data.payment}</span>
+          </div>
+        ) : null}
         <div class="qualification">
           <span class="label">Nationality</span>
           <span class="value">

@@ -144,6 +144,24 @@ const NevBar = (props) => {
                   )}
                 </div>
               ) : null}
+              {/* {login ? (
+                <div
+                  className="notification"
+                  onClick={()=>window.location="/message"}
+                  title="Notifications"
+                >
+                  <img src="/images/icons/message.svg" alt="" className="bell" />
+                  {newNotifications > 0 && (
+                    <sup className="number">
+                      {newNotifications > 9 ? 9 : newNotifications}
+                      <sup>{newNotifications > 9 ? "+" : null}</sup>
+                    </sup>
+                  )}
+                </div>
+              ) : null}
+
+               */}
+
               {notiClick ? <NotificationContainer /> : null}
               {login && role === "creator" ? (
                 props.profilePage ? (

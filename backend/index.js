@@ -8,7 +8,6 @@ const brand = require("./routes/brand/brand");
 const isLogin = require("./routes/isLogin");
 const creator = require("./routes/creator/creator");
 const socketJwtChecker = require("./middleware/socketJwtChecker");
-const { Creator, Brand } = require("./database");
 const notification = require("./sockets/notification");
 const notificationRoute = require("./routes/notification");
 const commentSocket = require("./sockets/comment");

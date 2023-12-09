@@ -2194,3 +2194,10 @@ button.ant-btn {
   font-weight: bold;
   text-align: center;
 }
+
+
+/* message icon */
+.message-icon{
+  width: 22px;
+  cursor: pointer;
+}

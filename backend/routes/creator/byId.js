@@ -9,7 +9,6 @@ app.get("/", jwtChecker, async (req, res) => {
       const creator = await Creator.findById(req.user.id).select(
         "-accessToken"
       );
-      
       res.status(200).json(creator);
     } catch (err) {
       res.status(400).send(err.message);

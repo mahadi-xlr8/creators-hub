@@ -78,6 +78,11 @@ const CreatorSchema = new mongoose.Schema({
     minlength: 3,
     maxlenght: 10,
   },
+  payment:{
+    type:String,
+    minlength:11,
+    maxlenght:20,
+  }
 });
 CreatorSchema.methods.genToken = function () {
   const jwtKey = "sexy";

@@ -138,7 +138,8 @@ class CreatorProfileEdit extends React.Component {
       creator.title &&
       creator.description &&
       creator.price &&
-      creator.tags.length > 0
+      creator.tags.length > 0 && 
+      creator.payment.length >= 11
     ) {
       complete = true;
     }
@@ -268,6 +269,16 @@ class CreatorProfileEdit extends React.Component {
                     }
                   />
                 ) : null}
+                <div style={{ paddingBottom: "10px" }}>
+                  <JobInput
+                    placeholder="Bkash Number"
+                    value={creator.payment}
+                    onChange={(e) => {
+                      creator.payment = e.target.value;
+                      this.setState({ creator });
+                    }}
+                  />
+                </div>
                 <div style={{ paddingBottom: "10px" }}>
                   <JobInput
                     placeholder="Bio"
