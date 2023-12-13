@@ -78,11 +78,11 @@ const CreatorSchema = new mongoose.Schema({
     minlength: 3,
     maxlenght: 10,
   },
-  payment:{
-    type:String,
-    minlength:11,
-    maxlenght:20,
-  }
+  payment: {
+    type: String,
+    minlength: 11,
+    maxlenght: 20,
+  },
 });
 CreatorSchema.methods.genToken = function () {
   const jwtKey = "sexy";
@@ -392,9 +392,51 @@ const CommentSchema = new mongoose.Schema(
 
 const Comment = mongoose.model("comments", CommentSchema);
 
+const reviewSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      maxlength: 500,
+    },
+    img: {
+      type: String,
+      required: true,
+      maxlength: 500,
+    },
+    role: {
+      type: String,
+      required: true,
+      maxlenght: 20,
+    },
+    rating: {
+      type: Number,
+      required: true,
+      max: 5,
+      min: 1,
+    },
+    message: {
+      type: String,
+      maxlenght: 100,
+    },
+    date: {
+      type: String,
+      required: true,
+      maxlenght: 50,
+    },
+    profile: {
+      type: String,
+      maxlenght: 100,
+    },
+  },
+  { timestamps: true }
+);
+const Review = mongoose.model("review", reviewSchema);
+
 module.exports.Creator = Creator;
 module.exports.Brand = Brand;
 module.exports.Job = Job;
 module.exports.Collaboration = Collaboration;
 module.exports.Notification = Notification;
 module.exports.Comment = Comment;
+module.exports.Review = Review;

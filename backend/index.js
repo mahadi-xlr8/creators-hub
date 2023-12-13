@@ -12,6 +12,7 @@ const notification = require("./sockets/notification");
 const notificationRoute = require("./routes/notification");
 const commentSocket = require("./sockets/comment");
 const commentRoute = require("./routes/getComment");
+const review = require("./routes/review");
 if (!process.env.facebookAppSecret) {
   console.log("facebook app secret is not set!");
   process.exit(1);
@@ -56,5 +57,6 @@ app.use("/creator", creator);
 app.use("/isLogin", isLogin);
 app.use("/notification", notificationRoute);
 app.use("/get-comment", commentRoute);
+app.use("/review", review);
 const port = process.env.PORT || 5000;
 httpServer.listen(port, () => console.log(`listening on port ${port}...`));

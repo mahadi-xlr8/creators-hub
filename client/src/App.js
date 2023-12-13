@@ -107,7 +107,6 @@ function App() {
         <Route path="/creator/login" element={<CreatorsLogin />} />
         <Route path="/creator" element={<CreatorsHome />} />
         <Route path="/creator/:id" element={<CreatorsProfile />} />
-        <Route path="/creator/:name/previous work" element={<PreviousWork />} />
         <Route
           path="/creator/profile/edit/:id"
           element={<CreatorProfileEdit />}
