@@ -1,8 +1,9 @@
-import { reviewModal } from "../globalState";
+import { reviewModal, loginInfo } from "../globalState";
 import { useAtom } from "jotai";
 import Rating from "../components/rating/rating";
 const Footer = () => {
   const [review, setReview] = useAtom(reviewModal);
+  const [login] = useAtom(loginInfo);
   return (
     <footer class="main-footer">
       <div class="inner">
@@ -17,7 +18,9 @@ const Footer = () => {
           <div class="group">
             <h4>Brands</h4>
             <a href="brands">Home</a>
-            <a onClick={() => setReview(true)}>Rating</a>
+            {login.role === "brand" && (
+              <a onClick={() => setReview(true)}>Rating</a>
+            )}
             <a href="brand-terms">Terms & Conditions</a>
             <a href="brand-contact">Contact Us</a>
             <a href="brand-faq">FAQ</a>
@@ -25,7 +28,9 @@ const Footer = () => {
           <div class="group">
             <h4>Creators</h4>
             <a href="creators">Home</a>
-            <a onClick={() => setReview(true)}>Rating</a>
+            {login.role === "creator" && (
+              <a onClick={() => setReview(true)}>Rating</a>
+            )}
             <a href="creator-privacy">Privacy Policy</a>
             <a href="creator-terms">Terms & Conditions</a>
             <a href="creator-contact">Contact Us</a>

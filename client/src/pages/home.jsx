@@ -6,34 +6,49 @@ import Testimonial from "../components/home-component/testimonials";
 import HomeBanner from "../components/home-component/heroBanner";
 import CreatorTestimonial from "../components/home-component/creatorTestimonial";
 import LearnMore from "../components/home-component/lernMore";
+import axios from "axios";
 class Home extends React.Component {
+  state = {};
+  constructor() {
+    super();
+
+    axios
+      .get("/review?role=brand")
+      .then((res) => {
+        const data = res.data;
+        const newData = data.map((e) => {
+          return {
+            class: "testimonial",
+            desktop: "testimonial desktop fade-in",
+            name: e.name,
+            joined: e.date,
+            message: e.message,
+            img: e.img,
+            stars: e.rating,
+          };
+        });
+        this.setState({ brandTestimonial: newData });
+      })
+      .catch((err) => console.log(err.message));
+
+    axios
+      .get("/review?role=creator")
+      .then((res) => {
+        const data = res.data;
+        const newData = data.map((e) => {
+          return {
+            name: e.name,
+            message: e.message,
+            imgUrl: e.img,
+            profileLink: e.profile,
+          };
+        });
+        this.setState({ creatorTestimonial: newData });
+      })
+      .catch((err) => console.log(err.message));
+  }
+
   render() {
-    const creatorTestimonialData = [
-      {
-        name: "Mahadi",
-        profileLink: "https://facebook.com",
-        message: "A great website i must say",
-        imgUrl: "./images/all/pages/creators/tiffany.jpg",
-      },
-      {
-        name: "Pranto",
-        profileLink: "https://facebook.com",
-        message: "A great website i must say",
-        imgUrl: "./images/all/pages/creators/tiffany.jpg",
-      },
-      {
-        name: "Arman",
-        profileLink: "https://facebook.com",
-        message: "A great website i must say",
-        imgUrl: "./images/all/pages/creators/tiffany.jpg",
-      },
-      {
-        name: "Faisal",
-        profileLink: "https://facebook.com",
-        message: "A great website i must say",
-        imgUrl: "./images/all/pages/creators/tiffany.jpg",
-      },
-    ];
     const brandImgUrl = [
       "./images/logos/partners/blanka.png",
       "./images/logos/partners/colgate.png",
@@ -47,77 +62,9 @@ class Home extends React.Component {
       "./images/logos/partners/scentuals.png",
     ];
 
-    const testimonialData = [
-      {
-        class: "testimonial",
-        desktop: "testimonial desktop fade-in",
-        name: "Faisal Khan",
-        joined: "Jan 12, 2021",
-        message: "khub joss ekta website.",
-        stars: 5,
-        platformImg: "./images/all/icons/trustpilot.svg",
-      },
-      {
-        class: "testimonial",
-        desktop: "testimonial desktop fade-in",
-        name: "Abir Mia",
-        joined: "Fab 10, 2022",
-        message: "khub joss ekta website.",
-        stars: 4,
-        platformImg: "./images/all/icons/google.svg",
-      },
-      {
-        class: "testimonial",
-        desktop: "testimonial desktop fade-in",
-        name: "Imran Pranto",
-        joined: "Fab 10, 2022",
-        message: "khub joss ekta website.",
-        stars: 4,
-        platformImg: "./images/all/icons/google.svg",
-      },
-      {
-        class: "testimonial",
-        desktop: "testimonial desktop fade-in",
-        name: "Abir Mia",
-        joined: "Fab 10, 2022",
-        message: "khub joss ekta website.",
-        stars: 4,
-        platformImg: "./images/all/icons/google.svg",
-      },
-      {
-        class: "testimonial",
-        desktop: "testimonial desktop fade-in",
-        name: "Abir Mia",
-        joined: "Fab 10, 2022",
-        message: "khub joss ekta website.",
-        stars: 4,
-        platformImg: "./images/all/icons/google.svg",
-      },
-      {
-        class: "testimonial",
-        desktop: "testimonial desktop fade-in",
-        name: "Abir Mia",
-        joined: "Fab 10, 2022",
-        message: "khub joss ekta website.",
-        stars: 4,
-        platformImg: "./images/all/icons/google.svg",
-      },
-      {
-        class: "testimonial",
-        desktop: "testimonial desktop fade-in",
-        name: "Abir Mia",
-        joined: "Fab 10, 2022",
-        message: "khub joss ekta website.",
-        stars: 4,
-        platformImg: "./images/all/icons/google.svg",
-      },
-    ];
     return (
       <>
-        <NevBar
-          userType=""
-          profilePage={false}
-        />
+        <NevBar userType="" profilePage={false} />
 
         {/* <NavBarLogin/> */}
 
@@ -126,16 +73,19 @@ class Home extends React.Component {
           <HomeBanner />
 
           <PartnerSlider imgUrl={brandImgUrl} text={"Brands & Partners"} />
-          <Testimonial
-            heading={"Brands love us"}
-            text={
-              "The leading Influencer marketing platform for challenger brands and micro influencers"
-            }
-            data={testimonialData}
-            background={"./images/hero-images/brand-testimonial-bg.svg"}
-          />
-
-          <CreatorTestimonial data={creatorTestimonialData} />
+          {this.state.brandTestimonial ? (
+            <Testimonial
+              heading={"Brands love us"}
+              text={
+                "The leading Influencer marketing platform for challenger brands and micro influencers"
+              }
+              data={this.state.brandTestimonial}
+              background={"./images/hero-images/brand-testimonial-bg.svg"}
+            />
+          ) : null}
+          {this.state.creatorTestimonial && (
+            <CreatorTestimonial data={this.state.creatorTestimonial} />
+          )}
 
           <LearnMore />
         </main>

@@ -3,7 +3,31 @@ import NevBar from "../components/nevBar";
 import Slider from "react-slick";
 import PartnerSlider from "../components/home-component/partnerSlider";
 import Testimonial from "../components/home-component/testimonials";
+import axios from "axios";
 class Brands extends React.Component {
+  state = {};
+  constructor() {
+    super();
+
+    axios
+      .get("/review?role=brand")
+      .then((res) => {
+        const data = res.data;
+        const newData = data.map((e) => {
+          return {
+            class: "testimonial",
+            desktop: "testimonial desktop fade-in",
+            name: e.name,
+            joined: e.date,
+            message: e.message,
+            img: e.img,
+            stars: e.rating,
+          };
+        });
+        this.setState({ brandTestimonial: newData });
+      })
+      .catch((err) => console.log(err.message));
+  }
   render() {
     const settings = {
       dots: false,
@@ -15,6 +39,7 @@ class Brands extends React.Component {
       autoplaySpeed: 2000,
       cssEase: "linear",
     };
+
     const brandImgUrl = [
       "./images/logos/partners/blanka.png",
       "./images/logos/partners/colgate.png",
@@ -127,14 +152,16 @@ class Brands extends React.Component {
             </div>
           </section>
 
-          <Testimonial
-            background={"../images/all/pages/brands/testimonial-bg.svg"}
-            heading={"Marketers love us"}
-            text={
-              "Where brands and creators connect, collaborate, grow, & earn more money"
-            }
-            data={testimonialData}
-          />
+          {this.state.brandTestimonial && (
+            <Testimonial
+              background={"../images/all/pages/brands/testimonial-bg.svg"}
+              heading={"Marketers love us"}
+              text={
+                "Where brands and creators connect, collaborate, grow, & earn more money"
+              }
+              data={this.state.brandTestimonial}
+            />
+          )}
           <PartnerSlider
             text={"Used by hundreds of brands"}
             imgUrl={brandImgUrl}

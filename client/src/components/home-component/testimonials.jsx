@@ -6,9 +6,12 @@ const Testimonial = (props) => {
   const reviewSiteImg = [
     { img: "./images/all/icons/google.svg", name: "Google", ratting: 5 },
     { img: "./images/all/icons/g2.svg", name: "G2", ratting: 4.2 },
-    { img: "./images/all/icons/trustpilot.svg", name: "Trush Pilot", ratting: 4.5 },
+    {
+      img: "./images/all/icons/trustpilot.svg",
+      name: "Trush Pilot",
+      ratting: 4.5,
+    },
   ];
-
 
   const creatorSliderSetting = {
     dots: false,
@@ -27,14 +30,10 @@ const Testimonial = (props) => {
       <div class="inner">
         <div class="intro-section">
           <h2>{props.heading}</h2>
-          <p class="subtitle">
-            {props.text}
-          </p>
+          <p class="subtitle">{props.text}</p>
           <ReviewSite img={reviewSiteImg} />
 
-          <InnerTestimonial
-            data={props.data[0]}
-          />
+          <InnerTestimonial data={props.data[0]} />
         </div>
 
         <div id="brand-testimonials-slider-one" class="testimonials-slider">
@@ -46,8 +45,14 @@ const Testimonial = (props) => {
         </div>
 
         <div class="desktop-testimonials">
-          <InnerTestimonial data={props.data[1]} desktop={true} />
-          <InnerTestimonial data={props.data[2]} desktop={true} />
+          <InnerTestimonial
+            data={props.data[Math.max(props.data.length - 1, 0)]}
+            desktop={true}
+          />
+          <InnerTestimonial
+            data={props.data[Math.max(props.data.length - 2, 0)]}
+            desktop={true}
+          />
         </div>
       </div>
     </section>

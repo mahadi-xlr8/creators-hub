@@ -10,8 +10,10 @@ const InnerTestimonial = (props) => {
       <div class="testimonial-inner">
         <div class="upper">
           <div class="reviewer-info">
-            <div class="avatar">
-              <span class="initials">{initials}</span>
+            <div class="avatar" style={{background:'none', opacity:1}}>
+              <span class="initials" style={{opacity:1}}>
+                {e.img ? <img src={e.img} alt=""  /> : initials}
+              </span>
             </div>
             <div class="text">
               <p class="reviewer-name">{e.name}</p>
@@ -23,7 +25,7 @@ const InnerTestimonial = (props) => {
           </div>
         </div>
         <p class="message">{e.message}</p>
-        <img class="review-site-logo" src={e.platformImg} alt="" />
+        {/* <img class="review-site-logo" src={e.platformImg} alt="" /> */}
       </div>
     </div>
   );
