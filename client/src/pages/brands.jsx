@@ -3,6 +3,9 @@ import NevBar from "../components/nevBar";
 import PartnerSlider from "../components/home-component/partnerSlider";
 import Testimonial from "../components/home-component/testimonials";
 import axios from "axios";
+import Fade from "react-reveal/Fade";
+import Footer from "./footer";
+
 class Brands extends React.Component {
   state = {};
   constructor() {
@@ -51,7 +54,7 @@ class Brands extends React.Component {
       "./images/logos/partners/vista.png",
       "./images/logos/partners/scentuals.png",
     ];
-    
+
     return (
       <>
         <NevBar userType="Brands" />
@@ -80,7 +83,7 @@ class Brands extends React.Component {
                   The all-in-one platform to scale influencer and affiliate
                   marketing campaigns.
                 </p>
-                <a href="#" class="link-btn primary">
+                <a href="/brand/signup" class="link-btn primary">
                   Get Started
                 </a>
               </div>
@@ -153,35 +156,43 @@ class Brands extends React.Component {
             <div class="inner">
               <div class="asset-group">
                 <div class="image">
-                  <img src="../images/all/pages/home/graphic2.png" alt="" />
+                  <Fade left>
+                    <img src="../images/all/pages/home/graphic2.png" alt="" />
+                  </Fade>
                 </div>
                 <div class="text fade-in">
-                  <h3>
-                    Expert
-                    <span class="thin-text">Account Managers</span>
-                  </h3>
-                  <p>
-                    Work with an industry expert to build strategy, recruit
-                    creators, and report back on KPIs so you can focus on the
-                    bigger picture
-                  </p>
+                  <Fade right>
+                    <h3>
+                      Expert
+                      <span class="thin-text">Account Managers</span>
+                    </h3>
+                    <p>
+                      Work with an industry expert to build strategy, recruit
+                      creators, and report back on KPIs so you can focus on the
+                      bigger picture
+                    </p>
+                  </Fade>
                 </div>
               </div>
               <div class="asset-group">
                 <div class="image">
-                  <img src="../images/all/pages/home/graphic3.png" alt="" />
+                  <Fade right>
+                    <img src="../images/all/pages/home/graphic3.png" alt="" />
+                  </Fade>
                 </div>
                 <div class="text fade-in">
-                  <h3>
-                    Largest Community
-                    <span class="thin-text">of Aspiring Influencers</span>
-                  </h3>
-                  <p>
-                    Once your campaign is live, over 175k creators and
-                    influencers in our network are able to apply. Save time
-                    recruiting while you connect with authentic influencers who
-                    are genuinely excited about your brand
-                  </p>
+                  <Fade left>
+                    <h3>
+                      Largest Community
+                      <span class="thin-text">of Aspiring Influencers</span>
+                    </h3>
+                    <p>
+                      Once your campaign is live, over 175k creators and
+                      influencers in our network are able to apply. Save time
+                      recruiting while you connect with authentic influencers
+                      who are genuinely excited about your brand
+                    </p>
+                  </Fade>
                 </div>
               </div>
             </div>
@@ -192,7 +203,9 @@ class Brands extends React.Component {
               <h2>Getting Started Is Easy</h2>
               <div class="steps fade-in-group">
                 <div class="step fade-in">
-                  <img src="../images/all/pages/home/graphic1.png" alt="" />
+                  <Fade top>
+                    <img src="../images/all/pages/home/graphic1.png" alt="" />
+                  </Fade>
                   <p>Build a campaign brief</p>
                 </div>
                 <img
@@ -201,7 +214,9 @@ class Brands extends React.Component {
                   alt=""
                 />
                 <div class="step fade-in">
-                  <img src="../images/all/pages/home/graphic2.png" alt="" />
+                  <Fade top>
+                    <img src="../images/all/pages/home/graphic2.png" alt="" />
+                  </Fade>
                   <p>Creators apply</p>
                 </div>
                 <img
@@ -210,7 +225,9 @@ class Brands extends React.Component {
                   alt=""
                 />
                 <div class="step fade-in">
-                  <img src="../images/all/pages/home/graphic3.png" alt="" />
+                  <Fade top>
+                    <img src="../images/all/pages/home/graphic3.png" alt="" />
+                  </Fade>
                   <p>Activate the ones you want</p>
                 </div>
               </div>
@@ -252,7 +269,7 @@ class Brands extends React.Component {
                         />
                       </div>
                     </div>
-                    <p>UGC Campaigns</p>
+                    <p style={{ margin:'3rem' }}>UGC Campaigns</p>
                   </div>
                   <div class="type">
                     <div class="gallery-img-wrapper p4p ">
@@ -362,77 +379,7 @@ class Brands extends React.Component {
             </div>
           </section>
         </main>
-        <footer class="main-footer">
-          <div class="inner">
-            <div class="logo-wrapper">
-              <a href="index.html" class="logo">
-                Influences Hub
-              </a>
-              <div class="copyright">
-                &copy; 2023 Mahadi All rights reserved.
-              </div>
-            </div>
-
-            <div class="links">
-              <div class="group">
-                <h4>Brands</h4>
-                <a href="brands">Home</a>
-                <a href="#">Pricing</a>
-                <a href="brand-terms">Terms & Conditions</a>
-                <a href="brand-contact">Contact Us</a>
-                <a href="brand-faq">FAQ</a>
-              </div>
-              <div class="group">
-                <h4>Creators</h4>
-                <a href="creators">Home</a>
-                <a href="creator-privacy">Privacy Policy</a>
-                <a href="creator-terms">Terms & Conditions</a>
-                <a href="creator-contact">Contact Us</a>
-                <a href="creator-faq">FAQ</a>
-              </div>
-            </div>
-
-            <div>
-              <div class="social-links">
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                  <img
-                    class="icon"
-                    src="../images/all/icons/social/facebook-circle.svg"
-                    alt="Facebook"
-                  />
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                  <img
-                    class="icon"
-                    src="../images/all/icons/social/instagram-circle.svg"
-                    alt="Instagram"
-                  />
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                  <img
-                    class="icon"
-                    src="../images/all/icons/social/youtube-circle.svg"
-                    alt="YouTube"
-                  />
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                  <img
-                    class="icon"
-                    src="../images/all/icons/social/twitter-circle.svg"
-                    alt="Twitter"
-                  />
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer">
-                  <img
-                    class="icon"
-                    src="../images/all/icons/social/tiktok-circle.svg"
-                    alt="TikTok"
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </>
     );
   }

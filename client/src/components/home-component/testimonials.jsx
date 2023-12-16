@@ -1,6 +1,8 @@
 import ReviewSite from "./review-site";
 import InnerTestimonial from "./inner-testimonial";
 import Slider from "react-slick";
+import Fade from "react-reveal/Fade";
+
 // import Slider from "@farbenmeer/react-spring-slider"
 const Testimonial = (props) => {
   const reviewSiteImg = [
@@ -33,7 +35,9 @@ const Testimonial = (props) => {
           <p class="subtitle">{props.text}</p>
           <ReviewSite img={reviewSiteImg} />
 
-          <InnerTestimonial data={props.data[0]} />
+          <Fade top>
+            <InnerTestimonial data={props.data[0]} />
+          </Fade>
         </div>
 
         <div id="brand-testimonials-slider-one" class="testimonials-slider">
@@ -45,14 +49,18 @@ const Testimonial = (props) => {
         </div>
 
         <div class="desktop-testimonials">
+          <Fade top>
           <InnerTestimonial
             data={props.data[Math.max(props.data.length - 1, 0)]}
             desktop={true}
           />
+          </Fade>
+          <Fade top>
           <InnerTestimonial
             data={props.data[Math.max(props.data.length - 2, 0)]}
             desktop={true}
           />
+          </Fade>
         </div>
       </div>
     </section>

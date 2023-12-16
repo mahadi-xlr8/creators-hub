@@ -10,7 +10,7 @@ const CreatorHeroSection = (props) => {
           <p class="subtitle">
             Collab with amazing brands, grow your channels, and earn more money.
           </p>
-          <a href="https://app.creator.co/signup" class="link-btn primary">
+          <a href="/brand/signup" class="link-btn primary">
             Collab
           </a>
         </div>
@@ -28,22 +28,22 @@ const CreatorHeroSection = (props) => {
           <div class="fade-cycle creators">
             <img
               class="hero-img"
-              src="https://creator.co/wp-content/themes/creatorco-theme/images/pages/creators/hero-img1.jpg"
+              src="/images/creators/hero/mehazabien.jpeg"
               alt=""
             />
             <img
               class="hero-img"
-              src="https://creator.co/wp-content/themes/creatorco-theme/images/pages/creators/hero-img2.jpg"
+              src="/images/creators/hero/salman.jpeg"
               alt=""
             />
             <img
               class="hero-img"
-              src="https://creator.co/wp-content/themes/creatorco-theme/images/pages/creators/hero-img3.jpg"
+              src="/images/creators/hero/tisha.jpeg"
               alt=""
             />
             <img
               class="hero-img"
-              src="https://creator.co/wp-content/themes/creatorco-theme/images/pages/creators/hero-img4.jpg"
+              src="/images/creators/hero/tahsan.jpeg"
               alt=""
             />
           </div>
