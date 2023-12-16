@@ -1,12 +1,8 @@
 const SearchBox = (props) => {
   return (
     <div class="campaigns-header">
-      <h1>Creators Hub</h1>
-      <p class="tagline">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio facilis
-        minus cupiditate non nulla, facere a, qui cumque aliquid maxime quos
-        amet vel ut earum saepe explicabo blanditiis ea ipsa!
-      </p>
+      <h1>{props.title}</h1>
+      <p class="tagline">{props.description}</p>
       <div class="filters">
         <div class="search">
           <span class="ant-input-affix-wrapper">
