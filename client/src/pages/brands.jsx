@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import NevBar from "../components/nevBar";
-import Slider from "react-slick";
 import PartnerSlider from "../components/home-component/partnerSlider";
 import Testimonial from "../components/home-component/testimonials";
 import axios from "axios";
@@ -52,71 +51,7 @@ class Brands extends React.Component {
       "./images/logos/partners/vista.png",
       "./images/logos/partners/scentuals.png",
     ];
-    const testimonialData = [
-      {
-        class: "testimonial",
-        desktop: "testimonial desktop fade-in",
-        name: "Faisal Khan",
-        joined: "Jan 12, 2021",
-        message: "khub joss ekta website.",
-        stars: 5,
-        platformImg: "./images/all/icons/trustpilot.svg",
-      },
-      {
-        class: "testimonial",
-        desktop: "testimonial desktop fade-in",
-        name: "Abir Mia",
-        joined: "Fab 10, 2022",
-        message: "khub joss ekta website.",
-        stars: 4,
-        platformImg: "./images/all/icons/google.svg",
-      },
-      {
-        class: "testimonial",
-        desktop: "testimonial desktop fade-in",
-        name: "Imran Pranto",
-        joined: "Fab 10, 2022",
-        message: "khub joss ekta website.",
-        stars: 4,
-        platformImg: "./images/all/icons/google.svg",
-      },
-      {
-        class: "testimonial",
-        desktop: "testimonial desktop fade-in",
-        name: "Abir Mia",
-        joined: "Fab 10, 2022",
-        message: "khub joss ekta website.",
-        stars: 4,
-        platformImg: "./images/all/icons/google.svg",
-      },
-      {
-        class: "testimonial",
-        desktop: "testimonial desktop fade-in",
-        name: "Abir Mia",
-        joined: "Fab 10, 2022",
-        message: "khub joss ekta website.",
-        stars: 4,
-        platformImg: "./images/all/icons/google.svg",
-      },
-      {
-        class: "testimonial",
-        desktop: "testimonial desktop fade-in",
-        name: "Abir Mia",
-        joined: "Fab 10, 2022",
-        message: "khub joss ekta website.",
-        stars: 4,
-        platformImg: "./images/all/icons/google.svg",
-      },
-      {
-        class: "testimonial",
-        desktop: "testimonial desktop fade-in",
-        name: "Abir Mia",
-        joined: "Fab 10, 2022",
-        message: "khub joss ekta website.",
-        stars: 4,
-        platformImg: "./images/all/icons/google.svg",
-      },
-    ];
+    
     return (
       <>
         <NevBar userType="Brands" />

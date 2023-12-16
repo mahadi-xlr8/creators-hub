@@ -95,6 +95,7 @@ class BrandPost extends React.Component {
                   value={this.state.searchValue}
                   title="Available Jobs"
                   description="Search the job you are looking for by their title!"
+                  placeholder="Search Jobs"
                 />
                 <div className="creators-cards">
                   {this.state.jobs && this.state.totalJobs > 0 ? (

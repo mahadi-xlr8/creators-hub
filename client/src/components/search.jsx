@@ -29,7 +29,7 @@ const SearchBox = (props) => {
               name="search"
               id="search"
               type="text"
-              placeholder="Search creators"
+              placeholder={props.placeholder}
               class="ant-input"
               value={props.value}
               onChange={(e) => props.onChange(e)}

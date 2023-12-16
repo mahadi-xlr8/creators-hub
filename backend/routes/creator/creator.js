@@ -9,6 +9,7 @@ const byId = require("./byId");
 const changePassword = require("./changePassword");
 const updateProfile = require("./updateProfile");
 const previousWork = require("./previousWork");
+const search=require("./search")
 
 app.use("/fb", fb);
 app.use("/login", login);
@@ -16,6 +17,7 @@ app.use("/signup", signup);
 app.use("/info", info);
 app.use("/list", list);
 app.use("/byId", byId);
+app.use("/search",search)
 app.use("/change-password", changePassword);
 app.use("/update-profile", updateProfile);
 app.use("/previous-work", previousWork);

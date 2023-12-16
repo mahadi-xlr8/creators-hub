@@ -4,9 +4,8 @@ import CreatorCard from "../components/craetorCard";
 import axios from "axios";
 import "./creators.css";
 import SearchBox from "../components/search";
-import { toLower } from "lodash";
-import PostCard from "../components/brandPost-components/postCard";
 import Pagination from "../components/pagination";
+import { searchDebounce } from "../components/helper/debounce";
 class Creators extends React.Component {
   state = { searchValue: "", currentPage: 1 };
   constructor() {
@@ -24,12 +23,17 @@ class Creators extends React.Component {
   handleChange = (e) => {
     let x = e.target.value;
     this.setState({ searchValue: x });
-    let temp = this.state.creatorData.filter((data) => {
-      const name = data.name.slice(0, x.length);
-      if (toLower(name) == toLower(x)) return true;
-    });
-    this.setState({ showCreator: temp });
+
+    searchDebounce(() => this.handleSearch(e.target.value));
   };
+
+  handleSearch = (value) => {
+    axios
+      .get(`/creator/search?value=${value}`)
+      .then((res) => this.setState({ data: res.data }))
+      .catch((err) => console.log(err));
+  };
+
   handlePageChange = (page) => {
     if (page != this.state.currentPage) {
       axios.get(`/creator/list?page=${page}`).then((res) => {
@@ -39,13 +43,15 @@ class Creators extends React.Component {
     }
   };
   render() {
-    console.log("creators:",this.state.data)
     return (
       <>
         <NevBar userType="Creators" />
         <SearchBox
           onChange={this.handleChange}
           value={this.state.searchValue}
+          title="Creators"
+          description="List of all the creators. You can search the creator by their name."
+          placeholder="Search Creators"
         />
         <div
           className="creators-cards"
