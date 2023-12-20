@@ -36,7 +36,7 @@ const Testimonial = (props) => {
           <ReviewSite img={reviewSiteImg} />
 
           <Fade top>
-            <InnerTestimonial data={props.data[0]} />
+            <InnerTestimonial data={props.data[0]} desktop={true}/>
           </Fade>
         </div>
 

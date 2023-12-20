@@ -4,7 +4,7 @@ const { Creator } = require("../../database");
 
 app.get("/", async (req, res) => {
   const page = req.query.page;
-  const pageSize = 10;
+  const pageSize = 9;
   const skip = (page - 1) * pageSize;
   try {
     const total = await Creator.find({ profileComplete: true }).count();

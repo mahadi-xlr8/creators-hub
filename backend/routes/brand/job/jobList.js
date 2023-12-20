@@ -51,7 +51,7 @@ app.get("/", async (req, res) => {
     for (let i in filter) {
       if (filter[i]) {
         if (i == "age") {
-          validFilter.age = { $gte: parseInt(filter[i]) };
+          validFilter.age = { $lte: parseInt(filter[i]) };
         } else if (i == "title") {
           validFilter.title = new RegExp(filter[i], "i");
         } else if (i == "order") {

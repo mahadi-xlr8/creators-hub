@@ -100,6 +100,7 @@ const CampaignType = (props) => {
             <Message text="How much you're offering for the influencer?" />
             <JobInput
               value={props.benefit}
+              placeholder="ex: 100000"
               onChange={(e) => props.onTextChange(e, "benefit")}
             />
           </>

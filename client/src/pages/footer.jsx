@@ -43,35 +43,35 @@ const Footer = () => {
             <a href="#" target="_blank" rel="noopener noreferrer">
               <img
                 class="icon"
-                src="./images/all/icons/social/facebook-circle.svg"
+                src="/images/all/icons/social/facebook-circle.svg"
                 alt="Facebook"
               />
             </a>
             <a href="#" target="_blank" rel="noopener noreferrer">
               <img
                 class="icon"
-                src="./images/all/icons/social/instagram-circle.svg"
+                src="/images/all/icons/social/instagram-circle.svg"
                 alt="Instagram"
               />
             </a>
             <a href="#" target="_blank" rel="noopener noreferrer">
               <img
                 class="icon"
-                src="./images/all/icons/social/youtube-circle.svg"
+                src="/images/all/icons/social/youtube-circle.svg"
                 alt="YouTube"
               />
             </a>
             <a href="#" target="_blank" rel="noopener noreferrer">
               <img
                 class="icon"
-                src="./images/all/icons/social/twitter-circle.svg"
+                src="/images/all/icons/social/twitter-circle.svg"
                 alt="Twitter"
               />
             </a>
             <a href="#" target="_blank" rel="noopener noreferrer">
               <img
                 class="icon"
-                src="./images/all/icons/social/tiktok-circle.svg"
+                src="/images/all/icons/social/tiktok-circle.svg"
                 alt="TikTok"
               />
             </a>

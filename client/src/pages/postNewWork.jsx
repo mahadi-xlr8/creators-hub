@@ -82,8 +82,8 @@ class PostNewWork extends React.Component {
           },
         })
         .then((res) => {
-          window.location.replace("/");
-          toast.success(res.data);
+          window.location.replace(`/brand/post/${res.data.jobId}`);
+          toast.success("Job posted successfully!");
         })
         .catch((err) => {
           toast(err.response.data, {

@@ -11,7 +11,7 @@ class Creators extends React.Component {
   constructor() {
     super();
     axios
-      .get("/creator/list?page=1")
+      .get(`/creator/list?page=${this.state.currentPage}`)
       .then((res) => {
         this.setState({ data: res.data.data, totalPage: res.data.total });
       })

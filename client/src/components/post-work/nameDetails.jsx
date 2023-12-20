@@ -26,7 +26,7 @@ const NameDetails = (props) => {
     <>
       <LeftSide
         heading="Let's start with the Title and Description of the campaign."
-        description="lol"
+        description="Titles and descriptions play a pivotal role in helping creators find campaigns that align with their skills, interests, and goals. These elements serve as beacons, guiding creators through the sea of opportunities in the expansive realm of creative work."
       />
       <div className="right-side">
         <Message text="Write a title for your job post" />

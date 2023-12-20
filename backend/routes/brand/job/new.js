@@ -4,10 +4,10 @@ const { Job, Brand } = require("../../../database");
 const jwtChecker = require("../../../middleware/jwtChecker");
 
 app.post("/", jwtChecker, async (req, res) => {
-    let brandName=''
+  let brandName = "";
   try {
     const brand = await Brand.findById(req.user.id);
-    brandName=brand.name;
+    brandName = brand.name;
     if (req.body.brandDescription && req.body.brandSocial) {
       brand.description = req.body.brandDescription;
       brand.contactLink = req.body.brandSocial;
@@ -22,7 +22,7 @@ app.post("/", jwtChecker, async (req, res) => {
   try {
     const job = new Job({
       brandId: req.user.id,
-      brand:brandName,
+      brand: brandName,
       title: data.title,
       description: data.description,
       followers: data.follower.name,
@@ -35,12 +35,12 @@ app.post("/", jwtChecker, async (req, res) => {
       platform: data.platform.name,
       content: data.content.name,
     });
-    await job.save()
-    res.status(200).send("New job posted successfully!")
-  } catch (err) {
-    res.status(400).send(err.message)
-  }
+    const J = await job.save();
 
+    res.status(200).json({ jobId: J._id });
+  } catch (err) {
+    res.status(400).send(err.message);
+  }
 });
 
 module.exports = app;

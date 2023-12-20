@@ -10,6 +10,10 @@ const Tags = (props) => {
     "Travel",
     "Beauty",
     "Nature",
+    "Singer",
+    "Actor",
+    "Actress",
+    "Comedian", 
   ]);
 
   useEffect(() => {

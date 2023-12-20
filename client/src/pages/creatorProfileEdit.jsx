@@ -139,7 +139,7 @@ class CreatorProfileEdit extends React.Component {
       creator.description &&
       creator.price &&
       creator.tags.length > 0 && 
-      creator.payment.length >= 11
+      creator.payment.length > 0
     ) {
       complete = true;
     }

@@ -114,7 +114,7 @@ class BrandPost extends React.Component {
                 </div>
 
                 <Pagination
-                  onePage={10}
+                  onePage={9}
                   totalData={this.state.totalJobs}
                   onPageChange={this.handlePageChange}
                 />

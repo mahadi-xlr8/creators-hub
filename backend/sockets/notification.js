@@ -3,6 +3,14 @@ module.exports = (socket, socketMap, userId, userName) => {
   socket.on("notification", async (data) => {
     const senderProfile = "/creator/" + userId;
     try {
+      const prev = await Notification.find({
+        jobId: data.jobId,
+        sender: userId,
+        message: data.message,
+      });
+      if (prev.length > 0) {
+        return;
+      }
       const notification = new Notification({
         reciever: data.brand,
         sender: userId,
@@ -17,9 +25,7 @@ module.exports = (socket, socketMap, userId, userName) => {
       const result = await notification.save();
       const socketId = socketMap[data.brand];
       if (socketId && data.brand != userId) {
-        socket
-          .to(socketId)
-          .emit("receive-notification", result);
+        socket.to(socketId).emit("receive-notification", result);
       }
     } catch (err) {
       return new Error(err.message);
