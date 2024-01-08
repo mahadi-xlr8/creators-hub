@@ -1044,6 +1044,34 @@ button.ant-btn {
   transform: rotate(180deg);
 }
 
+@media only screen and (max-width: 1099px) {
+  .creator-dropdown-content{
+    opacity: 1;
+    position: static;
+    scale: 1;
+  }
+  .dropdown-title{
+    flex-direction: column;
+  }
+  .dropdown-arrow{
+    display: none;
+  }
+  .notification-container{
+    top: 400px;
+    left: 0px;
+    right: 0px;
+    border: 2px solid #dbdfe6;
+    border-radius: 5px;
+  }
+}
+
+.notification-container .message{
+  font-size: 1rem;
+  text-align: center;
+  padding-top: 5px;
+}
+
+
 .dropdown.creator:hover .creator-dropdown-content {
   opacity: 1;
   scale: 1;
