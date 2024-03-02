@@ -132,7 +132,7 @@ const PostCard = ({ data, loginData }) => {
               className={"btn-intarested" + (intarested ? " clicked" : "")}
               onClick={buttonDebounce(handleIntarested)}
             >
-              Intarested
+              Interested
             </div>
           ) : undefined}
         </div>
