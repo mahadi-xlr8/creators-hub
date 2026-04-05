@@ -73,7 +73,7 @@ class Home extends React.Component {
           <HomeBanner />
 
           <PartnerSlider imgUrl={brandImgUrl} text={"Brands & Partners"} />
-          {this.state.brandTestimonial ? (
+          {this.state.brandTestimonial?.length ? (
             <Testimonial
               heading={"Brands love us"}
               text={

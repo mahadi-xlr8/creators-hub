@@ -1,6 +1,7 @@
 import Star from "../stars";
 
 const InnerTestimonial = (props) => {
+  if (!props.data?.name) return null;
   const e = props.data;
   let names = e.name.split(" ");
   let initials = "";

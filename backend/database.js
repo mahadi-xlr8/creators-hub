@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const getToday = require("./helper/getToday");
 mongoose
-  .connect("mongodb://localhost/creators-hub")
+  .connect(process.env.MONGO_URI || "mongodb://localhost/creators-hub")
   .then(() => console.log("connected to the database!"))
   .catch((err) => console.log(err));
 
@@ -85,7 +85,7 @@ const CreatorSchema = new mongoose.Schema({
   },
 });
 CreatorSchema.methods.genToken = function () {
-  const jwtKey = "sexy";
+  const jwtKey = process.env.JWT_SECRET || "sexy";
   return jwt.sign({ id: this._id, role: "creator" }, jwtKey);
 };
 
@@ -145,7 +145,7 @@ const brandSchema = new mongoose.Schema({
 });
 
 brandSchema.methods.genToken = function () {
-  const jwtKey = "sexy";
+  const jwtKey = process.env.JWT_SECRET || "sexy";
   return jwt.sign({ id: this._id, role: "brand" }, jwtKey);
 };
 

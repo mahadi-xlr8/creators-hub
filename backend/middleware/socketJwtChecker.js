@@ -4,7 +4,7 @@ module.exports = async (socket, next) => {
   const accessToken = socket.handshake.auth.token;
   if (!accessToken) return next(new Error("no access token provided!"));
   try {
-    const decode = jwt.verify(accessToken, "sexy");
+    const decode = jwt.verify(accessToken, process.env.JWT_SECRET || "sexy");
     const userData = decode;
     const DB = userData.role === "creator" ? Creator : Brand;
 

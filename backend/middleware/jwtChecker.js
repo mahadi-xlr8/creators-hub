@@ -4,7 +4,7 @@ module.exports = (req, res, next) => {
   const accessToken = req.headers["access-token"];
   if (!accessToken) return res.status(401).send("no access token provided!");
   try {
-    const decode = jwt.verify(accessToken, "sexy");
+    const decode = jwt.verify(accessToken, process.env.JWT_SECRET || "sexy");
     req.user = decode;
     next();
   } catch (err) {

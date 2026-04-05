@@ -90,7 +90,7 @@ class Brands extends React.Component {
             </div>
           </section>
 
-          {this.state.brandTestimonial && (
+          {this.state.brandTestimonial?.length > 0 && (
             <Testimonial
               background={"../images/all/pages/brands/testimonial-bg.svg"}
               heading={"Marketers love us"}
